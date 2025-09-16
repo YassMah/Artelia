@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,9 @@
 </head>
 <body>
   <h1 class="Trends">Trends</h1>
-  <img class="logo" src="Logo.png" alt="">
+  <img class="logo" src="Logo.png" alt="Logo">
 
+  <!-- Cartes Trends (purement décoratives, ne déclenchent plus rien) -->
   <div class="squa">
     <div class="squab"></div>
     <h1 class="titre">The Execution of Emperor Maximilian</h1>
@@ -19,26 +20,24 @@
 
   <div class="squa1">
     <div class="squab"></div>
-    <div class="squaa"></div>
     <h1 class="titre1">Artemisia Gentileschi</h1>
     <img class="italie" src="Italie.png" alt="">
     <h1 class="date1">1593-1653</h1>
     <h1 class="style">Baroque</h1>
   </div>
 
-  <a id="squa2-link" href="#">
-    <div class="squa2">
-      <div class="squab"></div>
-      <h1 class="titre2"></h1>
-      <img class="france" src="France.png" alt="">
-      <h1 class="ville"></h1>
-      <h1 class="pays"></h1>
-    </div>
-  </a>
+  <div class="squa2">
+    <div class="squab"></div>
+    <img class="france" src="France.png" alt="">
+    <h1 class="ville"></h1>
+    <h1 class="pays"></h1>
+  </div>
 
+  <!-- Bouton unique pour ouvrir le feed -->
   <button id="openFeedBtn" class="open-feed-btn" aria-label="Ouvrir Feed">Feed</button>
 
-  <section id="feedOverlay" class="feed-overlay" aria-hidden="true">
+  <!-- Overlay Feed -->
+  <section id="feedOverlay" class="feed-overlay" aria-hidden="true" style="display:none;">
     <div class="feed-header">
       <h2 class="feed-title">Feed</h2>
       <button id="closeFeedBtn" class="feed-close" aria-label="Fermer">✕</button>
@@ -46,77 +45,61 @@
     <div id="feedScroller" class="feed-scroller" tabindex="0" role="region" aria-label="Feed Pour toi"></div>
   </section>
 
-  <div id="trendsContainer"></div>
-  <div id="trend-countdown" class="countdown"></div>
-
   <div class="navbar">
     <a href="#" class="home-link"><div class="home-marker"></div><img class="icon home-icon" src="home.png" alt="Accueil"></a>
     <a href="peinture.html"><img class="icon" src="peinture.png" alt="Peinture"></a>
     <a href="#"><img class="icon" src="peintre.png" alt="Peintre"></a>
-    <a href="#"><img class="icon" src="museum.png" alt="Puzzle"></a>
+    <a href="#"><img class="icon" src="museum.png" alt="Musée"></a>
     <a href="collection.html"><img class="icon" src="fav.png" alt="Favoris"></a>
     <a href="profile.html"><img class="icon" src="profile.png" alt="Profil"></a>
   </div>
 
-  <script>
-  // Exemple minimal pour tester le feed
-  const trendsSets = [
-    { squa1: { titre: "The Execution of Emperor Maximilian", date: "1867", style: "Réalisme", image: "TEEM.jpg" } },
-    { squa1: { titre: "Artemisia Gentileschi", date: "1593-1653", style: "Baroque", image: "Artemisia.jpg" } },
-    { squa1: { titre: "Louvre Museum", date: "", style: "", image: "louvre.jpg" } }
-  ];
+<script>
+const trendsSets = [
+  { titre: "The Execution of Emperor Maximilian", date: "1867", style: "Réalisme", image: "TEEM.jpg" },
+  { titre: "Artemisia Gentileschi", date: "1593-1653", style: "Baroque", image: "Artemisia.jpg" },
+  { titre: "Louvre Museum", date: "", style: "", image: "louvre.jpg" }
+];
 
-  function getTrendsIndex() { return 0; } // Commence toujours par le premier post
-</script>
-
-  <script>
-  (function(){
-  const openBtn = document.getElementById('openFeedBtn');
-  const overlay = document.getElementById('feedOverlay');
-  const closeBtn = document.getElementById('closeFeedBtn');
-  const scroller = document.getElementById('feedScroller');
+(function(){
+  const openBtn   = document.getElementById('openFeedBtn');
+  const overlay   = document.getElementById('feedOverlay');
+  const closeBtn  = document.getElementById('closeFeedBtn');
+  const scroller  = document.getElementById('feedScroller');
 
   function populateFeed(){
     scroller.innerHTML = '';
-    trendsSets.forEach((set,i)=>{
+    trendsSets.forEach(set=>{
       const post = document.createElement('article');
       post.className = 'feed-post';
-      post.dataset.index = i;
       post.innerHTML = `
-        <div class="post-bg" style="background-image:url('image/${set.squa1.image}')"></div>
+        <div class="post-bg" style="background-image:url('image/${set.image}')"></div>
         <div class="post-content">
-          <h3 class="post-title">${set.squa1.titre}</h3>
-          <div class="post-meta">${set.squa1.date || ''} ${set.squa1.style ? '• ' + set.squa1.style : ''}</div>
+          <h3 class="post-title">${set.titre}</h3>
+          <div class="post-meta">${set.date || ''} ${set.style ? '• ' + set.style : ''}</div>
         </div>
         <div class="actions">
-          <div class="action-btn" aria-hidden="true">❤</div>
-          <div class="action-btn" aria-hidden="true">⤴</div>
-        </div>
-      `;
+          <div class="action-btn">❤</div>
+          <div class="action-btn">⤴</div>
+        </div>`;
       scroller.appendChild(post);
     });
   }
 
   function openFeed(){
     populateFeed();
-    overlay.classList.add('show');
     overlay.style.display = 'flex';
     overlay.setAttribute('aria-hidden','false');
-
-    const idx = getTrendsIndex();
-    const target = scroller.children[idx];
-    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
   }
 
   function closeFeed(){
-    overlay.classList.remove('show');
-    setTimeout(()=> overlay.style.display = 'none', 400);
+    overlay.style.display = 'none';
     overlay.setAttribute('aria-hidden','true');
   }
 
   openBtn.addEventListener('click', openFeed);
   closeBtn.addEventListener('click', closeFeed);
-  document.addEventListener('keydown', (e)=> { if(e.key==='Escape') closeFeed(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFeed(); });
 })();
 </script>
 </body>
