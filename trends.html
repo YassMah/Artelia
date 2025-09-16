@@ -54,14 +54,14 @@
     <a href="profile.html"><img class="icon" src="profile.png" alt="Profil"></a>
   </div>
 
-<script>
+<script> 
 const trendsSets = [
   // ===== TABLEAUX (≈85) =====
-  { titre: "La Joconde", date: "1503", style: "Renaissance", image: "joconde.jpg" },
-  { titre: "La Nuit étoilée", date: "1889", style: "Post-impressionnisme", image: "nuit-etoilee.jpg" },
-  { titre: "Guernica", date: "1937", style: "Cubisme", image: "guernica.jpg" },
-  { titre: "Le Cri", date: "1893", style: "Expressionnisme", image: "le-cri.jpg" },
-  { titre: "Les Nymphéas", date: "1916", style: "Impressionnisme", image: "nympheas.jpg" },
+  { titre: "La Joconde", date: "1503", style: "Renaissance", image: "tableaux/joconde.jpg" },
+  { titre: "La Nuit étoilée", date: "1889", style: "Post-impressionnisme", image: "tableaux/nuit-etoilee.jpg" },
+  { titre: "Guernica", date: "1937", style: "Cubisme", image: "tableaux/guernica.jpg" },
+  { titre: "Le Cri", date: "1893", style: "Expressionnisme", image: "tableaux/le-cri.jpg" },
+  { titre: "Les Nymphéas", date: "1916", style: "Impressionnisme", image: "tableaux/nympheas.jpg" },
   { titre: "La Jeune fille à la perle", date: "1665", style: "Baroque", image: "jeune-fille-perle.jpg" },
   { titre: "La Ronde de nuit", date: "1642", style: "Baroque", image: "ronde-nuit.jpg" },
   { titre: "La Liberté guidant le peuple", date: "1830", style: "Romantisme", image: "liberte-peuple.jpg" },
@@ -178,15 +178,15 @@ const trendsSets = [
       const post = document.createElement('article');
       post.className = 'feed-post';
       post.innerHTML = `
-        <div class="post-bg" style="background-image:url('image/${set.image}')"></div>
-        <div class="post-content">
-          <h3 class="post-title">${set.titre}</h3>
-          <div class="post-meta">${set.date || ''} ${set.style ? '• ' + set.style : ''}</div>
-        </div>
-        <div class="actions">
-          <div class="action-btn">❤</div>
-          <div class="action-btn">⤴</div>
-        </div>`;
+  <div class="post-bg" style="background-image:url('${set.image}')"></div>
+  <div class="post-content">
+    <h3 class="post-title">${set.titre}</h3>
+    <div class="post-meta">${set.date || ''} ${set.style ? '• ' + set.style : ''}</div>
+  </div>
+  <div class="actions">
+    <div class="action-btn">❤</div>
+    <div class="action-btn">⤴</div>
+  </div>`;
       scroller.appendChild(post);
     });
   }
