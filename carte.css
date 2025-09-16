@@ -1,0 +1,189 @@
+@font-face {
+  font-family: 'MaPolicePerso';
+  src: url('AnthonioScript.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MaPolicePerso2';
+  src: url('aftersickdemo-regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'MaPolicePerso3';
+  src: url('GalanoGrotesqueRegular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'MaPolicePerso4';
+  src: url('GalanoGrotesqueBold.otf') format('opentype');
+}
+
+body {
+    background-color: #121212;
+    font-family: 'MaPolicePerso3', sans-serif;
+    overflow-y: scroll; 
+    padding-bottom: 100px; 
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.paint {
+    position: absolute;
+    top: 25px;
+    left: 105px;
+    font-family: 'MaPolicePerso3', sans-serif;
+    font-size: 24px;
+    color: #ffffff;
+    z-index: 5;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    position: absolute;
+    top: 9px;
+    left: -5%;
+    transition: opacity 0.5s ease;
+}
+
+
+.blur {
+  position: relative;
+  z-index: 2;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 140px;
+  border-radius: 20px;
+
+  /* Progressive blur using backdrop-filter */
+  backdrop-filter: blur(10px);
+  /* Use a gradient mask to fade the blur progressively */
+-webkit-mask-image: linear-gradient(to right, black 0%, black 50%, transparent 100%);
+  mask-image: linear-gradient(to right, black 0%, black 50%, transparent 100%);  z-index: 2;
+  pointer-events: none; /* So it doesn't block clicks */
+}
+
+.square2 {
+  position: relative;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 140px;
+  border-radius: 20px;
+  background-image: url('tokyo.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+
+.square3 {
+  position: relative;
+  top: 115px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 140px;
+  
+  border-radius: 20px;
+  background-image: url('musee.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.square4 {
+  position: relative;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 140px;
+    border-radius: 20px;
+    background-image: url('peintree.jpg');  
+    background-size: 250px;
+    background-position: 100px -56px;
+    z-index: 1;
+}
+
+
+.title {
+font-family: MaPolicePerso4, sans-serif;
+  position: absolute;
+  font-size: 20px;
+  left: 10px;
+  top: 0px;
+  color: #ffffff;
+  z-index: 3;
+  font-weight: 100;
+}
+
+.essayer {
+    position: relative;
+    top: -40px;
+    left: 10px;
+    border-radius: 20px;
+    width: 140px;
+    height: 30px;
+    box-shadow: 0px 0px 100px;
+    border: 0px;
+    z-index: 2;   
+}
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 94%;
+  height: 70px;
+  background-color: #1b1b1b;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 0 10px;
+  z-index: 997;
+}
+
+.navbar a {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.navbar img.icon {
+  height: 24px;
+  width: auto;
+  filter: invert(1); /* rend les icônes blanches */
+}
+
+/* HOME uniquement */
+.carte-link {
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.museum-icon {
+  margin-bottom: 20px; /* surélève l'icône */
+}
+
+.carte-marker {
+  position: absolute;
+  bottom: 20px; /* placé juste sous l’icône, dans la navbar */
+  width: 30px;
+  height: 5px;
+  background-color: white;
+  box-shadow: 0px -5px 10px rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+}
+
+

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Carte avec images rondes qui grandissent au zoom</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>
+  html, body, #map {
+    height: 100vh; margin: 0; padding: 0;
+  }
+  .custom-marker-img {
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease;
+    transform-origin: center center;
+  }
+.country-circle {
+  background-size: 10px;
+  border-radius: 50%;
+  background-size: cover;
+  border: 2px solid white;
+  box-shadow: 0 0 5px black;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+.painter-marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-size: cover;
+  border: 2px solid white;
+}
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 94%;
+  height: 70px;
+  background-color: #1b1b1b;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 0 10px;
+  z-index: 997;
+}
+
+.navbar a {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.navbar img.icon {
+  height: 24px;
+  width: auto;
+  filter: invert(1); /* rend les icônes blanches */
+}
+
+/* HOME uniquement */
+.museum-link {
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.museum-icon {
+  margin-bottom: 20px; /* surélève l'icône */
+}
+
+.museum-marker {
+  position: absolute;
+  bottom: 20px; /* placé juste sous l’icône, dans la navbar */
+  width: 30px;
+  height: 5px;
+  background-color: white;
+  box-shadow: 0px -5px 10px rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+}
+
+</style>
+</head>
+<body>
+  <div id="map"></div>
+  	    <div class="navbar">
+        <a href="trends.html" class="home-link">
+            <img class="icon home-icon" src="home.png" alt="Accueil">
+        </a>   
+        <a href="peinture.html" class="paint-link">
+            <img class="icon paint-icon" src="peinture.png" alt="Peinture">
+        </a>
+        <a href="#">
+            <img class="icon" src="peintre.png" alt="Peintre">
+        </a>
+        <a href="carte.html" class="museum-link">
+			<div class="museum-marker"></div>
+            <img class="icon museum-icon" src="museum.png" alt="Puzzle">
+        </a>
+        <a href="#">
+            <img class="icon" src="fav.png" alt="Favoris">
+        </a>
+        <a href="#">
+            <img class="icon" src="profile.png" alt="Profil">
+        </a>
+    </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+const map = L.map('map').setView([30, 0], 2);
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap, &copy; CartoDB',
+  subdomains: 'abcd',
+  maxZoom: 19
+}).addTo(map);
+
+const painters = [
+  { name: "Leonardo da Vinci", lat: 43.7833, lon: 10.9333, country: "Italie", image: "vinci.png" },
+  { name: "Michelangelo", lat: 43.7731, lon: 11.2556, country: "Italie", image: "michelangelo.png" },
+  { name: "Raphael", lat: 43.4667, lon: 12.4500, country: "Italie", image: "raphael.png" },
+  { name: "Sandro Botticelli", lat: 43.7711, lon: 11.1, country: "Italie", image: "botticelli.png" },
+  { name: "Caravaggio", lat: 45.6636, lon: 9.6217, country: "Italie", image: "caravaggio.png" },
+  { name: "Titian", lat: 46.4343, lon: 12.0807, country: "Italie", image: "titian.png" },
+  { name: "Hieronymus Bosch", lat: 51.6906, lon: 5.3042, country: "Pays-Bas", image: "bosch.jpg" },
+  { name: "Pieter Bruegel l'Ancien", lat: 50.8798, lon: 4.7005, country: "Belgique", image: "bruegel.jpg" },
+  { name: "Rembrandt", lat: 52.3702, lon: 4.8952, country: "Pays-Bas", image: "rembrandt.jpg" },
+  { name: "Johannes Vermeer", lat: 52.0116, lon: 4.3571, country: "Pays-Bas", image: "vermeer.jpg" },
+  { name: "Vincent van Gogh", lat: 52.0765, lon: 4.6706, country: "Pays-Bas", image: "vangogh.png" },
+  { name: "Claude Monet", lat: 48.8550, lon: 1.4861, country: "France", image: "monet.jpg" },
+  { name: "Édouard Manet", lat: 48.8588, lon: 2.3469, country: "France", image: "manet.jpg" },
+  { name: "Edgar Degas", lat: 48.8667, lon: 2.3333, country: "France", image: "degas.jpg" },
+  { name: "Pierre-Auguste Renoir", lat: 48.6921, lon: 6.1844, country: "France", image: "renoir.jpg" },
+  { name: "Paul Cézanne", lat: 43.5297, lon: 5.4474, country: "France", image: "cezanne.jpg" },
+  { name: "Paul Gauguin", lat: 48.8566, lon: 2.3522, country: "France", image: "gauguin.jpg" },
+  { name: "Henri Matisse", lat: 50.2830, lon: 3.6363, country: "France", image: "matisse.jpg" },
+  { name: "Georges Braque", lat: 49.4989, lon: 0.1233, country: "France", image: "braque.jpg" },
+  { name: "Eugène Delacroix", lat: 48.8606, lon: 2.3376, country: "France", image: "delacroix.jpg" },
+  { name: "Pablo Picasso", lat: 36.7213, lon: -4.4214, country: "Espagne", image: "picasso.jpg" },
+  { name: "Salvador Dalí", lat: 42.2667, lon: 2.9667, country: "Espagne", image: "dali.jpg" },
+  { name: "Francisco Goya", lat: 41.6561, lon: -0.8773, country: "Espagne", image: "goya.jpg" },
+  { name: "Diego Velázquez", lat: 37.3891, lon: -5.9845, country: "Espagne", image: "velazquez.jpg" },
+  { name: "El Greco", lat: 35.2738, lon: 25.1612, country: "Grèce", image: "elgreco.jpg" },
+  { name: "Frida Kahlo", lat: 19.4326, lon: -99.1332, country: "Mexique", image: "kahlo.jpg" },
+  { name: "Diego Rivera", lat: 21.0164, lon: -101.2591, country: "Mexique", image: "rivera.jpg" },
+  { name: "Gustav Klimt", lat: 48.2082, lon: 16.3738, country: "Autriche", image: "klimt.jpg" },
+  { name: "Egon Schiele", lat: 48.1890, lon: 16.3780, country: "Autriche", image: "schiele.jpg" },
+  { name: "Edvard Munch", lat: 59.9139, lon: 10.7522, country: "Norvège", image: "munch.jpg" }
+];
+
+
+const countryCoords = {
+  "Pays-Bas": [52.1, 5.2],
+  "Espagne": [40.4, -3.7],
+  "Italie": [41.9, 12.5],
+  "France": [46.8, 2.3],
+  "Mexique": [19.4, -99.1],
+  "Autriche": [47.5, 14.5],
+  "Norvège": [60.4, 8.5],
+  "Belgique": [50.8, 4.4],    // ✅ ajouté
+  "Grèce": [39.0, 22.0],      // ✅ ajouté
+  "Royaume-Uni": [54.0, -2.0] // tu peux le garder même si pas encore utilisé
+};
+// Groupe pour les marqueurs
+const countryMarkers = {};
+const individualMarkers = [];
+
+// Compter les peintres par pays
+const countryCounts = {};
+painters.forEach(p => {
+  countryCounts[p.country] = (countryCounts[p.country] || 0) + 1;
+});
+
+// Créer les marqueurs pays
+Object.entries(countryCounts).forEach(([country, count]) => {
+  const [lat, lon] = countryCoords[country];
+  const size = 10 + count * 2;
+
+  const div = document.createElement('div');
+  div.className = 'country-circle';
+  div.style.width = `${size}px`;
+  div.style.height = `${size}px`;
+  div.style.backgroundImage = `url(flags/${country.toLowerCase().replace(/ /g, '_')}.png)`;
+
+  const marker = L.marker([lat, lon], {
+    icon: L.divIcon({
+      html: div.outerHTML,
+      className: '',
+      iconSize: [size, size]
+    })
+  }).addTo(map);
+
+  countryMarkers[country] = marker;
+});
+
+// Créer les marqueurs individuels (au début cachés)
+painters.forEach(p => {
+  const div = document.createElement('div');
+  div.className = 'painter-marker';
+  div.style.backgroundImage = `url(img/${p.image})`;
+
+  const marker = L.marker([p.lat, p.lon], {
+    icon: L.divIcon({
+      html: div.outerHTML,
+      className: '',
+      iconSize: [30, 30]
+    })
+  });
+
+  individualMarkers.push(marker);
+});
+
+// Basculer entre les vues selon le zoom
+function updateMarkers() {
+  const zoom = map.getZoom();
+  if (zoom >= 5) {
+    // Afficher peintres, cacher pays
+    Object.values(countryMarkers).forEach(m => map.removeLayer(m));
+    individualMarkers.forEach(m => map.addLayer(m));
+  } else {
+    // Afficher pays, cacher peintres
+    individualMarkers.forEach(m => map.removeLayer(m));
+    Object.values(countryMarkers).forEach(m => map.addLayer(m));
+  }
+}
+
+map.on('zoomend', updateMarkers);
+updateMarkers(); // appel initial
+  </script>
+</body>
+</html>

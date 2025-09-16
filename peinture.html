@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peintures</title>
+  <link rel="stylesheet" href="peinture.css" />
+</head>
+<body>
+
+<header>
+  <img class="logo" src="Logo.png" alt="Logo" />
+  <h1 class="paint">Peinture</h1>
+  <img id="openFilterBtn" class="filter-icon" src="sort.png" alt="Trier" />
+</header>
+  
+
+  <section class="galerie">
+    <img class="elephants" src="Frame 6.png" alt="">
+    <img class="perle" src="Frame 8.png" alt="">
+  </section>
+
+  <div class="navbar">
+    <a href="trends.html" class="home-link">
+      <img class="icon home-icon" src="home.png" alt="Accueil">
+    </a>   
+    <a href="peinture.html" class="paint-link">
+      <div class="paint-marker"></div>
+      <img class="icon paint-icon" src="peinture.png" alt="Peinture">
+    </a>
+    <a href="#"><img class="icon" src="peintre.png" alt="Peintre"></a>
+    <a href="carte.html"><img class="icon" src="museum.png" alt="Puzzle"></a>
+    <a href="#"><img class="icon" src="fav.png" alt="Favoris"></a>
+    <a href="#"><img class="icon" src="profile.png" alt="Profil"></a>
+  </div>
+
+  <h1 class="suite">À venir très bientôt</h1>
+
+  <script>
+  const openBtn = document.getElementById('openFilterBtn');
+  const closeBtn = document.getElementById('closeFilterBtn');
+  const overlay = document.getElementById('filterOverlay');
+
+  // Ouvrir la fenêtre
+  openBtn.addEventListener('click', () => {
+    overlay.style.display = 'flex';
+  });
+
+  // Fermer la fenêtre
+  closeBtn.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
+
+  // Fermer si on clique en dehors du contenu
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

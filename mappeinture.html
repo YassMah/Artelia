@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Carte avec images rondes qui grandissent au zoom</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>
+  html, body, #map {
+    height: 100vh; margin: 0; padding: 0;
+  }
+  .custom-marker-img {
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease;
+    transform-origin: center center;
+  }
+.country-circle {
+  background-size: 10px;
+  border-radius: 50%;
+  background-size: cover;
+  border: 2px solid white;
+  box-shadow: 0 0 5px black;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+.painter-marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-size: cover;
+  border: 2px solid white;
+}
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 94%;
+  height: 70px;
+  background-color: #1b1b1b;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 0 10px;
+  z-index: 997;
+}
+
+.navbar a {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.navbar img.icon {
+  height: 24px;
+  width: auto;
+  filter: invert(1); /* rend les icônes blanches */
+}
+
+/* HOME uniquement */
+.museum-link {
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.museum-icon {
+  margin-bottom: 20px; /* surélève l'icône */
+}
+
+.museum-marker {
+  position: absolute;
+  bottom: 20px; /* placé juste sous l’icône, dans la navbar */
+  width: 30px;
+  height: 5px;
+  background-color: white;
+  box-shadow: 0px -5px 10px rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+}
+
+</style>
+</head>
+<body>
+  <div id="map"></div>
+  	    <div class="navbar">
+        <a href="trends.html" class="home-link">
+            <img class="icon home-icon" src="home.png" alt="Accueil">
+        </a>   
+        <a href="peinture.html" class="paint-link">
+            <img class="icon paint-icon" src="peinture.png" alt="Peinture">
+        </a>
+        <a href="#">
+            <img class="icon" src="peintre.png" alt="Peintre">
+        </a>
+        <a href="carte.html" class="museum-link">
+			<div class="museum-marker"></div>
+            <img class="icon museum-icon" src="museum.png" alt="Puzzle">
+        </a>
+        <a href="#">
+            <img class="icon" src="fav.png" alt="Favoris">
+        </a>
+        <a href="#">
+            <img class="icon" src="profile.png" alt="Profil">
+        </a>
+    </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+const map = L.map('map').setView([30, 0], 2);
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap, &copy; CartoDB',
+  subdomains: 'abcd',
+  maxZoom: 19
+}).addTo(map);
+
+const painters = [
+ { name: "La Joconde", lat: 48.8606, lon: 2.3376, country: "France", image: "joconde.jpg" },
+  { name: "La Cène", lat: 45.4654, lon: 9.1866, country: "Italie", image: "cene.jpg" },
+  { name: "La Création d'Adam", lat: 41.9029, lon: 12.4534, country: "Vatican", image: "adam.jpg" },
+  { name: "L'École d'Athènes", lat: 41.9029, lon: 12.4534, country: "Vatican", image: "athenes.jpg" },
+  { name: "La Naissance de Vénus", lat: 43.7696, lon: 11.2558, country: "Italie", image: "venus.jpg" },
+  { name: "Le Caravage  Bacchus", lat: 41.9009, lon: 12.4818, country: "Italie", image: "bacchus.jpg" },
+  { name: "Le Titien - Vénus d'Urbino", lat: 43.7696, lon: 11.2558, country: "Italie", image: "urbino.jpg" },
+  { name: "Le Jardin des délices", lat: 40.4168, lon: -3.7038, country: "Espagne", image: "delices.jpg" },
+  { name: "La Tour de Babel", lat: 50.8467, lon: 4.3499, country: "Belgique", image: "babel.jpg" },
+  { name: "La Ronde de nuit", lat: 52.3667, lon: 4.8945, country: "Pays-Bas", image: "ronde.jpg" },
+  { name: "La Jeune Fille à la perle", lat: 52.0809, lon: 4.3170, country: "Pays-Bas", image: "perle.jpg" },
+  { name: "La Nuit étoilée", lat: 40.7614, lon: -73.9776, country: "États-Unis", image: "etoilee.jpg" },
+  { name: "Impression, soleil levant", lat: 48.8599, lon: 2.3266, country: "France", image: "soleil.jpg" },
+  { name: "Le Déjeuner sur l'herbe", lat: 48.8606, lon: 2.3376, country: "France", image: "dejeuner.jpg" },
+  { name: "La Classe de danse", lat: 48.8606, lon: 2.3376, country: "France", image: "danse.jpg" },
+  { name: "Bal du moulin de la Galette", lat: 48.8867, lon: 2.3383, country: "France", image: "galette.jpg" },
+  { name: "Les Joueurs de cartes", lat: 48.8566, lon: 2.3522, country: "France", image: "cartes.jpg" },
+  { name: "Femmes de Tahiti", lat: -17.5388, lon: -149.5677, country: "France", image: "tahiti.jpg" },
+  { name: "La Danse", lat: 59.9391, lon: 30.3158, country: "Russie", image: "danse-matisse.jpg" },
+  { name: "Les Demoiselles d'Avignon", lat: 40.7614, lon: -73.9776, country: "États-Unis", image: "demoiselles.jpg" },
+  { name: "Guernica", lat: 40.4074, lon: -3.6945, country: "Espagne", image: "guernica.jpg" },
+  { name: "La Persistance de la mémoire", lat: 40.7614, lon: -73.9776, country: "États-Unis", image: "memoire.jpg" },
+  { name: "Le 3 mai 1808", lat: 40.4138, lon: -3.6921, country: "Espagne", image: "3mai.jpg" },
+  { name: "Les Ménines", lat: 40.4138, lon: -3.6921, country: "Espagne", image: "menines.jpg" },
+  { name: "L’Enterrement du comte d’Orgaz", lat: 39.8628, lon: -4.0273, country: "Espagne", image: "orgaz.jpg" },
+  { name: "Les Deux Fridas", lat: 19.4351, lon: -99.1415, country: "Mexique", image: "fridas.jpg" },
+  { name: "L’Homme contrôleur de l’univers", lat: 19.4351, lon: -99.1415, country: "Mexique", image: "controleur.jpg" },
+  { name: "Le Baiser", lat: 48.2051, lon: 16.3605, country: "Autriche", image: "baiser.jpg" },
+  { name: "La Famille", lat: 48.2051, lon: 16.3605, country: "Autriche", image: "famille.jpg" },
+  { name: "Le Cri", lat: 59.9156, lon: 10.7500, country: "Norvège", image: "cri.jpg" }];
+
+
+const countryCoords = {
+  "Pays-Bas": [52.1, 5.2],
+  "Espagne": [40.4, -3.7],
+  "Italie": [41.9, 12.5],
+  "France": [46.8, 2.3],
+  "Mexique": [19.4, -99.1],
+  "Autriche": [47.5, 14.5],
+  "Norvège": [60.4, 8.5],
+  "Belgique": [50.8, 4.4],
+  "Vatican": [41.9029, 12.4534],
+  "États-Unis": [40.7, -74.0],
+  "Russie": [55.7, 37.6],
+  "Grèce": [39.0, 22.0],
+  "Royaume-Uni": [54.0, -2.0] // même s'il n'y a pas encore de peintre ici
+};// Groupe pour les marqueurs
+const countryMarkers = {};
+const individualMarkers = [];
+
+// Compter les peintres par pays
+const countryCounts = {};
+painters.forEach(p => {
+  countryCounts[p.country] = (countryCounts[p.country] || 0) + 1;
+});
+
+// Créer les marqueurs pays
+Object.entries(countryCounts).forEach(([country, count]) => {
+  const [lat, lon] = countryCoords[country];
+  const size = 10 + count * 2;
+
+  const div = document.createElement('div');
+  div.className = 'country-circle';
+  div.style.width = `${size}px`;
+  div.style.height = `${size}px`;
+  div.style.backgroundImage = `url(flags/${country.toLowerCase().replace(/ /g, '_')}.png)`;
+
+  const marker = L.marker([lat, lon], {
+    icon: L.divIcon({
+      html: div.outerHTML,
+      className: '',
+      iconSize: [size, size]
+    })
+  }).addTo(map);
+
+  countryMarkers[country] = marker;
+});
+
+// Créer les marqueurs individuels (au début cachés)
+painters.forEach(p => {
+  const div = document.createElement('div');
+  div.className = 'painter-marker';
+  div.style.backgroundImage = `url(img/${p.image})`;
+
+  const marker = L.marker([p.lat, p.lon], {
+    icon: L.divIcon({
+      html: div.outerHTML,
+      className: '',
+      iconSize: [30, 30]
+    })
+  });
+
+  individualMarkers.push(marker);
+});
+
+// Basculer entre les vues selon le zoom
+function updateMarkers() {
+  const zoom = map.getZoom();
+  if (zoom >= 5) {
+    // Afficher peintres, cacher pays
+    Object.values(countryMarkers).forEach(m => map.removeLayer(m));
+    individualMarkers.forEach(m => map.addLayer(m));
+  } else {
+    // Afficher pays, cacher peintres
+    individualMarkers.forEach(m => map.removeLayer(m));
+    Object.values(countryMarkers).forEach(m => map.addLayer(m));
+  }
+}
+
+map.on('zoomend', updateMarkers);
+updateMarkers(); // appel initial
+  </script>
+</body>
+</html>

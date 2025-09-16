@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="orsay.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="snn">Musée d'Orsay</h1>
+    <img class="logo" src="Logo.png" alt="">
+    <div class="orsay" style="background-image: url('https://cdn-imgix.headout.com/media/images/a4f59470c6f71740b589f6f907c8e6c4-6235---Paris---Dedicated-Entry-Tickets-to-Orsay-Museum---08.jpg?auto=format&w=900&h=562.5&q=90&ar=16%3A10&fit=crop');"></div>
+
+	<div class="LDSH">
+		<div class="blur"></div>
+		<h5 class="name">Le Déjeuner sur l'herbe</h5>
+		<p class="text">"Le scandale d'hier est l'art d'aujourd'hui."</p>
+		<img class="like" src="like.png" alt="">
+		<img class="fav2" src="fav2.png" alt="">
+		<p class="date">1863</p>
+		<div class="square">
+			<h2 class="peintre">Édouard Manet</h2>
+			<img class="manet" src="manet.png" alt="">
+		</div>
+	</div>
+
+	<div class="LDSH" style="background-image: url('olympia.jpg');">
+		<div class="blur"></div>
+		<h5 class="name">Olympia</h5>
+		<p class="text">"Une œuvre provocante qui marque son temps."</p>
+		<img class="like" src="like.png" alt="">
+		<img class="fav2" src="fav2.png" alt="">
+		<p class="date">1863</p>
+		<div class="square">
+			<h2 class="peintre">Édouard Manet</h2>
+			<img class="manet" src="manet.png" alt="">
+		</div>
+	</div>
+
+	<div class="LDSH" style="background-image: url('nuit_etoilee_rhone.jpg');">
+		<div class="blur"></div>
+		<h5 class="name">La Nuit étoilée sur le Rhône</h5>
+		<p class="text">"Le reflet des étoiles sur l’eau tranquille."</p>
+		<img class="like" src="like.png" alt="">
+		<img class="fav2" src="fav2.png" alt="">
+		<p class="date">1888</p>
+		<div class="square">
+			<h2 class="peintre">Vincent van Gogh</h2>
+			<img class="manet" src="vangogh.png" alt="">
+		</div>
+	</div>
+
+	<div class="LDSH" style="background-image: url('nympheas.jpg');">
+		<div class="blur"></div>
+		<h5 class="name">Les Nymphéas</h5>
+		<p class="text">"Un monde aquatique en perpétuel mouvement."</p>
+		<img class="like" src="like.png" alt="">
+		<img class="fav2" src="fav2.png" alt="">
+		<p class="date">1916</p>
+		<div class="square">
+			<h2 class="peintre">Claude Monet</h2>
+			<img class="manet" src="monet.png" alt="">
+		</div>
+	</div>
+
+	    <div class="navbar">
+        <a href="trends.html" class="home-link">
+            <img class="icon home-icon" src="home.png" alt="Accueil">
+        </a>   
+        <a href="peinture.html" class="paint-link">
+            <img class="icon paint-icon" src="peinture.png" alt="Peinture">
+        </a>
+        <a href="#">
+            <img class="icon" src="peintre.png" alt="Peintre">
+        </a>
+        <a href="carte.html" class="museum-link">
+			<div class="museum-marker"></div>
+            <img class="icon museum-icon" src="museum.png" alt="Puzzle">
+        </a>
+        <a href="#">
+            <img class="icon" src="fav.png" alt="Favoris">
+        </a>
+        <a href="#">
+            <img class="icon" src="profile.png" alt="Profil">
+        </a>
+    </div>
+
+    <script>
+  // Gestion des likes/fav
+  function toggleImage(img, originalSrc, activeSrc) {
+    if (img.src.includes(activeSrc)) {
+      img.src = originalSrc;
+      img.style.filter = 'invert(1)';
+    } else {
+      img.src = activeSrc;
+      img.style.filter = 'none';
+    }
+  }
+
+  document.querySelectorAll('.like').forEach(img => {
+    img.addEventListener('click', () => toggleImage(img, 'like.png', 'likee.png'));
+  });
+
+  document.querySelectorAll('.fav2').forEach(img => {
+    img.addEventListener('click', () => toggleImage(img, 'fav2.png', 'fav2E.png'));
+  });
+
+  // Scroll souris personnalisé
+  let isScrolling = false; // 🔒 empêche scroll concurrent
+
+  window.addEventListener('wheel', e => {
+    e.preventDefault();
+
+    if (isScrolling) return; // Ignore si déjà en scroll
+
+    isScrolling = true;
+
+    const scrollAmount = 1000;
+    const direction = e.deltaY > 0 ? 1 : -1;
+
+    window.scrollBy({
+      top: direction * scrollAmount,
+      behavior: 'smooth'
+    });
+
+    // 🔓 Délai d'attente avant de réactiver le scroll
+    setTimeout(() => {
+      isScrolling = false;
+    }, 600); // correspond à la durée approximative du scroll smooth
+  }, { passive: false });
+
+  // Scroll tactile personnalisé
+  let touchStartY = 0;
+  let isTouchScrolling = false;
+
+  window.addEventListener('touchstart', e => {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', e => {
+    e.preventDefault();
+
+    if (isTouchScrolling) return;
+
+    const touchEndY = e.touches[0].clientY;
+    const deltaY = touchStartY - touchEndY;
+
+    if (Math.abs(deltaY) > 10) {
+      isTouchScrolling = true;
+
+      const scrollAmount = Math.min(Math.abs(deltaY) * 2, 50);
+      const direction = deltaY > 0 ? 1 : -1;
+
+      window.scrollBy({
+        top: direction * scrollAmount,
+        behavior: 'smooth'
+      });
+
+      touchStartY = touchEndY;
+
+      setTimeout(() => {
+        isTouchScrolling = false;
+      }, 150); // ajustable selon la fluidité désirée
+    }
+  }, { passive: false });
+</script>
+</body>
+</html>

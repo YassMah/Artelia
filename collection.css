@@ -1,0 +1,150 @@
+@font-face {
+  font-family: 'MaPolicePerso';
+  src: url('fonts/AnthonioScript.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MaPolicePerso2';
+  src: url('fonts/aftersickdemo-regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'MaPolicePerso3';
+  src: url('fonts/GalanoGrotesqueRegular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'MaPolicePerso4';
+  src: url('fonts/GalanoGrotesqueBold.otf') format('opentype');
+}
+
+body {
+    background-color: #121212;
+    font-family: 'MaPolicePerso3', sans-serif;
+    overflow-y: scroll; 
+
+    padding-bottom: 1000px; /* espace pour que le contenu ne passe pas sous la navbar */
+}/* Firefox */
+
+
+/* Pour WebKit (Chrome, Edge, Safari) */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.collection {
+    position: relative;
+    top: 30px;
+    text-align: center;
+    font-family: 'MaPolicePerso3', sans-serif;
+    font-size: 24px;
+    color: #ffffff;
+    z-index: 5;
+}
+
+
+.logo {
+    width: 100px;
+    background-color: #121212;
+    height: auto;
+    position: fixed;
+    top: 9px;
+    left: -5%;
+    transition: opacity 0.5s ease;
+}
+
+.square {
+    position: relative;
+    top: 40px;
+    left: -10px;
+    width: 200px;
+    height: 50px; 
+    background-color: rgb(255, 255, 255);
+    opacity: 100%;
+    border-radius: 0px  10px 10px 0px;
+}
+
+
+
+.fave { 
+    position: relative;
+    top: -5px;
+    left: 60px;
+    width: 40px;
+    opacity: 100%;
+}
+
+.square1 {
+    position: relative;
+    top: -56px;
+    left: 190px;
+    width: 99px;
+    height: 50px; 
+    background-color: rgb(255, 255, 255);
+    opacity: 10%;
+    border-radius: 10px  0px 0px 10px;
+    z-index: 1;
+}
+
+.likez { 
+    position: relative;
+    top: -100px;
+    left: 220px;
+    width: 40px;
+    opacity: 50%;
+}
+
+
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 94%;
+  height: 70px;
+  background-color: #1b1b1b;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 0 10px;
+  z-index: 997;
+}
+
+.navbar a {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.navbar img.icon {
+  height: 24px;
+  width: auto;
+  filter: invert(1); /* rend les icônes blanches */
+}
+
+/* HOME uniquement */
+.home-link {
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.home-icon {
+  margin-bottom: 20px; /* surélève l'icône */
+}
+
+.home-marker {
+  position: absolute;
+  bottom: 20px; /* placé juste sous l’icône, dans la navbar */
+  width: 30px;
+  height: 5px;
+  background-color: white;
+  box-shadow: 0px -5px 10px rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+}
+
+

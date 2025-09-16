@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="profile.css">
+    <title>Document</title>
+</head>
+<body>
+    <img class="profile" src="Nyphéas.jpg" alt="">
+    
+    <div class="rectangle"></div>
+    <div class="rectangle1"></div>
+    <h1 id="username"></h1>
+
+
+        <div class="navbar">
+            <img class="icon" src="home.png" alt="Accueil">
+        </a>   
+        <a href="peinture.html">
+            <img class="icon" src="peinture.png" alt="Peinture">
+        </a>
+        <a href="#">
+            <img class="icon" src="peintre.png" alt="Peintre">
+        </a>
+        <a href="#">
+            <img class="icon" src="museum.png" alt="Puzzle">
+        </a>
+        <a href="#">
+            <img class="icon" src="fav.png" alt="Favoris">
+        </a>
+        <a href="profile.html" class="profile-link">
+            <div class="profile-marker"></div>
+            <img class="icon profile-icon" src="profile.png" alt="Accueil">
+        </a>
+    </div>
+<script>
+    const params = new 
+    URLSearchParams(window.location.search);
+    const name = params.get("name");
+    if (name) {
+        document.getElementById("username").textContent = 'Bienvenue, $(name) !';
+    }
+</script>
+</body>
+</html>

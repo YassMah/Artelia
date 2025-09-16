@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="orsay.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="snn">MoMa</h1>
+    <img class="logo" src="Logo.png" alt="">
+    <div class="orsay" style="background-image: url('https://www.nyctourism.com/_next/image/?url=https://images.ctfassets.net/1aemqu6a6t65/2vtvQ0edV9aXJ7xcotcxQ1/be987b06a8f1a5f998d27ad95a8e485e/in2454_002_cccr?fm=webp&w=1200&q=75');"></div>
+
+<a href="sn.html"><div class="LDSH" style="background-image: url('starry_night.jpg');">
+	<div class="blur"></div>
+	<h5 class="name">La Nuit étoilée</h5>
+	<p class="text">"Un tourbillon céleste qui reflète l'âme tourmentée."</p>
+	<img class="like" src="like.png" alt="">
+	<img class="fav2" src="fav2.png" alt="">
+	<p class="date">1889</p>
+  </a>
+	<div class="square">
+		<h2 class="peintre">Vincent van Gogh</h2>
+		<img class="manet" src="vangogh.png" alt="">
+	</div>
+</div>
+
+<div class="LDSH" style="background-image: url('demoiselles.jpg');">
+	<div class="blur"></div>
+	<h5 class="name">Les Demoiselles d'Avignon</h5>
+	<p class="text">"Une rupture radicale avec la tradition occidentale."</p>
+	<img class="like" src="like.png" alt="">
+	<img class="fav2" src="fav2.png" alt="">
+	<p class="date">1907</p>
+	<div class="square">
+		<h2 class="peintre">Pablo Picasso</h2>
+		<img class="manet" src="picasso.png" alt="">
+	</div>
+</div>
+
+<div class="LDSH" style="background-image: url('image/TPOM.jpg');">
+	<div class="blur"></div>
+	<h5 class="name">La Persistance de la mémoire</h5>
+	<p class="text">"Quand le temps se liquéfie dans le désert des rêves."</p>
+	<img class="like" src="like.png" alt="">
+	<img class="fav2" src="fav2.png" alt="">
+	<p class="date">1931</p>
+	<div class="square">
+		<h2 class="peintre">Salvador Dalí</h2>
+		<img class="manet" src="dali.jpg" alt="">
+	</div>
+</div>
+
+<div class="LDSH" style="background-image: url('campbells.jpg');">
+	<div class="blur"></div>
+	<h5 class="name">Campbell's Soup Cans</h5>
+	<p class="text">"Le quotidien élevé au rang d’icône."</p>
+	<img class="like" src="like.png" alt="">
+	<img class="fav2" src="fav2.png" alt="">
+	<p class="date">1962</p>
+	<div class="square">
+		<h2 class="peintre">Andy Warhol</h2>
+		<img class="warhol" src="warhol.png" alt="">
+	</div>
+</div>
+
+<div class="LDSH" style="background-image: url('number31.jpg');">
+	<div class="blur"></div>
+	<h5 class="name">Number 31</h5>
+	<p class="text">"Une explosion d’énergie figée dans la matière."</p>
+	<img class="like" src="like.png" alt="">
+	<img class="fav2" src="fav2.png" alt="">
+	<p class="date">1950</p>
+	<div class="square">
+		<h2 class="peintre">Jackson Pollock</h2>
+		<img class="manet" src="pollock.jpg" alt="">
+	</div>
+</div>
+	    <div class="navbar">
+        <a href="trends.html" class="home-link">
+            <img class="icon home-icon" src="home.png" alt="Accueil">
+        </a>   
+        <a href="peinture.html" class="paint-link">
+            <img class="icon paint-icon" src="peinture.png" alt="Peinture">
+        </a>
+        <a href="#">
+            <img class="icon" src="peintre.png" alt="Peintre">
+        </a>
+        <a href="carte.html" class="museum-link">
+			<div class="museum-marker"></div>
+            <img class="icon museum-icon" src="museum.png" alt="Puzzle">
+        </a>
+        <a href="#">
+            <img class="icon" src="fav.png" alt="Favoris">
+        </a>
+        <a href="#">
+            <img class="icon" src="profile.png" alt="Profil">
+        </a>
+    </div>
+
+    <script>
+  // Gestion des likes/fav
+  function toggleImage(img, originalSrc, activeSrc) {
+    if (img.src.includes(activeSrc)) {
+      img.src = originalSrc;
+      img.style.filter = 'invert(1)';
+    } else {
+      img.src = activeSrc;
+      img.style.filter = 'none';
+    }
+  }
+
+  document.querySelectorAll('.like').forEach(img => {
+    img.addEventListener('click', () => toggleImage(img, 'like.png', 'likee.png'));
+  });
+
+  document.querySelectorAll('.fav2').forEach(img => {
+    img.addEventListener('click', () => toggleImage(img, 'fav2.png', 'fav2E.png'));
+  });
+
+  // Scroll souris personnalisé
+  let isScrolling = false; // 🔒 empêche scroll concurrent
+
+  window.addEventListener('wheel', e => {
+    e.preventDefault();
+
+    if (isScrolling) return; // Ignore si déjà en scroll
+
+    isScrolling = true;
+
+    const scrollAmount = 1005;
+    const direction = e.deltaY > 0 ? 1 : -1;
+
+    window.scrollBy({
+      top: direction * scrollAmount,
+      behavior: 'smooth'
+    });
+
+    // 🔓 Délai d'attente avant de réactiver le scroll
+    setTimeout(() => {
+      isScrolling = false;
+    }, 600); // correspond à la durée approximative du scroll smooth
+  }, { passive: false });
+
+  // Scroll tactile personnalisé
+  let touchStartY = 0;
+  let isTouchScrolling = false;
+
+  window.addEventListener('touchstart', e => {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', e => {
+    e.preventDefault();
+
+    if (isTouchScrolling) return;
+
+    const touchEndY = e.touches[0].clientY;
+    const deltaY = touchStartY - touchEndY;
+
+    if (Math.abs(deltaY) > 10) {
+      isTouchScrolling = true;
+
+      const scrollAmount = Math.min(Math.abs(deltaY) * 2, 50);
+      const direction = deltaY > 0 ? 1 : -1;
+
+      window.scrollBy({
+        top: direction * scrollAmount,
+        behavior: 'smooth'
+      });
+
+      touchStartY = touchEndY;
+
+      setTimeout(() => {
+        isTouchScrolling = false;
+      }, 150); // ajustable selon la fluidité désirée
+    }
+  }, { passive: false });
+</script>
+
+
+</body>
+</html>
