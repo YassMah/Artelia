@@ -73,15 +73,13 @@ body.fade-in {
 
 
 .vangogh {
-  position: absolute;
+  position: relative;
   max-width: 70vw;
   max-height: 50vh;
   width: auto;
   height: auto;
   object-fit: contain;
   z-index: 2;
-
-  /* centrage horizontal et vertical */
   top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
