@@ -23,6 +23,10 @@ body {
   background-color:#121212;
   font-family: 'MaPolicePerso', sans-serif;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
 }
 
 body.pre-fade {
@@ -67,32 +71,40 @@ body.fade-in {
   opacity: 0;
 }
 
+
 .vangogh {
   position: absolute;
-  width: 250px;
+  max-width: 70vw;
+  max-height: 50vh;
+  width: auto;
   height: auto;
+  object-fit: contain;
   z-index: 2;
-  top: 39px;
-  left: 200px;
+
+  /* centrage horizontal et vertical */
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .square {
-  width: 296px;
-  height: 350px;
+  width: 100vw;
+  height: 57vh;
   background-color: #cfcfcf;
   position: absolute;
-  top: 0px;
-  left: 175px;
-  border-radius: 0px 0px 50px 50px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  border-radius: 0 0 50px 50px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
   z-index: 1;
 }
 
 .top {
   position: absolute;
-  top: 0px;
-  left: -175px;
+  top: 0;
+  left: 0;
 }
+
 
 .Title {
   position: relative;
