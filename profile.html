@@ -4,43 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="profile.css">
+    <link  href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <img class="profile" src="Nyphéas.jpg" alt="">
-    
-    <div class="rectangle"></div>
-    <div class="rectangle1"></div>
-    <h1 id="username"></h1>
+    <h1 class="Trends">Profile</h1>
+     <img class="logo" src="Logo.png" alt="Logo">
 
+<div class="square">
+  <img id="banner" alt="Bannière" class="full-image">
+  <div class="blur-layer"></div>
 
-        <div class="navbar">
-            <img class="icon" src="home.png" alt="Accueil">
-        </a>   
-        <a href="peinture.html">
-            <img class="icon" src="peinture.png" alt="Peinture">
-        </a>
-        <a href="#">
-            <img class="icon" src="peintre.png" alt="Peintre">
-        </a>
-        <a href="#">
-            <img class="icon" src="museum.png" alt="Puzzle">
-        </a>
-        <a href="#">
-            <img class="icon" src="fav.png" alt="Favoris">
-        </a>
-        <a href="profile.html" class="profile-link">
-            <div class="profile-marker"></div>
-            <img class="icon profile-icon" src="profile.png" alt="Accueil">
-        </a>
-    </div>
-<script>
-    const params = new 
-    URLSearchParams(window.location.search);
-    const name = params.get("name");
-    if (name) {
-        document.getElementById("username").textContent = 'Bienvenue, $(name) !';
-    }
-</script>
+  <img id="editBannerBtn" src="edit.png" alt="Modifier" class="edit-icon">
+  <input type="file" id="bannerInput" accept="image/*" style="display:none;">
+</div>
+
+<button id="cropBtn" class="valide" style="display:none;">Valider</button>
+
+<h1 class="name">Yassine</h1>
+
+    <div class="navbar">
+        <a href="trends.html"><img class="icon" src="home.png" alt="Profil"></a>
+        <a href="peinture.html"><img class="icon" src="peinture.png" alt="Home"></a>
+        <a href="#"><img class="icon" src="peintre.png" alt="Peintre"></a>
+        <a href="#"><img class="icon" src="museum.png" alt="Musée"></a>
+        <a href="collection.html"><img class="icon" src="fav.png" alt="Favoris"></a>
+        <a href="profile.html" class="home-link"><div class="home-marker"></div><img class="icon home-icon" src="profile.png" alt="Accueil"></a>
+  </div>
 </body>
+
+
+<script>
+const editBtn = document.getElementById('editBannerBtn');
+const input = document.getElementById('bannerInput');
+const cropBtn = document.getElementById('cropBtn');
+let cropper = null;
+let bannerImg = document.getElementById('banner');
+
+// Charger la bannière sauvegardée si elle existe
+const savedBanner = localStorage.getItem('savedBanner');
+if (savedBanner) {
+  bannerImg.src = savedBanner;
+}
+
+// Ouvrir le sélecteur de fichier
+editBtn.addEventListener('click', () => {
+  input.value = "";
+  input.click();
+});
+
+// Lorsqu'une image est sélectionnée
+input.addEventListener('change', () => {
+  const file = input.files[0];
+  if (!file) return;
+
+  const url = URL.createObjectURL(file);
+  bannerImg.src = url;
+
+  if (cropper) {
+    cropper.destroy();
+    cropper = null;
+  }
+
+  bannerImg.onload = () => {
+    const square = bannerImg.parentElement;
+    const squareWidth = square.offsetWidth;
+    const squareHeight = square.offsetHeight;
+    const squareRatio = squareWidth / squareHeight;
+
+    cropper = new Cropper(bannerImg, {
+      aspectRatio: squareRatio,
+      viewMode: 1,
+      autoCropArea: 1,
+      responsive: true,
+      movable: true,
+      zoomable: true,
+      cropBoxResizable: false,
+      cropBoxMovable: false,
+      dragMode: 'move',
+      background: false,
+      guides: false,
+      highlight: false,
+      ready() {
+        const canvasData = cropper.getCanvasData();
+        const scaleX = squareWidth / canvasData.width;
+        const scaleY = squareHeight / canvasData.height;
+        const scale = Math.max(scaleX, scaleY);
+
+        cropper.zoomTo(scale);
+
+        cropper.setCropBoxData({
+          left: 0,
+          top: 0,
+          width: squareWidth,
+          height: squareHeight
+        });
+      }
+    });
+
+    cropBtn.style.display = 'block';
+  };
+});
+
+// Valider le crop
+cropBtn.addEventListener('click', () => {
+  if (!cropper) return;
+
+  const square = bannerImg.parentElement;
+  const canvas = cropper.getCroppedCanvas({
+    width: square.offsetWidth,
+    height: square.offsetHeight,
+    fillColor: '#1b1b1b',
+    imageSmoothingEnabled: true,
+    imageSmoothingQuality: 'high'
+  });
+
+  cropper.destroy();
+  cropper = null;
+
+  const newImg = document.createElement('img');
+  newImg.src = canvas.toDataURL();
+  newImg.className = 'full-image';
+  newImg.id = 'banner';
+  newImg.alt = 'Bannière';
+
+  bannerImg.replaceWith(newImg);
+  bannerImg = newImg;
+
+  // Sauvegarder dans localStorage
+  localStorage.setItem('savedBanner', newImg.src);
+
+  cropBtn.style.display = 'none';
+  });
+</script>
 </html>

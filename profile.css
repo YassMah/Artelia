@@ -24,28 +24,140 @@ body {
   overflow: hidden;
   scrollbar-width: none'';
 }
-.profile {
-    position: relative;
-    left: -10px;
-    top: -10px;
-    width: 300px;
-    height: 400px;
-    z-index: 1;
 
+.logo {
+    width: 15vw;
+    height: auto;
+    position: absolute;
+    top: 9px;
+    left: 2vw;
+    transition: opacity 0.5s ease;
 }
 
-.rectangle {
-    width: 300px;
-    height: 300px;
-    position: relative;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: antiquewhite;
-    border-radius: 20px 20px 0px 0px;
-    z-index: 2;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-    }
+.Trends {
+  position: absolute;
+  top: 3vh;
+  left: 50%;               /* point de départ au centre */
+  transform: translateX(-50%); /* décale de la moitié de sa propre largeur */
+  width: max-content;      /* garde juste la largeur du texte */
+  font-family: 'MaPolicePerso3', sans-serif;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  color: #ffffff;
+  z-index: 5;
+  text-align: center;      /* au cas où le texte fait plusieurs lignes */
+}
+
+.square {
+  position: relative;
+  top: 15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  height: 90vh;
+  background-color: #1b1b1b;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.square::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; /* flou sur la moitié inférieure */
+  pointer-events: none;
+  z-index: 5;
+  background: linear-gradient(to bottom, rgba(255, 0, 0, 0), rgb(0, 0, 0));
+  backdrop-filter: blur(10px);
+}
+
+.blur-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 6;
+  backdrop-filter: blur(12px);
+  mask-image: linear-gradient(to top, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 40%, transparent 100%);
+}
+.full-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* avant c'était 'contain', maintenant ça remplit le carré */
+  display: block;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 20%;
+  padding: 5px;
+  z-index: 10;
+}
+
+
+
+.crop-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 10;
+  padding: 8px 12px;
+  border: none;
+  background-color: #ff0000;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Personnalisation Cropper */
+.cropper-modal {
+  background-color: rgba(0,0,0,0.5) !important;
+}
+.cropper-crop-box {
+  border: 4px solid #ff0000 !important;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.2) inset;
+  border-radius: 10px !important;
+}
+
+.valide {
+  background-color: #131313;
+  border: none;
+  color: white ;
+  padding: 10px 20px ;
+  border-radius: 5px ;
+  cursor: pointer ;
+  font-size: 1rem ;
+  position: absolute ;
+  right: 35vw;
+  top: 80vh;
+  z-index: 10;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+}
+
+.name {
+  position: absolute;
+  top: 15vh;
+  left: 30%;
+  transform: translateX(-50%);
+  font-weight: 100;
+  font-family: 'MaPolicePerso4';
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: white;
+  z-index: 5;
+}
 
 
 
@@ -53,16 +165,17 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 94%;
-  height: 70px;
+  width: 97%;
+  height: clamp(60px, 8vh, 90px);  /* min 60px, max 90px, s’adapte */
   background-color: #1b1b1b;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  padding: 0 10px;
+  padding: 0 2vw;
   z-index: 997;
+  box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.5);
 }
 
 .navbar a {
@@ -75,22 +188,22 @@ body {
 }
 
 .navbar img.icon {
-  height: 24px;
+  height: 3.5vh;
   width: auto;
   filter: invert(1); /* rend les icônes blanches */
 }
 
 /* HOME uniquement */
-.profile-link {
+.home-link {
   flex-direction: column;
   justify-content: flex-end;
 }
 
-.profile-icon {
+.home-icon {
   margin-bottom: 20px; /* surélève l'icône */
 }
 
-.profile-marker {
+.home-marker {
   position: absolute;
   bottom: 20px; /* placé juste sous l’icône, dans la navbar */
   width: 30px;
@@ -99,4 +212,3 @@ body {
   box-shadow: 0px -5px 10px rgba(255, 255, 255, 0.5);
   border-radius: 3px;
 }
-
