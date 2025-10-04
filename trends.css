@@ -29,34 +29,40 @@ body.fade-in { opacity: 1; transition: opacity 0.5s ease-in; }
 
 /* ===== Logo et titre ===== */
 .logo {
-  width: 100px;
+  width: 30vw;
   height: auto;
   position: absolute;
-  top: 9px;
-  left: -5%;
+  top: 2vh;
+  left: -2vw;
   transition: opacity 0.5s ease;
 }
 .Trends {
   position: absolute;
-  top: 25px;
-  left: 110px;
+  top: 3vh; 
+  left: 35vw;
   font-family: 'MaPolicePerso3', sans-serif;
-  font-size: 24px;
+  font-size: 9vw;
   color: #ffffff;
   z-index: 5;
 }
 
 /* ===== Trends Cards ===== */
-.squa, .squa1, .squa2 {
+.squa,
+.squa1,
+.squa2 {
   position: relative;
-  width: 275px;
-  height: 150px;
+  width: 90vw;
+  /* Utilisation d’un ratio carré sans forcer une hauteur fixe */
+  aspect-ratio: 1 / 1;
+
+  /* Styles d'origine */
   border-radius: 10px;
   z-index: 1;
   overflow: hidden;
   background-size: cover;
   background-position: center;
 }
+
 .squa { background-image: url(TEEM.jpg); top: 100px; left: 0px; }
 .squa1 { background-image: url(Artemisia.jpg); top: 110px; left: 0px; }
 .squa2 { background-image: url(louvre.jpg); top: 120px; left: 0px; }
@@ -138,28 +144,57 @@ body.fade-in { opacity: 1; transition: opacity 0.5s ease-in; }
   padding:0 10px;
   z-index:997;
 }
-.navbar a {
-  flex:1;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100%;
-  position:relative;
-}
-.navbar img.icon {
-  height:24px; width:auto;
-  filter: invert(1);
-}
-.home-link { flex-direction:column; justify-content:flex-end; }
-.home-icon { margin-bottom:20px; }
-.home-marker {
-  position:absolute; bottom:20px;
-  width:30px; height:5px;
-  background-color:white;
-  box-shadow:0px -5px 10px rgba(255,255,255,0.5);
-  border-radius:3px;
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 97%;
+  height: clamp(60px, 8vh, 90px);  /* min 60px, max 90px, s’adapte */
+  background-color: #1b1b1b;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 0 2vw;
+  z-index: 997;
+  box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.5);
 }
 
+.navbar a {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.navbar img.icon {
+  height: 3.5vh;
+  width: auto;
+  filter: invert(1); /* rend les icônes blanches */
+}
+
+/* HOME uniquement */
+.home-link {
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.home-icon {
+  margin-bottom: 20px; /* surélève l'icône */
+}
+
+.home-marker {
+  position: absolute;
+  bottom: 20px; /* placé juste sous l’icône, dans la navbar */
+  width: 30px;
+  height: 5px;
+  background-color: white;
+  box-shadow: 0px -5px 10px rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+}
 /* ===== Feed Button ===== */
 .open-feed-btn{
   position: fixed;
