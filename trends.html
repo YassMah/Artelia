@@ -58,87 +58,83 @@
 <script> 
 const trendsSets = [
   // ===== TABLEAUX (≈85) =====
-  { titre: "La Joconde", date: "1503", style: "Renaissance", image: "joconde.jpg" },
-  { titre: "La Nuit étoilée", date: "1889", style: "Post-impressionnisme", image: "nuit-etoilee.jpg" },
-  { titre: "Guernica", date: "1937", style: "Cubisme", image: "guernica.jpg" },
-  { titre: "Le Cri", date: "1893", style: "Expressionnisme", image: "le-cri.jpg" },
-  { titre: "Les Nymphéas", date: "1916", style: "Impressionnisme", image: "nympheas.jpg" },
-  { titre: "La Jeune fille à la perle", date: "1665", style: "Baroque", image: "jeune-fille-perle.jpg" },
-  { titre: "La Ronde de nuit", date: "1642", style: "Baroque", image: "ronde-nuit.jpg" },
-  { titre: "La Liberté guidant le peuple", date: "1830", style: "Romantisme", image: "liberte-peuple.jpg" },
-  { titre: "Les Ménines", date: "1656", style: "Baroque", image: "menines.jpg" },
-  { titre: "Impression, soleil levant", date: "1872", style: "Impressionnisme", image: "impression-soleil.jpg" },
   { titre: "American Gothic", date: "1930", style: "Régionalisme", image: "american-gothic.jpg" },
-  { titre: "La Persistance de la mémoire", date: "1931", style: "Surréalisme", image: "persistence-memoire.jpg" },
-  { titre: "Les Demoiselles d’Avignon", date: "1907", style: "Cubisme", image: "demoiselles-avignon.jpg" },
-  { titre: "Le Déjeuner sur l’herbe", date: "1863", style: "Réalisme", image: "dejeuner-herbe.jpg" },
-  { titre: "Olympia", date: "1863", style: "Réalisme", image: "olympia.jpg" },
-  { titre: "Les Grandes Baigneuses", date: "1898", style: "Post-impressionnisme", image: "grandes-baigneses.jpg" },
-  { titre: "La Danse", date: "1910", style: "Fauvisme", image: "danse-matisse.jpg" },
-  { titre: "Le Baiser", date: "1908", style: "Symbolisme", image: "baiser-klimt.jpg" },
-  { titre: "La Création d’Adam", date: "1512", style: "Renaissance", image: "creation-adam.jpg" },
-  { titre: "L’École d’Athènes", date: "1511", style: "Renaissance", image: "ecole-athenes.jpg" },
-  { titre: "La Naissance de Vénus", date: "1485", style: "Renaissance", image: "naissance-venus.jpg" },
-  { titre: "Primavera", date: "1482", style: "Renaissance", image: "primavera.jpg" },
-  { titre: "Jardin des délices", date: "1505", style: "Renaissance", image: "jardin-delices.jpg" },
-  { titre: "Le Tricheur à l’as de carreau", date: "1635", style: "Baroque", image: "tricheur-carreau.jpg" },
-  { titre: "Les Sabines", date: "1799", style: "Néoclassicisme", image: "sabines.jpg" },
-  { titre: "Le Serment des Horaces", date: "1784", style: "Néoclassicisme", image: "horaces.jpg" },
-  { titre: "La Mort de Marat", date: "1793", style: "Néoclassicisme", image: "marat.jpg" },
-  { titre: "Le Radeau de la Méduse", date: "1819", style: "Romantisme", image: "radeau-meduse.jpg" },
-  { titre: "Le Cauchemar", date: "1781", style: "Romantisme", image: "cauchemar.jpg" },
-  { titre: "Les Trois Musiciens", date: "1921", style: "Cubisme", image: "trois-musiciens.jpg" },
-  { titre: "Blue Nude", date: "1907", style: "Fauvisme", image: "blue-nude.jpg" },
-  { titre: "Composition VIII", date: "1923", style: "Abstraction", image: "composition-viii.jpg" },
-  { titre: "Broadway Boogie Woogie", date: "1943", style: "Néoplasticisme", image: "boogie-woogie.jpg" },
-  { titre: "No. 5, 1948", date: "1948", style: "Expressionnisme abstrait", image: "number5.jpg" },
-  { titre: "Woman I", date: "1950", style: "Expressionnisme abstrait", image: "woman1.jpg" },
-  { titre: "Campbell’s Soup Cans", date: "1962", style: "Pop Art", image: "campbells.jpg" },
-  { titre: "Marilyn Diptych", date: "1962", style: "Pop Art", image: "marilyn.jpg" },
-  { titre: "Les Joueurs de cartes", date: "1895", style: "Post-impressionnisme", image: "joueurs-cartes.jpg" },
-  { titre: "Nature morte aux chaises cannées", date: "1912", style: "Cubisme", image: "nature-canne.jpg" },
-  { titre: "Nu descendant un escalier", date: "1912", style: "Futurisme", image: "nu-escalier.jpg" },
-  { titre: "Femme à la cafetière", date: "1890", style: "Post-impressionnisme", image: "femme-cafetiere.jpg" },
-  { titre: "Tournesols", date: "1888", style: "Post-impressionnisme", image: "tournesols.jpg" },
-  { titre: "Café de nuit", date: "1888", style: "Post-impressionnisme", image: "cafe-nuit.jpg" },
-  { titre: "Autoportrait au bandage", date: "1889", style: "Post-impressionnisme", image: "autoportrait-bandage.jpg" },
-  { titre: "Les Chaises", date: "1888", style: "Post-impressionnisme", image: "chaises.jpg" },
-  { titre: "Wanderer Above the Sea of Fog", date: "1818", style: "Romantisme", image: "wanderer.jpg" },
-  { titre: "Le Violon d’Ingres", date: "1924", style: "Surréalisme", image: "violon-ingres.jpg" },
-  { titre: "L’Origine du monde", date: "1866", style: "Réalisme", image: "origine-monde.jpg" },
-  { titre: "Olympic Swimmers", date: "1970", style: "Pop Art", image: "olympic-swimmers.jpg" },
-  { titre: "Girl with Balloon", date: "2002", style: "Street Art", image: "girl-balloon.jpg" },
-  { titre: "Love is in the Air", date: "2003", style: "Street Art", image: "love-air.jpg" },
-  { titre: "Balloon Dog", date: "1994", style: "Sculpture/Pop", image: "balloon-dog.jpg" },
-  { titre: "Composition II in Red Blue Yellow", date: "1930", style: "Néoplasticisme", image: "composition-ii.jpg" },
-  { titre: "Water Lilies: Morning", date: "1915", style: "Impressionnisme", image: "water-lilies-morning.jpg" },
-  { titre: "Haystacks", date: "1891", style: "Impressionnisme", image: "haystacks.jpg" },
-  { titre: "La Gare Saint-Lazare", date: "1877", style: "Impressionnisme", image: "gare-saint-lazare.jpg" },
-  { titre: "Ballet Rehearsal", date: "1874", style: "Impressionnisme", image: "ballet-rehearsal.jpg" },
-  { titre: "Le Déjeuner des canotiers", date: "1881", style: "Impressionnisme", image: "dejeuner-canotiers.jpg" },
-  { titre: "Les Baigneuses à Asnières", date: "1884", style: "Post-impressionnisme", image: "baigneuses-asnieres.jpg" },
-  { titre: "La Balançoire", date: "1876", style: "Impressionnisme", image: "balancoire.jpg" },
-  { titre: "Champs de blé avec corbeaux", date: "1890", style: "Post-impressionnisme", image: "ble-corbeaux.jpg" },
-  { titre: "Coucher de soleil à Étretat", date: "1883", style: "Impressionnisme", image: "etretat.jpg" },
-  { titre: "Le Pont de l’Europe", date: "1876", style: "Impressionnisme", image: "pont-europe.jpg" },
   { titre: "Autumn Rhythm", date: "1950", style: "Expressionnisme abstrait", image: "autumn-rhythm.jpg" },
-  { titre: "One Number 31", date: "1950", style: "Expressionnisme abstrait", image: "one-number31.jpg" },
-  { titre: "Lavender Mist", date: "1950", style: "Expressionnisme abstrait", image: "lavender-mist.jpg" },
-  { titre: "Flag", date: "1954", style: "Pop Art", image: "flag-johns.jpg" },
-  { titre: "Target with Four Faces", date: "1955", style: "Pop Art", image: "target-faces.jpg" },
-  { titre: "Map", date: "1961", style: "Pop Art", image: "map-johns.jpg" },
-  { titre: "Hopeless", date: "1963", style: "Pop Art", image: "hopeless.jpg" },
+  { titre: "Autoportrait au bandage", date: "1889", style: "Post-impressionnisme", image: "autoportrait-bandage.jpg" },
+  { titre: "Ballet Rehearsal", date: "1874", style: "Impressionnisme", image: "ballet-rehearsal.jpg" },
+  { titre: "Blue Nude", date: "1907", style: "Fauvisme", image: "blue-nude.jpg" },
+  { titre: "Broadway Boogie Woogie", date: "1943", style: "Néoplasticisme", image: "boogie-woogie.jpg" },
+  { titre: "Café de nuit", date: "1888", style: "Post-impressionnisme", image: "cafe-nuit.jpg" },
+  { titre: "Campbell’s Soup Cans", date: "1962", style: "Pop Art", image: "campbells.jpg" },
+  { titre: "Champs de blé avec corbeaux", date: "1890", style: "Post-impressionnisme", image: "ble-corbeaux.jpg" },
+  { titre: "Composition II in Red Blue Yellow", date: "1930", style: "Néoplasticisme", image: "composition-ii.jpg" },
+  { titre: "Composition VIII", date: "1923", style: "Abstraction", image: "composition-viii.jpg" },
+  { titre: "Coucher de soleil à Étretat", date: "1883", style: "Impressionnisme", image: "etretat.jpg" },
   { titre: "Crying Girl", date: "1964", style: "Pop Art", image: "crying-girl.jpg" },
   { titre: "Drowning Girl", date: "1963", style: "Pop Art", image: "drowning-girl.jpg" },
-  { titre: "Whaam!", date: "1963", style: "Pop Art", image: "whaam.jpg" },
-  { titre: "Ohhh…Alright…", date: "1964", style: "Pop Art", image: "ohhh-alright.jpg" },
-  { titre: "Look Mickey", date: "1961", style: "Pop Art", image: "look-mickey.jpg" },
-  { titre: "Self-Portrait with Cropped Hair", date: "1940", style: "Surréalisme", image: "self-cropped-hair.jpg" },
-  { titre: "The Two Fridas", date: "1939", style: "Surréalisme", image: "two-fridas.jpg" },
+  { titre: "Femme à la cafetière", date: "1890", style: "Post-impressionnisme", image: "femme-cafetiere.jpg" },
+  { titre: "Flag", date: "1954", style: "Pop Art", image: "flag-johns.jpg" },
+  { titre: "Girl with Balloon", date: "2002", style: "Street Art", image: "girl-balloon.jpg" },
+  { titre: "Guernica", date: "1937", style: "Cubisme", image: "guernica.jpg" },
+  { titre: "Haystacks", date: "1891", style: "Impressionnisme", image: "haystacks.jpg" },
   { titre: "Henry Ford Hospital", date: "1932", style: "Surréalisme", image: "henry-ford.jpg" },
+  { titre: "Hopeless", date: "1963", style: "Pop Art", image: "hopeless.jpg" },
+  { titre: "Impression, soleil levant", date: "1872", style: "Impressionnisme", image: "impression-soleil.jpg" },
+  { titre: "Jardin des délices", date: "1505", style: "Renaissance", image: "jardin-delices.jpg" },
+  { titre: "La Balançoire", date: "1876", style: "Impressionnisme", image: "balancoire.jpg" },
+  { titre: "La Création d’Adam", date: "1512", style: "Renaissance", image: "creation-adam.jpg" },
+  { titre: "La Danse", date: "1910", style: "Fauvisme", image: "danse-matisse.jpg" },
+  { titre: "La Gare Saint-Lazare", date: "1877", style: "Impressionnisme", image: "gare-saint-lazare.jpg" },
+  { titre: "La Jeune fille à la perle", date: "1665", style: "Baroque", image: "jeune-fille-perle.jpg" },
+  { titre: "La Joconde", date: "1503", style: "Renaissance", image: "joconde.jpg" },
+  { titre: "La Liberté guidant le peuple", date: "1830", style: "Romantisme", image: "liberte-peuple.jpg" },
+  { titre: "La Mort de Marat", date: "1793", style: "Néoclassicisme", image: "marat.jpg" },
+  { titre: "La Naissance de Vénus", date: "1485", style: "Renaissance", image: "naissance-venus.jpg" },
+  { titre: "La Nuit étoilée", date: "1889", style: "Post-impressionnisme", image: "nuit-etoilee.jpg" },
+  { titre: "La Persistance de la mémoire", date: "1931", style: "Surréalisme", image: "persistence-memoire.jpg" },
+  { titre: "La Ronde de nuit", date: "1642", style: "Baroque", image: "ronde-nuit.jpg" },
+  { titre: "L’École d’Athènes", date: "1511", style: "Renaissance", image: "ecole-athenes.jpg" },
+  { titre: "Le Baiser", date: "1908", style: "Symbolisme", image: "baiser-klimt.jpg" },
+  { titre: "Le Cauchemar", date: "1781", style: "Romantisme", image: "cauchemar.jpg" },
+  { titre: "Le Cri", date: "1893", style: "Expressionnisme", image: "le-cri.jpg" },
+  { titre: "Le Déjeuner des canotiers", date: "1881", style: "Impressionnisme", image: "dejeuner-canotiers.jpg" },
+  { titre: "Le Déjeuner sur l’herbe", date: "1863", style: "Réalisme", image: "dejeuner-herbe.jpg" },
+  { titre: "Le Pont de l’Europe", date: "1876", style: "Impressionnisme", image: "pont-europe.jpg" },
+  { titre: "Le Radeau de la Méduse", date: "1819", style: "Romantisme", image: "radeau-meduse.jpg" },
+  { titre: "Le Serment des Horaces", date: "1784", style: "Néoclassicisme", image: "horaces.jpg" },
+  { titre: "Le Tricheur à l’as de carreau", date: "1635", style: "Baroque", image: "tricheur-carreau.jpg" },
+  { titre: "Le Violon d’Ingres", date: "1924", style: "Surréalisme", image: "violon-ingres.jpg" },
+  { titre: "Les Baigneuses à Asnières", date: "1884", style: "Post-impressionnisme", image: "baigneuses-asnieres.jpg" },
+  { titre: "Les Chaises", date: "1888", style: "Post-impressionnisme", image: "chaises.jpg" },
+  { titre: "Les Demoiselles d’Avignon", date: "1907", style: "Cubisme", image: "demoiselles-avignon.jpg" },
+  { titre: "Les Grandes Baigneuses", date: "1898", style: "Post-impressionnisme", image: "grandes-baigneses.jpg" },
+  { titre: "Les Joueurs de cartes", date: "1895", style: "Post-impressionnisme", image: "joueurs-cartes.jpg" },
+  { titre: "Les Ménines", date: "1656", style: "Baroque", image: "menines.jpg" },
+  { titre: "Les Nymphéas", date: "1916", style: "Impressionnisme", image: "nympheas.jpg" },
+  { titre: "Les Sabines", date: "1799", style: "Néoclassicisme", image: "sabines.jpg" },
+  { titre: "Les Trois Musiciens", date: "1921", style: "Cubisme", image: "trois-musiciens.jpg" },
+  { titre: "Look Mickey", date: "1961", style: "Pop Art", image: "look-mickey.jpg" },
+  { titre: "Love is in the Air", date: "2003", style: "Street Art", image: "love-air.jpg" },
+  { titre: "Map", date: "1961", style: "Pop Art", image: "map-johns.jpg" },
+  { titre: "Marilyn Diptych", date: "1962", style: "Pop Art", image: "marilyn.jpg" },
+  { titre: "Nature morte aux chaises cannées", date: "1912", style: "Cubisme", image: "nature-canne.jpg" },
+  { titre: "No. 5, 1948", date: "1948", style: "Expressionnisme abstrait", image: "number5.jpg" },
+  { titre: "Nu descendant un escalier", date: "1912", style: "Futurisme", image: "nu-escalier.jpg" },
+  { titre: "Ohhh…Alright…", date: "1964", style: "Pop Art", image: "ohhh-alright.jpg" },
+  { titre: "Olympia", date: "1863", style: "Réalisme", image: "olympia.jpg" },
+  { titre: "Olympic Swimmers", date: "1970", style: "Pop Art", image: "olympic-swimmers.jpg" },
+  { titre: "One Number 31", date: "1950", style: "Expressionnisme abstrait", image: "one-number31.jpg" },
+  { titre: "Primavera", date: "1482", style: "Renaissance", image: "primavera.jpg" },
   { titre: "Roots", date: "1943", style: "Surréalisme", image: "roots.jpg" },
+  { titre: "Self-Portrait with Cropped Hair", date: "1940", style: "Surréalisme", image: "self-cropped-hair.jpg" },
   { titre: "Self-Portrait with Thorn Necklace", date: "1940", style: "Surréalisme", image: "thorn-necklace.jpg" },
-
+  { titre: "Target with Four Faces", date: "1955", style: "Pop Art", image: "target-faces.jpg" },
+  { titre: "The Two Fridas", date: "1939", style: "Surréalisme", image: "two-fridas.jpg" },
+  { titre: "Tournesols", date: "1888", style: "Post-impressionnisme", image: "tournesols.jpg" },
+  { titre: "Wanderer Above the Sea of Fog", date: "1818", style: "Romantisme", image: "wanderer.jpg" },
+  { titre: "Water Lilies: Morning", date: "1915", style: "Impressionnisme", image: "water-lilies-morning.jpg" },
+  { titre: "Whaam!", date: "1963", style: "Pop Art", image: "whaam.jpg" },
+  { titre: "Woman I", date: "1950", style: "Expressionnisme abstrait", image: "woman1.jpg" },
   // ===== MUSEES (≈15) =====
   { titre: "Musée du Louvre", date: "Paris", style: "Musée", image: "louvre.jpg" },
   { titre: "Musée d’Orsay", date: "Paris", style: "Musée", image: "orsay.jpg" },
@@ -156,38 +152,29 @@ const trendsSets = [
   { titre: "Musée d’Art Moderne de Tokyo", date: "Tokyo", style: "Musée", image: "tokyo-mam.jpg" },
   { titre: "Musée Van Gogh", date: "Amsterdam", style: "Musée", image: "vangogh-museum.jpg" }
 ];
+
 (function(){
   const openBtn   = document.getElementById('openFeedBtn');
   const overlay   = document.getElementById('feedOverlay');
   const closeBtn  = document.getElementById('closeFeedBtn');
   const scroller  = document.getElementById('feedScroller');
 
-  // --- Mélange aléatoire (Fisher–Yates) ---
-  function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
-
   function populateFeed(){
     scroller.innerHTML = '';
-    const randomOrder = shuffle([...trendsSets]); // copie puis mélange
-
-    randomOrder.forEach(set=>{
+    // on parcourt trendsSets dans l’ordre défini, sans mélange
+    trendsSets.forEach(set => {
       const post = document.createElement('article');
       post.className = 'feed-post';
       post.innerHTML = `
-  <div class="post-bg" style="background-image:url('${set.image}')"></div>
-  <div class="post-content">
-    <h3 class="post-title">${set.titre}</h3>
-    <div class="post-meta">${set.date || ''} ${set.style ? '• ' + set.style : ''}</div>
-  </div>
-  <div class="actions">
-    <div class="action-btn">❤</div>
-    <div class="action-btn">⤴</div>
-  </div>`;
+        <div class="post-bg" style="background-image:url('tableaux/${set.image}')"></div>
+        <div class="post-content">
+          <h3 class="post-title">${set.titre}</h3>
+          <div class="post-meta">${set.date || ''} ${set.style ? '• ' + set.style : ''}</div>
+        </div>
+        <div class="actions">
+          <div class="action-btn">❤</div>
+          <div class="action-btn">⤴</div>
+        </div>`;
       scroller.appendChild(post);
     });
   }

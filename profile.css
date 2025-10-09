@@ -3,6 +3,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Galano Grotesque', sans-serif;
+  overflow: hidden;
 }
 
 .profile-wrapper {
@@ -25,28 +26,43 @@ body {
   overflow: hidden;
 }
 
-.background-blur {
+.background-blur,
+.background-preview {
   position: absolute;
   top: -6vh;
-  left: -20vw;
+  left: 0;
   width: 160vw;
   height: 100vh;
   object-fit: cover;
   filter: blur(1.5vh);
-  z-index: 1;
+  z-index: 2;
+  transition: transform 0.3s ease;
+   cursor: grab;
 }
 
-.background-preview {
+.background-preview:active {
+  cursor: grabbing;
+}
+
+.background-blur::after,
+.background-preview::after {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: 2;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+  backdrop-filter: blur(1.5vh);
+  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  z-index: 3;
 }
+
+
+
+.background-preview.visible {
+  opacity: 1;
+}
+
 
 .background-preview.visible {
   opacity: 1;
@@ -282,7 +298,7 @@ body {
   transform: translateX(-50%);
   width: 80vw;
   max-width: 400px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(10px);
   padding: 3vh 5vw;
   border-radius: 2vw;
@@ -306,42 +322,199 @@ body {
   margin-bottom: 0.5vh;
 }
 
-.edit-profile-button {
+  .edit-button-wrapper {
   position: absolute;
-  bottom: 10vh;
-  left: 50%;
+  bottom: 78vh;
+  left: 85%;
   transform: translateX(-50%);
-  padding: 1.5vh 5vw;
-  background-color: rgba(255, 255, 255, 0.15);
-  color: white;
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  font-family: 'Galano Grotesque', sans-serif;
-  font-weight: 700;
-  border-radius: 2vw;
-  cursor: pointer;
-  z-index: 1000; 
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
+
+.edit-profile-button {
+  width: 30px;
+  height: auto;
+  cursor: pointer;
+  filter: invert(1);
+  transition: transform 0.2s ease;
+}
+
 
 
 .edit-profile-form input {
   padding: 1vh 1vw;
-  border-radius: 1vw;
+  border-radius: 3vw;
   border: none;
   font-size: 1rem;
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   color: white;
 }
 
 
 
 .edit-profile-form button:hover {
-  background: linear-gradient(to right, #7a00ff, #c000ff);
+  background: linear-gradient(to right, #ffffff, #bbbbbb);
 }
 
 #photoInput {
   display: none;
 }
+
+/* From Uiverse.io by MuhammadHasann */ 
+button {
+  position: relative;
+  padding: 8px 15px;
+  background: #fec195;
+  font-size: 17px;
+  font-weight: 500;
+  color: #181818;
+  border: 3px solid #fec195;
+  border-radius: 8px;
+  box-shadow: 0 0 0 #fec1958c;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.star-1 {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+}
+
+.star-2 {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.star-3 {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.star-4 {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.star-5 {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+}
+
+.star-6 {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #fffdef);
+  z-index: -5;
+  transition: all 0.8s ease;
+}
+
+button:hover {
+  background: transparent;
+  color: #000000;
+  box-shadow: 0 0 25px #fec1958c;
+}
+
+button:hover .star-1 {
+  position: absolute;
+  top: -80%;
+  left: -30%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-2 {
+  position: absolute;
+  top: -25%;
+  left: 10%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-3 {
+  position: absolute;
+  top: 55%;
+  left: 25%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-4 {
+  position: absolute;
+  top: 30%;
+  left: 80%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-5 {
+  position: absolute;
+  top: 25%;
+  left: 115%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+button:hover .star-6 {
+  position: absolute;
+  top: 5%;
+  left: 60%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #fffdef);
+  z-index: 2;
+}
+
+.fil0 {
+  fill: #fffdef;
+}
+
 
 /* Style du bouton image */
 .custom-file-upload img {
@@ -354,6 +527,14 @@ body {
 .custom-file-upload img:hover {
   transform: scale(1.1);
 }
+
+.minimal-form label[for="nameInput"],
+.minimal-form #nameInput,
+.minimal-form label[for="photoInput"],
+.minimal-form #photoInput {
+  display: none !important;
+}
+
 
 
 .hidden {

@@ -173,29 +173,29 @@ body.fade-in { opacity: 1; transition: opacity 0.5s ease-in; }
 .navbar img.icon {
   height: 3.5vh;
   width: auto;
-  filter: invert(1); /* rend les icônes blanches */
+  filter: invert(1); 
 }
 
-/* HOME uniquement */
+
 .home-link {
   flex-direction: column;
   justify-content: flex-end;
 }
 
 .home-icon {
-  margin-bottom: 20px; /* surélève l'icône */
+  margin-bottom: 20px; 
 }
 
 .home-marker {
   position: absolute;
-  bottom: 20px; /* placé juste sous l’icône, dans la navbar */
+  bottom: 20px; 
   width: 30px;
   height: 5px;
   background-color: white;
   box-shadow: 0px -5px 10px rgba(255, 255, 255, 0.5);
   border-radius: 3px;
 }
-/* ===== Feed Button ===== */
+
 .open-feed-btn{
   position: fixed;
   right: 16px;
@@ -211,7 +211,6 @@ body.fade-in { opacity: 1; transition: opacity 0.5s ease-in; }
   cursor: pointer;
 }
 
-/* ===== Feed Overlay ===== */
 .feed-overlay{
   position: fixed;
   left:0; right:0; top:0; bottom:70px;

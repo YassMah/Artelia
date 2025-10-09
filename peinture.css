@@ -1,535 +1,132 @@
+/* Polices personnalisées */
 @font-face {
   font-family: 'MaPolicePerso';
   src: url('fonts/AnthonioScript.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'MaPolicePerso2';
   src: url('fonts/aftersickdemo-regular.otf') format('opentype');
 }
-
 @font-face {
   font-family: 'MaPolicePerso3';
   src: url('fonts/GalanoGrotesqueRegular.otf') format('opentype');
 }
-
 @font-face {
   font-family: 'MaPolicePerso4';
   src: url('fonts/GalanoGrotesqueBold.otf') format('opentype');
 }
 
+/* Corps de page */
 body {
-    background-color: #121212;
-    font-family: 'MaPolicePerso3', sans-serif;
-    overflow-y: scroll; 
-
-    padding-bottom: 1000px; /* espace pour que le contenu ne passe pas sous la navbar */
-}/* Firefox */
-
-
-/* Pour WebKit (Chrome, Edge, Safari) */
+  background-color: #121212;
+  font-family: 'MaPolicePerso3', sans-serif;
+  margin: 0;
+  padding-bottom: 100px;
+  overflow-y: scroll;
+}
 body::-webkit-scrollbar {
   display: none;
 }
 
-body.no-click .galerie a {
-  pointer-events: none;
-}
-
-
-
-
-.paint {
-    position: absolute;
-    top: 25px;
-    left: 105px;
-    font-family: 'MaPolicePerso3', sans-serif;
-    font-size: 24px;
-    color: #ffffff;
-    z-index: 5;
-}
-
-.logo {
-    width: 100px;
-    background-color: #121212;
-    height: auto;
-    position: fixed;
-    top: 9px;
-    left: -5%;
-    transition: opacity 0.5s ease;
-}
-
-.StarryNight {
-    position: relative;
-    background-image: url(starry_night.jpg);
-    background-size: 205px;     /* L'image sera entièrement visible, adaptée au conteneur */  /* Pas de répétition */
-    background-position: center;
-    top: 120px;
-    width: 130px;
-    height: 160px;
-    background-color: #1a1a1a;
-    border-radius: 6px;
-    z-index: 1;
-}
-
-.Joconde {
-    position: relative;
-    background-image: url(Joconde.jpg);
-    background-size: 205px;     /* L'image sera entièrement visible, adaptée au conteneur */  /* Pas de répétition */
-    background-position: center -20px;
-    top: -20px;
-    left: 150px;
-    width: 130px;
-    height: 160px;
-    background-color: #1a1a1a;
-    border-radius: 6px;
-    z-index: 1;
-}
-
-.LeCri {
-    position: relative;
-    background-image: url(Cri.jpg);
-    background-size: 205px;     /* L'image sera entièrement visible, adaptée au conteneur */  /* Pas de répétition */
-    background-position: -30px -80px;
-    top: 0px;
-    width: 130px;
-    height: 180px;
-    background-color: #1a1a1a;
-    border-radius: 6px;
-    z-index: 1;
-}
-
-.Guernica {
-    position: relative;
-    background-image: url(Guernica.jpg);
-    background-size: 250px;     /* L'image sera entièrement visible, adaptée au conteneur */  /* Pas de répétition */
-    background-position: -30px px;
-    top: -160px;
-    left: 150px;
-    width: 130px;
-    height: 180px;
-    background-color: #1a1a1a;
-    border-radius: 6px;
-    z-index: 1;
-}
-
-.LaJeune {
-    position: relative;
-    background-image: url(LJFP.jpg);
-    background-size: 250px;     /* L'image sera entièrement visible, adaptée au conteneur */  /* Pas de répétition */
-    background-position: -30px px;
-    top: -160px;
-    left: 0px;
-    width: 130px;
-    height: 180px;
-    background-color: #1a1a1a;
-    border-radius: 6px;
-    z-index: 1;
-}
-
-.LNV {
-    position: relative;
-    background-image: url(LNV.jpg);
-    background-size: 250px;     /* L'image sera entièrement visible, adaptée au conteneur */  /* Pas de répétition */
-    background-position: -70px 0px;
-    top: -320px;
-    left: 150px;
-    width: 130px;
-    height: 180px;
-    background-color: #1a1a1a;
-    border-radius: 6px;
-    z-index: 1;
-}
-
-.cene {
-    position: relative;
-    background-image: url(cene.jpg);
-    background-size: 250px;     /* L'image sera entièrement visible, adaptée au conteneur */  /* Pas de répétition */
-    background-position: -60px ;
-    top: -320px;
-    left: 0px;
-    width: 130px;
-    height: 180px;
-    background-color: #1a1a1a;
-    border-radius: 6px;
-    z-index: 1;
-
-}
-
-.elephants {
-  width: 250px;
-  position: relative;
-  top: 60px;
-  left: 15px;
-}
-
-.perle {
-  position: relative;
-  top: 70px;
-  left: 15px;
-}
-
-.square {
-    position: relative;
-    top: 130px;
-    backdrop-filter: blur(10px);
-    left: 0;
-    width: 130px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    z-index: 1;
-}
-
-.txt {
-    position: relative;
-    max-width: 75px;
-    top: 75px;
-    left: 5px;
-    color: #ffffff;
-    font-family: 'MaPolicePerso3', sans-serif;
-    font-size: 10px;
-    z-index: 2;
-}
-
-.date {
-    text-align: end;
-    position: relative;
-    top: 50px;
-    left: -6px;
-    color: #ffffff;
-    font-family: 'MaPolicePerso3', sans-serif;
-    font-size: 10px;
-    z-index: 2;
-}
-
-.artiste {
-    position: relative;
-    top: 40px;
-    left: 5px;
-    color: #ffffff;
-    font-family: 'MaPolicePerso3', sans-serif;
-    font-size: 10px;
-    z-index: 2;
-}
-
-.etoile {
-  width: 70px;
-  height: auto;
-  position: relative;
-  top: 30px;
-  left: 2px;
-  filter: invert(1);
-  z-index: 1;
-}
-
-.carte-container {
-  position: relative;
-  width: 280px;
-  height: 100px;
-  border-radius: 20px;
-  overflow: hidden;
-  font-family: sans-serif;
-}
-
-.carte-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.blur {
-  position: fixed;
-  top: 470px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 280px;
-  height: 100px;
-  border-radius: 20px;
-
-  /* Progressive blur using backdrop-filter */
-  backdrop-filter: blur(10px);
-  /* Use a gradient mask to fade the blur progressively */
-  -webkit-mask-image: linear-gradient(to right, black 0%, rgba(0,0,0,0.9) 90%, transparent 100%);
-    mask-image: linear-gradient(to right, black 0%, rgba(0,0,0,0.9) 10%, transparent 100%);
-  z-index: 1001;
-  pointer-events: none; /* So it doesn't block clicks */
-}
-
-.square2 {
-  position: fixed;
-  top: 470px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 280px;
-  height: 100px;
-  border-radius: 20px;
-  background-image: url('tokyo.jpg');
-  background-size: cover;
-  background-position: center;
-  z-index: 1000;
-}
-
-/* Ton bouton filtre */
-.Popu {
-  background: none;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  z-index: 9999; /* au-dessus des liens de la galerie */
-}
-
-.Popu img {
-  width: 32px;   /* ajuste à ton icône */
-  height: 32px;
-  pointer-events: auto; /* assure que l’image capte bien le clic */
-}
-
-/* Les liens de la galerie restent cliquables, mais sous le filtre */
-#overlay-blanc {
-    position: fixed;
-    top: 60px;
-    left: 15px;
-    border-radius: 20px 20px 0px 0px;
-    width: 90%;
-    height: 80%;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    z-index: 9999;
-    display: none;
-}
-
-#overlay-blanc h2 {
-    margin-top: 0;
-}
-
-#overlay-blanc input[type="range"] {
-    width: 100%;
-    margin-top: 10px;
-}
-
-#overlay-blanc button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #222;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.slider-container {
-    position: relative;
-    width: 100%;
-    margin-top: 30px;
-}
-
-.value-indicator {
-    position: absolute;
-    top: -25px;
-    left: 0;
-    transform: translateX(-50%);
-    background-color: #222;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 8px;
-    font-size: 14px;
-    pointer-events: none;
-}
-
-input[type="range"] {
-    width: 100%;
-    margin: 10px 0;
-}
-
-.slider-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #333;
-}
-
-
-.rotate {
-  transform: rotate(180deg);
-}
-
-
-
-.suite {
-  position: relative;
-  top: 200px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  text-shadow: #ffffff 0px 0px 100px;
-  max-width: 1500px;
-  height: 100%;
-  color: rgba(255, 255, 255, 1);
+/* Header */
+header {
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-
-.image {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  transition: top 0.5s, left 0.5s;
-}
-
-/* Icône de filtre */
-.filter-icon {
-  width: 40px;
-  filter: invert(1);
-  position: relative;
-  top: 60px;
-  left: 230px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.filter-icon:hover {
-  transform: scale(1.1);
-}
-
-/* Overlay qui couvre tout l'écran */
-.overlay {
-  display: none; /* Caché par défaut */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(5px);
-  z-index: 999;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Contenu du pop-up */
-.overlay-content {
-  background-color: white;
   padding: 20px;
-  border-radius: 15px;
-  width: 350px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  animation: fadeIn 0.3s ease-in-out;
+  position: sticky;
+  top: 0;
+  background-color: #121212;
+  z-index: 1000;
 }
-
-/* Bouton fermer */
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  font-size: 35px;
+.logo {
+  width: 60px;
+  height: auto;
+}
+.paint {
+  margin-left: 15px;
+  font-size: 24px;
+  color: #ffffff;
+}
+.filter-icon {
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
-  color: #e63946;
 }
 
-/* Bouton appliquer */
-.apply-btn {
-  background-color: #e63946;
-  color: white;
-  padding: 10px 15px;
-  border: none;
+/* Galerie façon Pinterest */.galerie {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+
+.galerie img.portrait {
+  width: 100%;
+  height: auto;
+  grid-column: span 1;
   border-radius: 8px;
-  cursor: pointer;
-  margin-top: 15px;
-  transition: background 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
 }
 
-.apply-btn:hover {
-  background-color: #d62828;
+/* Paysage = pleine largeur */
+.galerie img.paysage {
+  width: 100%;
+  height: auto;
+  grid-column: span 3;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
 }
 
-/* Animation d'apparition */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+.galerie img:hover {
+  transform: scale(1.03);
 }
 
 
+/* Responsive */
+@media (max-width: 768px) {
+  .galerie {
+    column-count: 2;
+  }
+}
+@media (max-width: 480px) {
+  .galerie {
+    column-count: 1;
+  }
+}
+
+/* Navbar */
 .navbar {
   position: fixed;
   bottom: 0;
-  left: 0;
-  width: 94%;
-  height: 70px;
-  background-color: #1b1b1b;
+  width: 100%;
+  background-color: #1a1a1a;
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  padding: 0 10px;
-  z-index: 997;
+  padding: 10px 0;
+  z-index: 1000;
 }
-
-.navbar a {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  position: relative;
+.icon {
+  width: 28px;
+  height: auto;
+  filter: invert(1);
 }
-
-.navbar img.icon {
-  height: 24px;
-  width: auto;
-  filter: invert(1); /* rend les icônes blanches */
-}
-
-/* HOME uniquement */
-.paint-link {
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.paint-icon {
-  margin-bottom: 20px; /* surélève l'icône */
-}
-
 .paint-marker {
-  position: absolute;
-  bottom: 20px; /* placé juste sous l’icône, dans la navbar */
-  width: 30px;
-  height: 5px;
-  background-color: white;
-  box-shadow: 0px -5px 10px rgba(255, 255, 255, 0.5);
-  border-radius: 3px;
+  width: 6px;
+  height: 6px;
+  background-color: #fff;
+  border-radius: 50%;
+  margin-bottom: 4px;
 }
 
-.filter-group {
-  margin-bottom: 20px;
-}
-
-.filter-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.filter-box {
-  padding: 10px 15px;
-  background-color: #eee;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.2s ease;
-  user-select: none;
-}
-
-.filter-box:hover {
-  background-color: #ddd;
-}
-
-.filter-box.active {
-  background-color: #c33;
-  color: white;
+/* Texte de fin */
+.suite {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 18px;
+  color: #ffffff;
+  text-shadow: 0 0 20px #ffffff;
 }

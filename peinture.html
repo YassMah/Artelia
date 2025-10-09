@@ -8,18 +8,31 @@
 </head>
 <body>
 
-<header>
-  <img class="logo" src="Logo.png" alt="Logo" />
-  <h1 class="paint">Peinture</h1>
-  <img id="openFilterBtn" class="filter-icon" src="sort.png" alt="Trier" />
-</header>
-  
+  <header>
+    <img class="logo" src="Logo.png" alt="Logo" />
+    <h1 class="paint">Peinture</h1>
+    <img id="openFilterBtn" class="filter-icon" src="sort.png" alt="Trier" />
+  </header>
 
+  <!-- 🖼️ Galerie façon Pinterest -->
   <section class="galerie">
-    <img class="elephants" src="Frame 6.png" alt="">
-    <img class="perle" src="Frame 8.png" alt="">
-  </section>
+  <img src="tableaux/grandes-baigneses.jpg" class="paysage" alt="Portrait">
+  <img src="tableaux/sabines.jpg" class="paysage" alt="Paysage">
+  <img src="tableaux/primavera.jpg" class="paysage" alt="Carré">
+  <img src="tableaux/american-gothic.jpg" class="portrait" alt="Portrait">
+  <img src="tableaux/joconde.jpg" class="portrait" alt="Portrait">
+  <img src="tableaux/nympheas.jpg" class="paysage" alt="Paysage">
+  <img src="tableaux/guernica.jpg" class="paysage" alt="Carré">
+  <img src="tableaux/creation-adam.jpg" class="paysage" alt="Paysage">
+  <img src="tableaux/baiser-klimt.jpg" class="portrait" alt="Paysage">
+  <img src="tableaux/self-cropped-hair.jpg" class="portrait" alt="Paysage">
+  <img src="tableaux/olympia.jpg" class="paysage" alt="Paysage">
+  <img src="tableaux/persistence-memoire.jpg" class="paysage" alt="Paysage">
 
+</section>
+
+
+  <!-- 🧭 Barre de navigation -->
   <div class="navbar">
     <a href="trends.html" class="home-link">
       <img class="icon home-icon" src="home.png" alt="Accueil">
@@ -29,35 +42,33 @@
       <img class="icon paint-icon" src="peinture.png" alt="Peinture">
     </a>
     <a href="#"><img class="icon" src="peintre.png" alt="Peintre"></a>
-    <a href="carte.html"><img class="icon" src="museum.png" alt="Puzzle"></a>
+    <a href="carte.html"><img class="icon" src="museum.png" alt="Musée"></a>
     <a href="#"><img class="icon" src="fav.png" alt="Favoris"></a>
-    <a href="#"><img class="icon" src="profile.png" alt="Profil"></a>
+    <a href="profile.html"><img class="icon" src="profile.png" alt="Profil"></a>
   </div>
 
   <h1 class="suite">À venir très bientôt</h1>
 
+  <!-- 🔧 Script pour la fenêtre de tri -->
   <script>
-  const openBtn = document.getElementById('openFilterBtn');
-  const closeBtn = document.getElementById('closeFilterBtn');
-  const overlay = document.getElementById('filterOverlay');
+    const openBtn = document.getElementById('openFilterBtn');
+    const overlay = document.getElementById('filterOverlay');
+    const closeBtn = document.getElementById('closeFilterBtn');
 
-  // Ouvrir la fenêtre
-  openBtn.addEventListener('click', () => {
-    overlay.style.display = 'flex';
-  });
+    openBtn?.addEventListener('click', () => {
+      overlay.style.display = 'flex';
+    });
 
-  // Fermer la fenêtre
-  closeBtn.addEventListener('click', () => {
-    overlay.style.display = 'none';
-  });
-
-  // Fermer si on clique en dehors du contenu
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) {
+    closeBtn?.addEventListener('click', () => {
       overlay.style.display = 'none';
-    }
-  });
-</script>
+    });
+
+    overlay?.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
+  </script>
 
 </body>
 </html>
