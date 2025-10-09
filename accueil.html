@@ -54,11 +54,19 @@
 
 <!-- Script -->
 <script>
+document.addEventListener("DOMContentLoaded", () => {
   const fileInput = document.getElementById('file-input');
   const preview = document.getElementById('preview');
   const queryInput = document.getElementById('query');
   const welcomeMessage = document.getElementById('welcome-message');
   const startButton = document.getElementById('start-button');
+  const uploadLabel = document.getElementById('upload-label');
+
+  // 🔹 Si un pseudo existe déjà, redirige directement vers trends.html
+  const savedName = localStorage.getItem("profileName");
+  if (savedName) {
+    window.location.href = "trends.html";
+  }
 
   let hasImage = false;
   let hasName = false;
@@ -71,16 +79,18 @@
     }
   }
 
-fileInput.addEventListener('change', () => {
-  const file = fileInput.files[0];
-  hasImage = !!file;
-  if (file) {
-    preview.src = URL.createObjectURL(file);
-    document.getElementById('upload-label').style.display = 'none'; // cache le texte une fois une photo chargée
-  }
-  updateButtonState();
-});
+  // Gestion de la prévisualisation d'image
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    hasImage = !!file;
+    if (file) {
+      preview.src = URL.createObjectURL(file);
+      uploadLabel.style.display = 'none'; // cache le texte une fois la photo chargée
+    }
+    updateButtonState();
+  });
 
+  // Gestion du pseudo
   queryInput.addEventListener('input', () => {
     const name = queryInput.value.trim();
     hasName = name.length > 0;
@@ -88,10 +98,14 @@ fileInput.addEventListener('change', () => {
     updateButtonState();
   });
 
+  // Click sur le bouton pour commencer
   startButton.addEventListener('click', () => {
-    window.location.href = 'profile.html?name=${encodeURIComponent(queryInput.value.trim())}' ; 
+    const name = queryInput.value.trim();
+    if (!name) return; // empêche la redirection si pas de pseudo
+    localStorage.setItem("profileName", name); // sauvegarde du pseudo
+    window.location.href = `profile.html?name=${encodeURIComponent(name)}`;
   });
-  
+});
 </script>
 
 </body>
