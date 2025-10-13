@@ -3,7 +3,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Galano Grotesque', sans-serif;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .profile-wrapper {
@@ -203,7 +203,7 @@ body {
   left: 5vw;
   width: 50vw;
   height: 1.5vh;
-  background: rgba(93, 0, 255, 0.2);
+  background: rgba(60, 23, 124, 0.9);
   border-radius: 999px;
   z-index: 3;
 }
@@ -540,3 +540,95 @@ button:hover .star-6 {
 .hidden {
   display: none;
 }
+
+.cards-title {
+  top: 38vh; /* Ajuste selon le placement voulu entre Statistiques et Badges */
+  left: 5vw;
+}
+
+.cards-line {
+  top: 35vh; /* Légèrement au-dessus du titre pour créer une séparation nette */
+  left: 9vw;
+  width: 70vw;
+  height: 0;
+  outline: 0.1vw solid white;
+  z-index: 2;
+}
+
+/* Ajuste l'inventaire si besoin */
+.inventory-grid {
+  position: absolute;
+  top: 41vh; /* juste en dessous de la ligne Cartes */
+  left: 5vw;
+  width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+  z-index: 2;
+}
+
+.inventory-card {
+  width: 20vw;
+  height: auto;
+  border-radius: 1vw;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease;
+}
+
+.inventory-card:hover {
+  transform: scale(1.05);
+}
+
+      /* ==== CARTE DE VISITE ==== */
+.card-title {
+  top: 59vh;
+  left: 10vw;
+}
+
+.card-line {
+  top: 57vh; /* trait légèrement plus bas */
+  left: 15vw;
+  width: 70vw;
+  height: 0;
+  outline: 0.1vw solid white;
+  z-index: 2;
+}
+
+.business-card {
+  position: absolute;
+  top: 63vh;
+  left: 10vw; /* déplacée un peu à droite */
+  width: 70vw; /* légèrement réduite */
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.card-image {
+  width: 70vw; /* adaptée à la nouvelle taille du conteneur */
+  height: auto;
+  border-radius: 2vw;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  object-fit: contain;
+}
+
+/* ==== AJUSTEMENT BADGES ==== */
+.badges-title {
+  top: 75vh;
+  left: 5vw;
+}
+
+.badges-line {
+  top: 72vh; /* trait plus bas pour créer un espace */
+  left: 9vw;
+  width: 70vw;
+}
+
+.badges-grid {
+  top: 80vh;
+}
+
+

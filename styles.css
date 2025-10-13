@@ -43,9 +43,9 @@ body.fade-in {
 
 /* From Uiverse.io by LightAndy1 */ 
 .group {
-    position: absolute;
-    top: 100vw;
-    left: 16vw;
+  position: absolute;
+  top: 100vw;
+  left: 16vw;
   display: flex;
   line-height: 28px;
   align-items: center;

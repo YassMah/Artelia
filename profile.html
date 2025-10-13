@@ -43,35 +43,43 @@
       <div class="progress-bar-bg"></div>
       <div class="progress-bar-fill"></div>
       <div class="xp-text">150/200</div>
-    </div>
 
+      <!-- Conteneur inventaire -->
+
+      <v id="inventoryContainer"d"></div>
+   
 
     <div class="edit-button-wrapper">
       <img src="edit.png" alt="Éditer le profil" class="edit-profile-button" />
     </div>
 
-
-
     <div class="edit-profile-form hidden">
       <label for="nameInput">Nom :</label>
       <input type="text" id="nameInput" placeholder="Entrez votre nom" />
 
-<label for="photoInput" class="custom-file-upload">
-  <img src="profile.png" alt="Choisir une image" />
-</label>
-<input type="file" id="photoInput" accept="image/*" />
-
+      <label for="photoInput" class="custom-file-upload">
+        <img src="profile.png" alt="Choisir une image" />
+      </label>
+      <input type="file" id="photoInput" accept="image/*" />
 
       <button id="saveProfileBtn">
-  Sauvegarder
-  <div class="star-1">…</div>
-  <div class="star-2">…</div>
-  <div class="star-3">…</div>
-  <div class="star-4">…</div>
-  <div class="star-5">…</div>
-  <div class="star-6">…</div>
-</button>
+        Sauvegarder
+        <div class="star-1">…</div>
+        <div class="star-2">…</div>
+        <div class="star-3">…</div>
+        <div class="star-4">…</div>
+        <div class="star-5">…</div>
+        <div class="star-6">…</div>
+      </button>
     </div>
+
+          <!-- Carte de visite -->
+      <div class="section-title card-title">Carte de visite</div>
+      <div class="section-line card-line"></div>
+
+      <div class="business-card">
+        <img src="card/SN.png" alt="Carte de visite" class="card-image" />
+      </div>
 
 
     <img class="logo" src="Logo.png" alt="Logo" />
@@ -84,10 +92,12 @@
     <a href="#"><img class="icon" src="peintre.png" alt="Peintre" /></a>
     <a href="#"><img class="icon" src="museum.png" alt="Musée" /></a>
     <a href="collection.html"><img class="icon" src="fav.png" alt="Favoris" /></a>
-    <a href="profile.html" class="home-link"><div class="home-marker"></div><img class="icon home-icon" src="profile.png" alt="Accueil" /></a>
+    <a href="profile.html" class="home-link">
+      <div class="home-marker"></div>
+      <img class="icon home-icon" src="profile.png" alt="Accueil" />
+    </a>
   </div>
 
-  <a href="profile.html"><img class="icon" src="profile.png" alt="Profil" /></a>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const editBtn = document.querySelector(".edit-profile-button");
@@ -97,8 +107,47 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveBtn = document.getElementById("saveProfileBtn");
   const usernameDisplay = document.querySelector(".username");
   const backgroundBlur = document.querySelector(".background-blur");
+  const inventoryContainer = document.getElementById("inventoryContainer");
 
-  // ✅ Créer ou récupérer la preview
+  // === Gestion de l'inventaire ===
+  function getInventory() {
+    return JSON.parse(localStorage.getItem('userInventory') || '[]');
+  }
+
+  function addCardToInventory(cardName) {
+    const inventory = getInventory();
+    if (!inventory.includes(cardName)) {
+      inventory.push(cardName);
+      localStorage.setItem('userInventory', JSON.stringify(inventory));
+      displayInventory();
+    }
+  }
+
+  function displayInventory() {
+    const inventory = getInventory();
+    inventoryContainer.innerHTML = '';
+    inventory.forEach(card => {
+      const img = document.createElement('img');
+      img.src = `card/${card}.png`;
+      img.alt = card;
+      img.className = "inventory-card";
+      inventoryContainer.appendChild(img);
+    });
+  }
+
+  displayInventory();
+
+  // === Bouton edit pour ajouter carte manuellement ===
+  editBtn.addEventListener("click", () => {
+    form.classList.remove("hidden");
+    form.classList.remove("minimal-form");
+    nameInput.value = usernameDisplay.textContent;
+
+    const addCard = prompt("Nom de la carte à ajouter ?");
+    if (addCard) addCardToInventory(addCard);
+  });
+
+  // === Gestion du pseudo et de la photo ===
   let previewImg = document.querySelector(".background-preview");
   if (!previewImg) {
     previewImg = document.createElement("img");
@@ -108,7 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
     backgroundBlur.parentElement.appendChild(previewImg);
   }
 
-  // Styles de la preview
   Object.assign(previewImg.style, {
     position: "absolute",
     top: "-6vh",
@@ -123,31 +171,18 @@ document.addEventListener("DOMContentLoaded", () => {
     cursor: "grab"
   });
 
-  previewImg.addEventListener("dragstart", (e) => e.preventDefault());
+  previewImg.addEventListener("dragstart", e => e.preventDefault());
 
-  // ✅ Charger les données sauvegardées
   const savedName = localStorage.getItem("profileName");
   const savedPhoto = localStorage.getItem("profilePhoto");
   const savedTransform = localStorage.getItem("photoTransform");
-
-  // Récupère le pseudo depuis l'URL si pas de localStorage
   const urlParams = new URLSearchParams(window.location.search);
   const urlName = urlParams.get("name");
-
-  const displayName = savedName || urlName || "Invité";
-  usernameDisplay.textContent = displayName;
+  usernameDisplay.textContent = savedName || urlName || "Invité";
 
   if (savedPhoto) backgroundBlur.src = savedPhoto;
   if (savedTransform) backgroundBlur.style.transform = savedTransform;
 
-  // ✅ Afficher le formulaire complet
-  editBtn.addEventListener("click", () => {
-    form.classList.remove("hidden");
-    form.classList.remove("minimal-form");
-    nameInput.value = usernameDisplay.textContent;
-  });
-
-  // ✅ Mode minimal au choix d’image
   photoInput.addEventListener("change", () => {
     const file = photoInput.files[0];
     if (file && file.type.startsWith("image/")) {
@@ -156,41 +191,27 @@ document.addEventListener("DOMContentLoaded", () => {
         previewImg.src = reader.result;
         previewImg.classList.remove("hidden");
         previewImg.style.transform = "translate(0px, 0px)";
-        currentX = 0;
-        currentY = 0;
-
-        form.classList.remove("hidden");
-        form.classList.add("minimal-form");
       };
       reader.readAsDataURL(file);
     }
   });
 
-  // ✅ Drag pour déplacer l’image
-  let isDragging = false;
-  let startX = 0;
-  let startY = 0;
-  let currentX = 0;
-  let currentY = 0;
-
-  previewImg.addEventListener("mousedown", (e) => {
+  let isDragging = false, startX=0, startY=0, currentX=0, currentY=0;
+  previewImg.addEventListener("mousedown", e => {
     isDragging = true;
     startX = e.clientX - currentX;
     startY = e.clientY - currentY;
     previewImg.style.cursor = "grabbing";
   });
 
-  document.addEventListener("mousemove", (e) => {
+  document.addEventListener("mousemove", e => {
     if (!isDragging) return;
     currentX = e.clientX - startX;
     currentY = e.clientY - startY;
-
     const maxX = window.innerWidth * 0.6;
     const maxY = window.innerHeight * 0.5;
-
     currentX = Math.max(-maxX, Math.min(currentX, maxX));
     currentY = Math.max(-maxY, Math.min(currentY, maxY));
-
     previewImg.style.transform = `translate(${currentX}px, ${currentY}px)`;
   });
 
@@ -199,34 +220,23 @@ document.addEventListener("DOMContentLoaded", () => {
     previewImg.style.cursor = "grab";
   });
 
-  // ✅ Sauvegarder et restaurer l’interface
   saveBtn.addEventListener("click", () => {
     const newName = nameInput.value.trim();
     if (newName) {
       usernameDisplay.textContent = newName;
       localStorage.setItem("profileName", newName);
     }
-
     if (previewImg.src) {
       backgroundBlur.src = previewImg.src;
       backgroundBlur.style.transform = previewImg.style.transform;
       localStorage.setItem("profilePhoto", previewImg.src);
       localStorage.setItem("photoTransform", previewImg.style.transform);
       previewImg.classList.add("hidden");
-
-      // Supprimer le flou derrière le bouton
-      saveBtn.style.backdropFilter = "none";
-      saveBtn.style.backgroundColor = "transparent";
     }
-
-    form.classList.remove("minimal-form");
     form.classList.add("hidden");
+    form.classList.remove("minimal-form");
   });
 });
 </script>
-
-
-
-
 </body>
 </html>

@@ -213,27 +213,53 @@ const trendsSets = [
 })();
 </script>
 <script>
-const openPackBtn = document.getElementById('openPackBtn');
+// ===== PACK TEST =====
 const packOverlay = document.getElementById('pack-overlay');
-const openPackInnerBtn = document.getElementById('open-pack-btn');
 const packContainer = document.querySelector('.pack-container');
+const packBtn = document.getElementById('openPackBtn');
+const packOpenBtn = document.getElementById('open-pack-btn');
 const starsContainer = document.getElementById('stars');
 
-// 👉 Quand on clique sur "Pack du jour", on affiche l'overlay
-openPackBtn.addEventListener('click', () => {
+// Inventaire (stockage dans localStorage)
+let inventory = JSON.parse(localStorage.getItem('inventory')) || [];
+
+// Afficher le pack overlay
+packBtn.addEventListener('click', () => {
   packOverlay.style.display = 'flex';
 });
 
-// 👉 Quand on clique sur "Ouvrir le pack", on joue l’animation
-openPackInnerBtn.addEventListener('click', () => {
-  packContainer.classList.add('open');
-  generateStars();
-  setTimeout(() => {
-    packOverlay.style.display = 'none';
-    packContainer.classList.remove('open');
-  }, 2000); // fermeture auto après 2s
+// Fermer overlay
+packOverlay.addEventListener('click', (e) => {
+  if (e.target === packOverlay) {
+    closePackOverlay();
+  }
 });
 
+function closePackOverlay() {
+  packOverlay.style.display = 'none';
+  packContainer.classList.remove('open');
+}
+
+// Ouvrir le pack (test rapide : pas de limitation 1 pack/jour)
+packOpenBtn.addEventListener('click', () => {
+  packContainer.classList.add('open');
+  generateStars();
+
+  // Générer une carte aléatoire
+  const cards = ['StarryNight', 'MonaLisa', 'TheScream', 'Sunflowers'];
+  const randomCard = cards[Math.floor(Math.random() * cards.length)];
+
+  // Ajouter à l'inventaire
+  inventory.push(randomCard);
+  localStorage.setItem('inventory', JSON.stringify(inventory));
+  console.log('Carte obtenue :', randomCard);
+  console.log('Inventaire actuel :', inventory);
+
+  // Optionnel : afficher un petit message
+  alert(`Vous avez obtenu : ${randomCard}`);
+});
+
+// Générer des étoiles
 function generateStars() {
   for (let i = 0; i < 15; i++) {
     const star = document.createElement('div');
@@ -241,10 +267,16 @@ function generateStars() {
     star.style.left = `${Math.random() * 100}%`;
     star.style.bottom = `${Math.random() * 40}%`;
     starsContainer.appendChild(star);
+
     setTimeout(() => star.remove(), 1200);
   }
 }
+
+// Pour réinitialiser l'inventaire si besoin
+// localStorage.removeItem('inventory');
 </script>
+
+
 
 
 
