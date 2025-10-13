@@ -32,10 +32,10 @@
     <h1 class="pays"></h1>
   </div>
 
-  <!-- Bouton unique pour ouvrir le feed -->
+  <!-- === Bouton pour ouvrir le feed === -->
   <button id="openFeedBtn" class="open-feed-btn" aria-label="Ouvrir Feed">Feed</button>
 
-  <!-- Overlay Feed -->
+  <!-- === Overlay Feed === -->
   <section id="feedOverlay" class="feed-overlay" aria-hidden="true" style="display:none;">
     <div class="feed-header">
       <h2 class="feed-title">Feed</h2>
@@ -44,8 +44,24 @@
     <div id="feedScroller" class="feed-scroller" tabindex="0" role="region" aria-label="Feed Pour toi"></div>
   </section>
 
-  
+  <!-- === BOUTON DU PACK DU JOUR === -->
+ <!-- === BOUTON DU PACK DU JOUR === -->
+<button id="openPackBtn" class="pack-btn">🎁 Pack du jour</button>
 
+<!-- === OVERLAY DU PACK === -->
+<div id="pack-overlay" class="pack-overlay" style="display: none;">
+  <div class="pack-container">
+    <div class="pack">
+      <img src="pack.png" alt="Pack" class="pack-img">
+      <div class="pack-cover"></div>
+    </div>
+    <img src="card/SN.png" alt="Carte StarryNight" class="card-img">
+    <div class="stars" id="stars"></div>
+  </div>
+  <button id="open-pack-btn">Ouvrir le pack</button>
+</div>
+
+  <!-- === BARRE DE NAVIGATION === -->
   <div class="navbar">
     <a href="#" class="home-link"><div class="home-marker"></div><img class="icon home-icon" src="home.png" alt="Accueil"></a>
     <a href="peinture.html"><img class="icon" src="peinture.png" alt="Peinture"></a>
@@ -54,6 +70,7 @@
     <a href="collection.html"><img class="icon" src="fav.png" alt="Favoris"></a>
     <a href="profile.html"><img class="icon" src="profile.png" alt="Profil"></a>
   </div>
+
 
 <script> 
 const trendsSets = [
@@ -195,5 +212,41 @@ const trendsSets = [
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFeed(); });
 })();
 </script>
+<script>
+const openPackBtn = document.getElementById('openPackBtn');
+const packOverlay = document.getElementById('pack-overlay');
+const openPackInnerBtn = document.getElementById('open-pack-btn');
+const packContainer = document.querySelector('.pack-container');
+const starsContainer = document.getElementById('stars');
+
+// 👉 Quand on clique sur "Pack du jour", on affiche l'overlay
+openPackBtn.addEventListener('click', () => {
+  packOverlay.style.display = 'flex';
+});
+
+// 👉 Quand on clique sur "Ouvrir le pack", on joue l’animation
+openPackInnerBtn.addEventListener('click', () => {
+  packContainer.classList.add('open');
+  generateStars();
+  setTimeout(() => {
+    packOverlay.style.display = 'none';
+    packContainer.classList.remove('open');
+  }, 2000); // fermeture auto après 2s
+});
+
+function generateStars() {
+  for (let i = 0; i < 15; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.bottom = `${Math.random() * 40}%`;
+    starsContainer.appendChild(star);
+    setTimeout(() => star.remove(), 1200);
+  }
+}
+</script>
+
+
+
 </body>
 </html>

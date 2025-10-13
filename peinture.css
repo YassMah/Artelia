@@ -39,12 +39,15 @@ header {
   z-index: 1000;
 }
 .logo {
-  width: 60px;
+  width: 30vw;
+  position: relative;
+  left: -5%;
+  transform: po;
   height: auto;
 }
 .paint {
-  margin-left: 15px;
-  font-size: 24px;
+  text-align: center;
+  font-size: 9vw;
   color: #ffffff;
 }
 .filter-icon {
@@ -54,31 +57,79 @@ header {
   cursor: pointer;
 }
 
-/* Galerie façon Pinterest */.galerie {
+.galerie {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   padding: 20px;
+  background: #0f0f0f;
+  font-family: 'Poppins', sans-serif;
 }
 
+/* --- Cartes --- */
+.art-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-.galerie img.portrait {
+.art-card img {
   width: 100%;
   height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.art-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.art-card:hover img {
+  transform: scale(1.05);
+}
+
+/* --- Infos sur l'image --- */
+.info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0));
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 10px 10px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.artist {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.year {
+  position: absolute;
+  right: 30px;
+  bottom: 24px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/* --- Variantes de format --- */
+.art-card.portrait {
   grid-column: span 1;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
 }
 
-/* Paysage = pleine largeur */
-.galerie img.paysage {
-  width: 100%;
-  height: auto;
-  grid-column: span 3;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
+.art-card.paysage {
+  grid-column: span 2;
 }
 
 .galerie img:hover {
@@ -102,24 +153,52 @@ header {
 .navbar {
   position: fixed;
   bottom: 0;
-  width: 100%;
-  background-color: #1a1a1a;
+  left: 0;
+  width: 97%;
+  height: clamp(60px, 8vh, 90px);  /* min 60px, max 90px, s’adapte */
+  background-color: #1b1b1b;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
-  z-index: 1000;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 0 2vw;
+  z-index: 997;
+  box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.5);
 }
-.icon {
-  width: 28px;
-  height: auto;
-  filter: invert(1);
+
+.navbar a {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
 }
-.paint-marker {
-  width: 6px;
-  height: 6px;
-  background-color: #fff;
-  border-radius: 50%;
-  margin-bottom: 4px;
+
+.navbar img.icon {
+  height: 3.5vh;
+  width: auto;
+  filter: invert(1); /* rend les icônes blanches */
+}
+
+.home-link {
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.home-icon {
+  margin-bottom: 20px; /* surélève l'icône */
+}
+
+.home-marker {
+  position: absolute;
+  bottom: 20px; /* placé juste sous l’icône, dans la navbar */
+  width: 30px;
+  height: 5px;
+  background-color: white;
+  box-shadow: 0px -5px 10px rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
 }
 
 /* Texte de fin */
