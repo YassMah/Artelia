@@ -1,4 +1,4 @@
-/* Polices personnalisées */
+/* Polices personnalisées */ 
 @font-face {
   font-family: 'MaPolicePerso';
   src: url('fonts/AnthonioScript.ttf') format('truetype');
@@ -32,23 +32,23 @@ body::-webkit-scrollbar {
 header {
   display: flex;
   align-items: center;
-  padding: 20px;
   position: sticky;
   top: 0;
-  background-color: #121212;
+  backdrop-filter: blur(10px);
   z-index: 1000;
+  padding: 10px 20px;
 }
 .logo {
   width: 30vw;
+  height: auto;
   position: relative;
   left: -5%;
-  transform: po;
-  height: auto;
 }
 .paint {
   text-align: center;
   font-size: 9vw;
   color: #ffffff;
+  margin: 0;
 }
 .filter-icon {
   margin-left: auto;
@@ -57,96 +57,130 @@ header {
   cursor: pointer;
 }
 
-.galerie {
+/* Galerie */
+.gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  padding: 20px;
-  background: #0f0f0f;
-  font-family: 'Poppins', sans-serif;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  padding: 20px 10px;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-/* --- Cartes --- */
-.art-card {
+/* Carte */
+.card {
+  border-radius: 20px;
+  padding: 10px;
   position: relative;
-  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-.art-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.art-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-}
-
-.art-card:hover img {
-  transform: scale(1.05);
-}
-
-/* --- Infos sur l'image --- */
-.info {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0));
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.37);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 10px 10px;
-}
-
-.title {
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.artist {
-  font-size: 12px;
-  opacity: 0.9;
-}
-
-.year {
-  position: absolute;
-  right: 30px;
-  bottom: 24px;
-  font-size: 11px;
-  opacity: 0.7;
-}
-
-/* --- Variantes de format --- */
-.art-card.portrait {
+/* Portrait */
+.card-portrait {
   grid-column: span 1;
+  min-height: 280px;
 }
 
-.art-card.paysage {
+/* Paysage */
+.card-landscape {
   grid-column: span 2;
+  min-height: 240px;
 }
 
-.galerie img:hover {
-  transform: scale(1.03);
+/* Couleurs */
+.card-blue {
+  background: linear-gradient(145deg, #6B9DAD 0%, #8BBCC9 100%);
+}
+.card-brown {
+  background: linear-gradient(145deg, #C4A177 0%, #D9B890 100%);
+}
+.card-green {
+  background: linear-gradient(145deg, #7A9B7E 0%, #95B89A 100%);
 }
 
-
-/* Responsive */
-@media (max-width: 768px) {
-  .galerie {
-    column-count: 2;
-  }
+/* Numéro */
+.card-number {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  padding: 4px 10px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
-@media (max-width: 480px) {
-  .galerie {
-    column-count: 1;
-  }
+
+/* Image */
+.card-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+.card-landscape .card-image {
+  height: 130px;
+}
+
+/* Texte */
+.card-subtitle {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 4px;
+  font-style: italic;
+}
+.card-title {
+  font-size: 16px;
+  color: #ffffff;
+  margin: 0;
+  font-family: 'MaPolicePerso4', sans-serif;
+}
+.card-year {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.card-artist {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+}
+
+/* Infos */
+.card-info {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+/* Tags */
+.card-tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+.tag {
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 9px;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 /* Navbar */
@@ -155,7 +189,7 @@ header {
   bottom: 0;
   left: 0;
   width: 97%;
-  height: clamp(60px, 8vh, 90px);  /* min 60px, max 90px, s’adapte */
+  height: clamp(60px, 8vh, 90px);
   background-color: #1b1b1b;
   display: flex;
   justify-content: space-around;
@@ -164,9 +198,8 @@ header {
   border-top-right-radius: 20px;
   padding: 0 2vw;
   z-index: 997;
-  box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 100px rgba(0,0,0,0.5);
 }
-
 .navbar a {
   flex: 1;
   display: flex;
@@ -175,29 +208,25 @@ header {
   height: 100%;
   position: relative;
 }
-
 .navbar img.icon {
   height: 3.5vh;
   width: auto;
-  filter: invert(1); /* rend les icônes blanches */
+  filter: invert(1);
 }
-
 .home-link {
   flex-direction: column;
   justify-content: flex-end;
 }
-
 .home-icon {
-  margin-bottom: 20px; /* surélève l'icône */
+  margin-bottom: 20px;
 }
-
 .home-marker {
   position: absolute;
-  bottom: 20px; /* placé juste sous l’icône, dans la navbar */
+  bottom: 20px;
   width: 30px;
   height: 5px;
   background-color: white;
-  box-shadow: 0px -5px 10px rgba(255, 255, 255, 0.5);
+  box-shadow: 0px -5px 10px rgba(255,255,255,0.5);
   border-radius: 3px;
 }
 
@@ -209,3 +238,102 @@ header {
   color: #ffffff;
   text-shadow: 0 0 20px #ffffff;
 }
+
+/* 📱 Responsive mobile */
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .card {
+    padding: 8px;
+    min-height: 220px;
+  }
+
+  .card-image {
+    height: 140px;
+  }
+
+  .card-title {
+    font-size: 14px;
+  }
+
+  .card-year,
+  .card-artist,
+  .card-subtitle {
+    font-size: 10px;
+  }
+
+  .tag {
+    font-size: 8px;
+    padding: 4px 8px;
+  }
+}
+
+/* 🔖 Zone des tags actifs */
+.active-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  margin: 10px auto 20px;
+  width: 90%;
+  justify-content: center;
+}
+
+.active-tag {
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: 'MaPolicePerso3', sans-serif;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.active-tag:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Petite croix de suppression */
+.remove-tag {
+  font-weight: bold;
+  color: #fff;
+  opacity: 0.7;
+  cursor: pointer;
+  font-size: 13px;
+  transition: opacity 0.2s ease;
+}
+.remove-tag:hover {
+  opacity: 1;
+}
+
+/* Curseur pointer sur les tags */
+.tag:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* Pour les tags actifs en haut aussi */
+.active-tag:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* Curseur précis sur la croix ✕ */
+.remove-tag:hover {
+  cursor: pointer;
+}
+

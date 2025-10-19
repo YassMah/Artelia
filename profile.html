@@ -44,10 +44,16 @@
       <div class="progress-bar-fill"></div>
       <div class="xp-text">150/200</div>
 
-      <!-- Conteneur inventaire -->
+      <!-- Carte de visite -->
+      <div class="section-title card-title">Carte de visite</div>
+      <div class="section-line card-line"></div>
+      <div class="business-card">
+        <img src="card/SN.png" alt="Carte de visite" class="card-image" />
+      </div>
 
-      <v id="inventoryContainer"d"></div>
-   
+      <!-- Bouton ouvrir inventaire -->
+      <img src="pen.png" alt="Ouvrir inventaire" class="inventory-btn" />
+    </div>
 
     <div class="edit-button-wrapper">
       <img src="edit.png" alt="Éditer le profil" class="edit-profile-button" />
@@ -73,14 +79,16 @@
       </button>
     </div>
 
-          <!-- Carte de visite -->
-      <div class="section-title card-title">Carte de visite</div>
-      <div class="section-line card-line"></div>
-
-      <div class="business-card">
-        <img src="card/SN.png" alt="Carte de visite" class="card-image" />
+    <!-- Overlay Inventaire -->
+    <div id="inventoryOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); z-index:1000; overflow:auto;">
+      <div style="position:relative; margin:5% auto; padding:2vw; width:80%; max-width:800px; background-color:#111; border-radius:1vw; text-align:center; color:white;">
+        <span id="closeInventory" style="position:absolute; top:1vw; right:1.5vw; font-size:2vw; cursor:pointer;">&times;</span>
+        <h2>Inventaire</h2>
+        <div id="inventoryOverlayContainer" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1vw; margin-top:2vw;">
+          <!-- Cartes dynamiques ici -->
+        </div>
       </div>
-
+    </div>
 
     <img class="logo" src="Logo.png" alt="Logo" />
     <div class="page-title">Profile</div>
@@ -107,136 +115,154 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveBtn = document.getElementById("saveProfileBtn");
   const usernameDisplay = document.querySelector(".username");
   const backgroundBlur = document.querySelector(".background-blur");
-  const inventoryContainer = document.getElementById("inventoryContainer");
+  const previewImg = document.querySelector(".background-preview");
 
-  // === Gestion de l'inventaire ===
+  const inventoryBtn = document.querySelector(".inventory-btn");
+  const inventoryOverlay = document.getElementById("inventoryOverlay");
+  const overlayInventoryContainer = document.getElementById("inventoryOverlayContainer");
+  const closeInventoryBtn = document.getElementById("closeInventory");
+  const businessCardImg = document.querySelector(".card-image");
+
+  // Gestion inventaire
   function getInventory() {
     return JSON.parse(localStorage.getItem('userInventory') || '[]');
   }
 
-  function addCardToInventory(cardName) {
-    const inventory = getInventory();
-    if (!inventory.includes(cardName)) {
-      inventory.push(cardName);
-      localStorage.setItem('userInventory', JSON.stringify(inventory));
-      displayInventory();
+  function saveInventory(inventory) {
+    localStorage.setItem('userInventory', JSON.stringify(inventory));
+  }
+
+  // Gestion carte de visite
+  function getBusinessCard() {
+    return localStorage.getItem('businessCard') || null;
+  }
+
+  function setBusinessCard(cardName) {
+    localStorage.setItem('businessCard', cardName);
+    updateBusinessCard();
+  }
+
+  function removeBusinessCard() {
+    localStorage.removeItem('businessCard');
+    updateBusinessCard();
+  }
+
+  function updateBusinessCard() {
+    const currentCard = getBusinessCard();
+    if(currentCard) {
+      businessCardImg.src = `card/${currentCard}.png`;
+      businessCardImg.alt = currentCard;
+    } else {
+      businessCardImg.src = '';
+      businessCardImg.alt = "Aucune carte équipée";
     }
   }
 
-  function displayInventory() {
-    const inventory = getInventory();
-    inventoryContainer.innerHTML = '';
-    inventory.forEach(card => {
-      const img = document.createElement('img');
-      img.src = `card/${card}.png`;
-      img.alt = card;
-      img.className = "inventory-card";
-      inventoryContainer.appendChild(img);
+  // Création d’une image cliquable pour l’inventaire
+  function createCardImage(card) {
+    const img = document.createElement('img');
+    img.src = `card/${card}.png`;
+    img.alt = card;
+    img.style.width = '150px';
+    img.style.borderRadius = '10px';
+    img.style.cursor = 'pointer';
+    img.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+    img.style.boxShadow = '0 4px 8px rgba(0,0,0,0.3)';
+
+    const currentCard = getBusinessCard();
+    if(currentCard === card){
+      img.style.border = '3px solid gold';
+      img.style.boxShadow = '0 0 15px rgba(255,215,0,0.6)';
+    }
+
+    img.addEventListener('mouseenter', ()=>img.style.transform='scale(1.05)');
+    img.addEventListener('mouseleave', ()=>img.style.transform='scale(1)');
+
+    img.addEventListener('click', () => {
+      const current = getBusinessCard();
+      if(current === card){
+        removeBusinessCard();
+      } else {
+        setBusinessCard(card);
+      }
+      displayInventory();
     });
+
+    img.onerror = ()=>{img.style.display="none";};
+
+    return img;
   }
 
+  function displayInventory() {
+    overlayInventoryContainer.innerHTML = '';
+    const inventory = getInventory();
+
+    if(inventory.length===0){
+      overlayInventoryContainer.innerHTML='<p style="color:white;">Aucune carte dans votre inventaire.</p>';
+      return;
+    }
+
+    inventory.forEach(card => overlayInventoryContainer.appendChild(createCardImage(card)));
+  }
+
+  // Initialisation
+  updateBusinessCard();
   displayInventory();
 
-  // === Bouton edit pour ajouter carte manuellement ===
-  editBtn.addEventListener("click", () => {
+  // Formulaire édition
+  editBtn.addEventListener("click", ()=>{
     form.classList.remove("hidden");
-    form.classList.remove("minimal-form");
     nameInput.value = usernameDisplay.textContent;
-
-    const addCard = prompt("Nom de la carte à ajouter ?");
-    if (addCard) addCardToInventory(addCard);
   });
-
-  // === Gestion du pseudo et de la photo ===
-  let previewImg = document.querySelector(".background-preview");
-  if (!previewImg) {
-    previewImg = document.createElement("img");
-    previewImg.className = "background-preview hidden";
-    previewImg.alt = "Prévisualisation du fond";
-    previewImg.setAttribute("draggable", "false");
-    backgroundBlur.parentElement.appendChild(previewImg);
-  }
-
-  Object.assign(previewImg.style, {
-    position: "absolute",
-    top: "-6vh",
-    left: "-20vw",
-    width: "160vw",
-    height: "100vh",
-    objectFit: "cover",
-    filter: "blur(1.5vh)",
-    zIndex: "2",
-    opacity: "0.6",
-    transition: "opacity 0.3s ease",
-    cursor: "grab"
-  });
-
-  previewImg.addEventListener("dragstart", e => e.preventDefault());
 
   const savedName = localStorage.getItem("profileName");
   const savedPhoto = localStorage.getItem("profilePhoto");
-  const savedTransform = localStorage.getItem("photoTransform");
-  const urlParams = new URLSearchParams(window.location.search);
-  const urlName = urlParams.get("name");
-  usernameDisplay.textContent = savedName || urlName || "Invité";
+  usernameDisplay.textContent = savedName || "Invité";
+  if(savedPhoto) backgroundBlur.src = savedPhoto;
 
-  if (savedPhoto) backgroundBlur.src = savedPhoto;
-  if (savedTransform) backgroundBlur.style.transform = savedTransform;
-
-  photoInput.addEventListener("change", () => {
+  photoInput.addEventListener("change", ()=>{
     const file = photoInput.files[0];
-    if (file && file.type.startsWith("image/")) {
+    if(file && file.type.startsWith("image/")){
       const reader = new FileReader();
-      reader.onload = () => {
-        previewImg.src = reader.result;
-        previewImg.classList.remove("hidden");
-        previewImg.style.transform = "translate(0px, 0px)";
-      };
+      reader.onload=()=>{previewImg.src=reader.result; previewImg.classList.remove("hidden");};
       reader.readAsDataURL(file);
     }
   });
 
-  let isDragging = false, startX=0, startY=0, currentX=0, currentY=0;
-  previewImg.addEventListener("mousedown", e => {
-    isDragging = true;
-    startX = e.clientX - currentX;
-    startY = e.clientY - currentY;
-    previewImg.style.cursor = "grabbing";
-  });
-
-  document.addEventListener("mousemove", e => {
-    if (!isDragging) return;
-    currentX = e.clientX - startX;
-    currentY = e.clientY - startY;
-    const maxX = window.innerWidth * 0.6;
-    const maxY = window.innerHeight * 0.5;
-    currentX = Math.max(-maxX, Math.min(currentX, maxX));
-    currentY = Math.max(-maxY, Math.min(currentY, maxY));
-    previewImg.style.transform = `translate(${currentX}px, ${currentY}px)`;
-  });
-
-  document.addEventListener("mouseup", () => {
-    isDragging = false;
-    previewImg.style.cursor = "grab";
-  });
-
-  saveBtn.addEventListener("click", () => {
+  saveBtn.addEventListener("click", ()=>{
     const newName = nameInput.value.trim();
-    if (newName) {
-      usernameDisplay.textContent = newName;
-      localStorage.setItem("profileName", newName);
-    }
-    if (previewImg.src) {
+    if(newName){usernameDisplay.textContent=newName; localStorage.setItem("profileName", newName);}
+    if(previewImg.src && !previewImg.classList.contains('hidden')){
       backgroundBlur.src = previewImg.src;
-      backgroundBlur.style.transform = previewImg.style.transform;
       localStorage.setItem("profilePhoto", previewImg.src);
-      localStorage.setItem("photoTransform", previewImg.style.transform);
       previewImg.classList.add("hidden");
     }
     form.classList.add("hidden");
-    form.classList.remove("minimal-form");
   });
+
+  // Overlay inventaire
+  inventoryBtn.addEventListener("click", ()=>{
+    inventoryOverlay.style.display="block";
+    displayInventory();
+  });
+
+  closeInventoryBtn.addEventListener("click", ()=>inventoryOverlay.style.display="none");
+  document.addEventListener('keydown', (e)=>{if(e.key==='Escape' && inventoryOverlay.style.display==='block'){inventoryOverlay.style.display='none';}});
+
+  // Ajouter carte par défaut si inventaire vide
+  if(getInventory().length===0){
+    saveInventory(['SN']);
+    displayInventory();
+  }
 });
 </script>
+
+
+
+
+
+
+
+
 </body>
 </html>

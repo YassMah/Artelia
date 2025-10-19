@@ -37,39 +37,15 @@ body {
   filter: blur(1.5vh);
   z-index: 2;
   transition: transform 0.3s ease;
-   cursor: grab;
+  cursor: grab;
 }
 
 .background-preview:active {
   cursor: grabbing;
 }
 
-.background-blur::after,
-.background-preview::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(1.5vh);
-  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-  z-index: 3;
-}
-
-
-
-.background-preview.visible {
-  opacity: 1;
-}
-
-
-.background-preview.visible {
-  opacity: 1;
-}
-
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .section-title {
@@ -82,12 +58,17 @@ body {
 }
 
 .badges-title {
-  top: 45vh;
+  top: 75vh;
   left: 5vw;
 }
 
 .stats-title {
   top: 25vh;
+  left: 5vw;
+}
+
+.card-title {
+  top: 43vh;
   left: 5vw;
 }
 
@@ -100,7 +81,7 @@ body {
 }
 
 .badges-line {
-  top: 42vh;
+  top: 72vh;
   left: 9vw;
   width: 70vw;
 }
@@ -111,9 +92,15 @@ body {
   width: 70vw;
 }
 
+.card-line {
+  top: 41vh;
+  left: 9vw;
+  width: 70vw;
+}
+
 .badges-grid {
   position: absolute;
-  top: 50vh;
+  top: 78vh;
   left: 5vw;
   width: 80vw;
   display: grid;
@@ -245,7 +232,7 @@ body {
   bottom: 0;
   left: 0;
   width: 97%;
-  height: clamp(60px, 8vh, 90px);  /* min 60px, max 90px, s’adapte */
+  height: clamp(60px, 8vh, 90px);
   background-color: #1b1b1b;
   display: flex;
   justify-content: space-around;
@@ -269,7 +256,7 @@ body {
 .navbar img.icon {
   height: 3.5vh;
   width: auto;
-  filter: invert(1); /* rend les icônes blanches */
+  filter: invert(1);
 }
 
 .home-link {
@@ -278,12 +265,12 @@ body {
 }
 
 .home-icon {
-  margin-bottom: 20px; /* surélève l'icône */
+  margin-bottom: 20px;
 }
 
 .home-marker {
   position: absolute;
-  bottom: 20px; /* placé juste sous l’icône, dans la navbar */
+  bottom: 20px;
   width: 30px;
   height: 5px;
   background-color: white;
@@ -322,7 +309,7 @@ body {
   margin-bottom: 0.5vh;
 }
 
-  .edit-button-wrapper {
+.edit-button-wrapper {
   position: absolute;
   bottom: 78vh;
   left: 85%;
@@ -343,8 +330,6 @@ body {
   transition: transform 0.2s ease;
 }
 
-
-
 .edit-profile-form input {
   padding: 1vh 1vw;
   border-radius: 3vw;
@@ -354,17 +339,10 @@ body {
   color: white;
 }
 
-
-
-.edit-profile-form button:hover {
-  background: linear-gradient(to right, #ffffff, #bbbbbb);
-}
-
 #photoInput {
   display: none;
 }
 
-/* From Uiverse.io by MuhammadHasann */ 
 button {
   position: relative;
   padding: 8px 15px;
@@ -379,70 +357,47 @@ button {
   cursor: pointer;
 }
 
-.star-1 {
+.star-1, .star-2, .star-3, .star-4, .star-5, .star-6 {
   position: absolute;
-  top: 20%;
-  left: 20%;
-  width: 25px;
-  height: auto;
   filter: drop-shadow(0 0 0 #fffdef);
   z-index: -5;
   transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
 }
 
+.star-1 {
+  top: 20%;
+  left: 20%;
+  width: 25px;
+}
+
 .star-2 {
-  position: absolute;
   top: 45%;
   left: 45%;
   width: 15px;
-  height: auto;
-  filter: drop-shadow(0 0 0 #fffdef);
-  z-index: -5;
-  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
 
 .star-3 {
-  position: absolute;
   top: 40%;
   left: 40%;
   width: 5px;
-  height: auto;
-  filter: drop-shadow(0 0 0 #fffdef);
-  z-index: -5;
-  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
 
 .star-4 {
-  position: absolute;
   top: 20%;
   left: 40%;
   width: 8px;
-  height: auto;
-  filter: drop-shadow(0 0 0 #fffdef);
-  z-index: -5;
-  transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
 }
 
 .star-5 {
-  position: absolute;
   top: 25%;
   left: 45%;
   width: 15px;
-  height: auto;
-  filter: drop-shadow(0 0 0 #fffdef);
-  z-index: -5;
-  transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
 }
 
 .star-6 {
-  position: absolute;
   top: 5%;
   left: 50%;
   width: 5px;
-  height: auto;
-  filter: drop-shadow(0 0 0 #fffdef);
-  z-index: -5;
-  transition: all 0.8s ease;
 }
 
 button:hover {
@@ -452,71 +407,47 @@ button:hover {
 }
 
 button:hover .star-1 {
-  position: absolute;
   top: -80%;
   left: -30%;
-  width: 25px;
-  height: auto;
   filter: drop-shadow(0 0 10px #fffdef);
   z-index: 2;
 }
 
 button:hover .star-2 {
-  position: absolute;
   top: -25%;
   left: 10%;
-  width: 15px;
-  height: auto;
   filter: drop-shadow(0 0 10px #fffdef);
   z-index: 2;
 }
 
 button:hover .star-3 {
-  position: absolute;
   top: 55%;
   left: 25%;
-  width: 5px;
-  height: auto;
   filter: drop-shadow(0 0 10px #fffdef);
   z-index: 2;
 }
 
 button:hover .star-4 {
-  position: absolute;
   top: 30%;
   left: 80%;
-  width: 8px;
-  height: auto;
   filter: drop-shadow(0 0 10px #fffdef);
   z-index: 2;
 }
 
 button:hover .star-5 {
-  position: absolute;
   top: 25%;
   left: 115%;
-  width: 15px;
-  height: auto;
   filter: drop-shadow(0 0 10px #fffdef);
   z-index: 2;
 }
 
 button:hover .star-6 {
-  position: absolute;
   top: 5%;
   left: 60%;
-  width: 5px;
-  height: auto;
   filter: drop-shadow(0 0 10px #fffdef);
   z-index: 2;
 }
 
-.fil0 {
-  fill: #fffdef;
-}
-
-
-/* Style du bouton image */
 .custom-file-upload img {
   width: 40px;
   height: 40px;
@@ -528,78 +459,11 @@ button:hover .star-6 {
   transform: scale(1.1);
 }
 
-.minimal-form label[for="nameInput"],
-.minimal-form #nameInput,
-.minimal-form label[for="photoInput"],
-.minimal-form #photoInput {
-  display: none !important;
-}
-
-
-
-.hidden {
-  display: none;
-}
-
-.cards-title {
-  top: 38vh; /* Ajuste selon le placement voulu entre Statistiques et Badges */
-  left: 5vw;
-}
-
-.cards-line {
-  top: 35vh; /* Légèrement au-dessus du titre pour créer une séparation nette */
-  left: 9vw;
-  width: 70vw;
-  height: 0;
-  outline: 0.1vw solid white;
-  z-index: 2;
-}
-
-/* Ajuste l'inventaire si besoin */
-.inventory-grid {
-  position: absolute;
-  top: 41vh; /* juste en dessous de la ligne Cartes */
-  left: 5vw;
-  width: 80vw;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2vw;
-  z-index: 2;
-}
-
-.inventory-card {
-  width: 20vw;
-  height: auto;
-  border-radius: 1vw;
-  object-fit: cover;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  transition: transform 0.2s ease;
-}
-
-.inventory-card:hover {
-  transform: scale(1.05);
-}
-
-      /* ==== CARTE DE VISITE ==== */
-.card-title {
-  top: 59vh;
-  left: 10vw;
-}
-
-.card-line {
-  top: 57vh; /* trait légèrement plus bas */
-  left: 15vw;
-  width: 70vw;
-  height: 0;
-  outline: 0.1vw solid white;
-  z-index: 2;
-}
-
 .business-card {
   position: absolute;
-  top: 63vh;
-  left: 10vw; /* déplacée un peu à droite */
-  width: 70vw; /* légèrement réduite */
+  top: 49vh;
+  left: vw;
+  width: 80vw;
   height: auto;
   display: flex;
   justify-content: center;
@@ -608,27 +472,45 @@ button:hover .star-6 {
 }
 
 .card-image {
-  width: 70vw; /* adaptée à la nouvelle taille du conteneur */
+  width: 70vw;
   height: auto;
   border-radius: 2vw;
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
   object-fit: contain;
 }
 
-/* ==== AJUSTEMENT BADGES ==== */
-.badges-title {
-  top: 75vh;
+#inventoryContainer {
+  position: absolute;
+  top: 45vh;
   left: 5vw;
+  width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vw;
+  z-index: 2;
 }
 
-.badges-line {
-  top: 72vh; /* trait plus bas pour créer un espace */
-  left: 9vw;
-  width: 70vw;
+.inventory-card {
+  width: 15vw;
+  height: auto;
+  border-radius: 1vw;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
-.badges-grid {
-  top: 80vh;
+.inventory-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
 }
 
-
+.inventory-btn {
+  position: absolute;
+  top: 43vh;
+  left: 33vh;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 10;
+  padding: 2px;
+}

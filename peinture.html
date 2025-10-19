@@ -14,57 +14,67 @@
     <img id="openFilterBtn" class="filter-icon" src="sort.png" alt="Trier" />
   </header>
 
-  <!-- 🖼️ Galerie façon Pinterest -->
-<section class="galerie">
-  <div class="art-card paysage">
-    <img src="tableaux/grandes-baigneses.jpg" alt="Les Grandes Baigneuses">
-    <div class="info">
-      <div class="title">Les Grandes Baigneuses</div>
-      <div class="artist">Paul Cézanne</div>
-      <div class="year">1906</div>
+  <!-- 🔍 Zone d’affichage du tag actif -->
+<div id="active-tags" class="active-tags"></div>
+
+  <div class="gallery">
+    
+    <!-- Carte 1 : Water Lilies - PORTRAIT -->
+    <div class="card card-portrait card-blue">
+      <div class="card-number">001</div>
+      <img class="card-image" src="starry_night.jpg" alt="Water Lilies">
+      <div class="card-subtitle">Reflets calmes sur l'eau du temps</div>
+      <div class="card-info">
+        <h2 class="card-title">Water Lilies</h2>
+        <div class="card-year">1503</div>
+      </div>
+      <div class="card-artist">Claude Monet</div>
+      <div class="card-tags">
+        <span class="tag">Eau</span>
+        <span class="tag">Lumière</span>
+        <span class="tag">Nature</span>
+        <span class="tag">Sérénité</span>
+      </div>
     </div>
-  </div>
 
-  <div class="art-card paysage">
-    <img src="tableaux/sabines.jpg" alt="L’Enlèvement des Sabines">
-    <div class="info">
-      <div class="title">L’Enlèvement des Sabines</div>
-      <div class="artist">Jacques-Louis David</div>
-      <div class="year">1799</div>
+    <div class="card card-portrait card-green">
+      <div class="card-number">001</div>
+      <img class="card-image" src="starry_night.jpg" alt="Water Lilies">
+      <div class="card-subtitle">Reflets calmes sur l'eau du temps</div>
+      <div class="card-info">
+        <h2 class="card-title">Water Lilies</h2>
+        <div class="card-year">1503</div>
+      </div>
+      <div class="card-artist">Claude Monet</div>
+      <div class="card-tags">
+        <span class="tag">Eau</span>
+        <span class="tag">Lumière</span>
+        <span class="tag">Nature</span>
+        <span class="tag">Sérénité</span>
+      </div>
     </div>
-  </div>
 
-  <div class="art-card portrait">
-    <img src="tableaux/american-gothic.jpg" alt="La Primavera">
-    <div class="info">
-      <div class="title">American Gothic</div>
-      <div class="artist">Sandro Botticelli</div>
-      <div class="year">1482</div>
+    <!-- Carte 2 : Les Grandes Baigneuses - PAYSAGE -->
+    <div class="card card-landscape card-brown">
+      <div class="card-number">002</div>
+      <img class="card-image" src="tableaux/american-gothic.jpg" alt="Les Grandes Baigneuses">
+      <div class="card-subtitle">Harmonie charnelle au bord du silence</div>
+      <div class="card-info">
+        <h2 class="card-title">Les Grandes Baigneuses</h2>
+        <div class="card-year">1906</div>
+      </div>
+      <div class="card-artist">Paul Cézanne</div>
+      <div class="card-tags">
+        <span class="tag">Nu féminin</span>
+        <span class="tag">Lumière</span>
+        <span class="tag">Nature</span>
+        <span class="tag">Sérénité</span>
+      </div>
     </div>
+
+    <!-- Tu peux ajouter plus de cartes ici -->
+
   </div>
-
-  <div class="art-card paysage">
-    <img src="tableaux/primavera.jpg" alt="La Primavera">
-    <div class="info">
-      <div class="title">La Primavera</div>
-      <div class="artist">Sandro Botticelli</div>
-      <div class="year">1482</div>
-    </div>
-  </div>
-
-  <div class="art-card paysage">
-    <img src="tableaux/primavera.jpg" alt="La Primavera">
-    <div class="info">
-      <div class="title">La Primavera</div>
-      <div class="artist">Sandro Botticelli</div>
-      <div class="year">1482</div>
-    </div>
-  </div>
-  
-  <!-- continue avec tes autres œuvres -->
-</section>
-
-
 
   <!-- 🧭 Barre de navigation -->
   <div class="navbar">
@@ -80,29 +90,71 @@
     <a href="#"><img class="icon" src="fav.png" alt="Favoris"></a>
     <a href="profile.html"><img class="icon" src="profile.png" alt="Profil"></a>
   </div>
+<script>
+const tags = document.querySelectorAll('.tag');
+const cards = document.querySelectorAll('.card');
+const activeTagsContainer = document.getElementById('active-tags');
+let activeTags = [];
 
-  <h1 class="suite">À venir très bientôt</h1>
+// Quand on clique sur un tag
+tags.forEach(tag => {
+  tag.addEventListener('click', () => {
+    const tagText = tag.textContent.trim();
 
-  <!-- 🔧 Script pour la fenêtre de tri -->
-  <script>
-    const openBtn = document.getElementById('openFilterBtn');
-    const overlay = document.getElementById('filterOverlay');
-    const closeBtn = document.getElementById('closeFilterBtn');
+    // Si déjà actif → on retire, sinon on ajoute
+    if (activeTags.includes(tagText)) {
+      activeTags = activeTags.filter(t => t !== tagText);
+    } else {
+      activeTags.push(tagText);
+    }
 
-    openBtn?.addEventListener('click', () => {
-      overlay.style.display = 'flex';
+    updateActiveTagsDisplay();
+    filterCards();
+  });
+});
+
+function updateActiveTagsDisplay() {
+  activeTagsContainer.innerHTML = '';
+
+  activeTags.forEach(tag => {
+    const span = document.createElement('span');
+    span.classList.add('active-tag');
+
+    const text = document.createElement('span');
+    text.textContent = tag;
+
+    const remove = document.createElement('span');
+    remove.textContent = '✕';
+    remove.classList.add('remove-tag');
+
+    remove.addEventListener('click', (e) => {
+      e.stopPropagation(); // Empêche de relancer un clic sur le tag
+      activeTags = activeTags.filter(t => t !== tag);
+      updateActiveTagsDisplay();
+      filterCards();
     });
 
-    closeBtn?.addEventListener('click', () => {
-      overlay.style.display = 'none';
-    });
+    span.appendChild(text);
+    span.appendChild(remove);
+    activeTagsContainer.appendChild(span);
+  });
+}
 
-    overlay?.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        overlay.style.display = 'none';
-      }
-    });
-  </script>
+function filterCards() {
+  if (activeTags.length === 0) {
+    cards.forEach(card => card.style.display = 'flex');
+    return;
+  }
+
+  cards.forEach(card => {
+    const cardTags = Array.from(card.querySelectorAll('.tag')).map(t => t.textContent.trim());
+    // 🧠 Filtrage cumulatif (tous les tags actifs doivent être présents)
+    const hasAllTags = activeTags.every(tag => cardTags.includes(tag));
+    card.style.display = hasAllTags ? 'flex' : 'none';
+  });
+}
+</script>
+
 
 </body>
 </html>

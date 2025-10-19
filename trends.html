@@ -73,6 +73,7 @@
 
 
 <script> 
+// ===== DONNÉES DES TRENDS =====
 const trendsSets = [
   // ===== TABLEAUX (≈85) =====
   { titre: "American Gothic", date: "1930", style: "Régionalisme", image: "american-gothic.jpg" },
@@ -82,7 +83,7 @@ const trendsSets = [
   { titre: "Blue Nude", date: "1907", style: "Fauvisme", image: "blue-nude.jpg" },
   { titre: "Broadway Boogie Woogie", date: "1943", style: "Néoplasticisme", image: "boogie-woogie.jpg" },
   { titre: "Café de nuit", date: "1888", style: "Post-impressionnisme", image: "cafe-nuit.jpg" },
-  { titre: "Campbell’s Soup Cans", date: "1962", style: "Pop Art", image: "campbells.jpg" },
+  { titre: "Campbell's Soup Cans", date: "1962", style: "Pop Art", image: "campbells.jpg" },
   { titre: "Champs de blé avec corbeaux", date: "1890", style: "Post-impressionnisme", image: "ble-corbeaux.jpg" },
   { titre: "Composition II in Red Blue Yellow", date: "1930", style: "Néoplasticisme", image: "composition-ii.jpg" },
   { titre: "Composition VIII", date: "1923", style: "Abstraction", image: "composition-viii.jpg" },
@@ -99,7 +100,7 @@ const trendsSets = [
   { titre: "Impression, soleil levant", date: "1872", style: "Impressionnisme", image: "impression-soleil.jpg" },
   { titre: "Jardin des délices", date: "1505", style: "Renaissance", image: "jardin-delices.jpg" },
   { titre: "La Balançoire", date: "1876", style: "Impressionnisme", image: "balancoire.jpg" },
-  { titre: "La Création d’Adam", date: "1512", style: "Renaissance", image: "creation-adam.jpg" },
+  { titre: "La Création d'Adam", date: "1512", style: "Renaissance", image: "creation-adam.jpg" },
   { titre: "La Danse", date: "1910", style: "Fauvisme", image: "danse-matisse.jpg" },
   { titre: "La Gare Saint-Lazare", date: "1877", style: "Impressionnisme", image: "gare-saint-lazare.jpg" },
   { titre: "La Jeune fille à la perle", date: "1665", style: "Baroque", image: "jeune-fille-perle.jpg" },
@@ -110,20 +111,20 @@ const trendsSets = [
   { titre: "La Nuit étoilée", date: "1889", style: "Post-impressionnisme", image: "nuit-etoilee.jpg" },
   { titre: "La Persistance de la mémoire", date: "1931", style: "Surréalisme", image: "persistence-memoire.jpg" },
   { titre: "La Ronde de nuit", date: "1642", style: "Baroque", image: "ronde-nuit.jpg" },
-  { titre: "L’École d’Athènes", date: "1511", style: "Renaissance", image: "ecole-athenes.jpg" },
+  { titre: "L'École d'Athènes", date: "1511", style: "Renaissance", image: "ecole-athenes.jpg" },
   { titre: "Le Baiser", date: "1908", style: "Symbolisme", image: "baiser-klimt.jpg" },
   { titre: "Le Cauchemar", date: "1781", style: "Romantisme", image: "cauchemar.jpg" },
   { titre: "Le Cri", date: "1893", style: "Expressionnisme", image: "le-cri.jpg" },
   { titre: "Le Déjeuner des canotiers", date: "1881", style: "Impressionnisme", image: "dejeuner-canotiers.jpg" },
-  { titre: "Le Déjeuner sur l’herbe", date: "1863", style: "Réalisme", image: "dejeuner-herbe.jpg" },
-  { titre: "Le Pont de l’Europe", date: "1876", style: "Impressionnisme", image: "pont-europe.jpg" },
+  { titre: "Le Déjeuner sur l'herbe", date: "1863", style: "Réalisme", image: "dejeuner-herbe.jpg" },
+  { titre: "Le Pont de l'Europe", date: "1876", style: "Impressionnisme", image: "pont-europe.jpg" },
   { titre: "Le Radeau de la Méduse", date: "1819", style: "Romantisme", image: "radeau-meduse.jpg" },
   { titre: "Le Serment des Horaces", date: "1784", style: "Néoclassicisme", image: "horaces.jpg" },
-  { titre: "Le Tricheur à l’as de carreau", date: "1635", style: "Baroque", image: "tricheur-carreau.jpg" },
-  { titre: "Le Violon d’Ingres", date: "1924", style: "Surréalisme", image: "violon-ingres.jpg" },
+  { titre: "Le Tricheur à l'as de carreau", date: "1635", style: "Baroque", image: "tricheur-carreau.jpg" },
+  { titre: "Le Violon d'Ingres", date: "1924", style: "Surréalisme", image: "violon-ingres.jpg" },
   { titre: "Les Baigneuses à Asnières", date: "1884", style: "Post-impressionnisme", image: "baigneuses-asnieres.jpg" },
   { titre: "Les Chaises", date: "1888", style: "Post-impressionnisme", image: "chaises.jpg" },
-  { titre: "Les Demoiselles d’Avignon", date: "1907", style: "Cubisme", image: "demoiselles-avignon.jpg" },
+  { titre: "Les Demoiselles d'Avignon", date: "1907", style: "Cubisme", image: "demoiselles-avignon.jpg" },
   { titre: "Les Grandes Baigneuses", date: "1898", style: "Post-impressionnisme", image: "grandes-baigneses.jpg" },
   { titre: "Les Joueurs de cartes", date: "1895", style: "Post-impressionnisme", image: "joueurs-cartes.jpg" },
   { titre: "Les Ménines", date: "1656", style: "Baroque", image: "menines.jpg" },
@@ -154,7 +155,7 @@ const trendsSets = [
   { titre: "Woman I", date: "1950", style: "Expressionnisme abstrait", image: "woman1.jpg" },
   // ===== MUSEES (≈15) =====
   { titre: "Musée du Louvre", date: "Paris", style: "Musée", image: "louvre.jpg" },
-  { titre: "Musée d’Orsay", date: "Paris", style: "Musée", image: "orsay.jpg" },
+  { titre: "Musée d'Orsay", date: "Paris", style: "Musée", image: "orsay.jpg" },
   { titre: "Prado", date: "Madrid", style: "Musée", image: "prado.jpg" },
   { titre: "Rijksmuseum", date: "Amsterdam", style: "Musée", image: "rijksmuseum.jpg" },
   { titre: "Uffizi", date: "Florence", style: "Musée", image: "uffizi.jpg" },
@@ -166,10 +167,11 @@ const trendsSets = [
   { titre: "Hermitage", date: "Saint-Pétersbourg", style: "Musée", image: "hermitage.jpg" },
   { titre: "Guggenheim", date: "New York", style: "Musée", image: "guggenheim.jpg" },
   { titre: "Centre Pompidou", date: "Paris", style: "Musée", image: "pompidou.jpg" },
-  { titre: "Musée d’Art Moderne de Tokyo", date: "Tokyo", style: "Musée", image: "tokyo-mam.jpg" },
+  { titre: "Musée d'Art Moderne de Tokyo", date: "Tokyo", style: "Musée", image: "tokyo-mam.jpg" },
   { titre: "Musée Van Gogh", date: "Amsterdam", style: "Musée", image: "vangogh-museum.jpg" }
 ];
 
+// ===== GESTION DU FEED =====
 (function(){
   const openBtn   = document.getElementById('openFeedBtn');
   const overlay   = document.getElementById('feedOverlay');
@@ -178,7 +180,7 @@ const trendsSets = [
 
   function populateFeed(){
     scroller.innerHTML = '';
-    // on parcourt trendsSets dans l’ordre défini, sans mélange
+    // on parcourt trendsSets dans l'ordre défini, sans mélange
     trendsSets.forEach(set => {
       const post = document.createElement('article');
       post.className = 'feed-post';
@@ -211,69 +213,105 @@ const trendsSets = [
   closeBtn.addEventListener('click', closeFeed);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFeed(); });
 })();
-</script>
-<script>
-// ===== PACK TEST =====
-const packOverlay = document.getElementById('pack-overlay');
-const packContainer = document.querySelector('.pack-container');
-const packBtn = document.getElementById('openPackBtn');
-const packOpenBtn = document.getElementById('open-pack-btn');
-const starsContainer = document.getElementById('stars');
 
-// Inventaire (stockage dans localStorage)
-let inventory = JSON.parse(localStorage.getItem('inventory')) || [];
+(function(){
+  const packOverlay = document.getElementById('pack-overlay');
+  const packContainer = document.querySelector('.pack-container');
+  const packBtn = document.getElementById('openPackBtn');
+  const packOpenBtn = document.getElementById('open-pack-btn');
+  const starsContainer = document.getElementById('stars');
+  const cardImg = document.querySelector('.card-img'); // image visible du pack
 
-// Afficher le pack overlay
-packBtn.addEventListener('click', () => {
-  packOverlay.style.display = 'flex';
-});
+  const availableCards = [
+    {name:'SN', stars:5},
+    {name:'MonaLisa', stars:3},
+    {name:'TheScream', stars:2},
+    {name:'Sunflowers', stars:1}
+  ];
 
-// Fermer overlay
-packOverlay.addEventListener('click', (e) => {
-  if (e.target === packOverlay) {
-    closePackOverlay();
+  function getInventory() {
+    return JSON.parse(localStorage.getItem('userInventory') || '[]');
   }
-});
 
-function closePackOverlay() {
-  packOverlay.style.display = 'none';
-  packContainer.classList.remove('open');
-}
-
-// Ouvrir le pack (test rapide : pas de limitation 1 pack/jour)
-packOpenBtn.addEventListener('click', () => {
-  packContainer.classList.add('open');
-  generateStars();
-
-  // Générer une carte aléatoire
-  const cards = ['StarryNight', 'MonaLisa', 'TheScream', 'Sunflowers'];
-  const randomCard = cards[Math.floor(Math.random() * cards.length)];
-
-  // Ajouter à l'inventaire
-  inventory.push(randomCard);
-  localStorage.setItem('inventory', JSON.stringify(inventory));
-  console.log('Carte obtenue :', randomCard);
-  console.log('Inventaire actuel :', inventory);
-
-  // Optionnel : afficher un petit message
-  alert(`Vous avez obtenu : ${randomCard}`);
-});
-
-// Générer des étoiles
-function generateStars() {
-  for (let i = 0; i < 15; i++) {
-    const star = document.createElement('div');
-    star.classList.add('star');
-    star.style.left = `${Math.random() * 100}%`;
-    star.style.bottom = `${Math.random() * 40}%`;
-    starsContainer.appendChild(star);
-
-    setTimeout(() => star.remove(), 1200);
+  function saveInventory(inventory) {
+    localStorage.setItem('userInventory', JSON.stringify(inventory));
   }
-}
 
-// Pour réinitialiser l'inventaire si besoin
-// localStorage.removeItem('inventory');
+  function getRandomCard() {
+    const inventory = getInventory();
+    const remainingCards = availableCards.filter(card => !inventory.includes(card.name));
+
+    if (remainingCards.length === 0) return null; // plus de cartes à obtenir
+
+    const pool = [];
+    remainingCards.forEach(card => {
+      const weight = 6 - card.stars; // Plus la carte est rare, moins elle apparaît
+      for(let i=0;i<weight;i++) pool.push(card.name);
+    });
+
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  // Ajouter une carte à l'inventaire si non déjà possédée
+  function addCardToInventory(cardName) {
+    const inventory = getInventory();
+    if (!inventory.includes(cardName)) {
+      inventory.push(cardName);
+      saveInventory(inventory);
+      console.log('Carte ajoutée :', cardName);
+    } else {
+      console.log('Carte déjà possédée :', cardName);
+    }
+  }
+
+  // Ouvrir l'overlay du pack
+  packBtn.addEventListener('click', () => {
+    packOverlay.style.display = 'flex';
+  });
+
+  // Fermer overlay en cliquant à l'extérieur
+  packOverlay.addEventListener('click', (e) => {
+    if(e.target === packOverlay) packOverlay.style.display='none';
+  });
+
+  // Ouvrir le pack et tirer une carte
+  packOpenBtn.addEventListener('click', () => {
+    packContainer.classList.add('open');
+    generateStars();
+
+    const randomCard = getRandomCard();
+
+    if(randomCard === null){
+      alert("Vous possédez déjà toutes les cartes disponibles !");
+      return;
+    }
+
+    addCardToInventory(randomCard);
+
+    // Mettre à jour l'image visible
+    cardImg.src = `card/${randomCard}.png`;
+    cardImg.alt = randomCard;
+
+    alert(`Vous avez obtenu : ${randomCard}`);
+  });
+
+  // Animation étoiles lors de l'ouverture du pack
+  function generateStars() {
+    starsContainer.innerHTML = '';
+    for(let i=0;i<15;i++){
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = `${Math.random()*100}%`;
+      star.style.bottom = `${Math.random()*40}%`;
+      starsContainer.appendChild(star);
+      setTimeout(()=>star.remove(),1200);
+    }
+  }
+
+  // Débogage : affichage de l'inventaire dans la console
+  console.log('Inventaire actuel :', getInventory());
+
+})();
 </script>
 
 
