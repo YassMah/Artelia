@@ -4,15 +4,32 @@ body {
   box-sizing: border-box;
   font-family: 'Galano Grotesque', sans-serif;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* ✅ pour un scroll fluide sur mobile */
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Firefox */
+body {
+  scrollbar-width: none; /* ✅ cache la barre dans Firefox */
+}
+
+/* IE/Edge (ancienne version) */
+body {
+  -ms-overflow-style: none;
 }
 
 .profile-wrapper {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh; /* ✅ remplace height:100vh */
   background: #121212;
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* ✅ laisse défiler */
 }
+
 
 .profile-card {
   width: 86vw;
@@ -23,8 +40,9 @@ body {
   transform: translateX(-50%);
   background: rgba(255, 255, 255, 0.1);
   border-radius: 3vw;
-  overflow: hidden;
+  overflow-y: auto; /* ✅ ici */
 }
+
 
 .background-blur,
 .background-preview {
@@ -461,9 +479,9 @@ button:hover .star-6 {
 
 .business-card {
   position: absolute;
-  top: 49vh;
-  left: vw;
-  width: 80vw;
+  top: 46.9vh;
+  left: 3vh;
+  width: 20vw;
   height: auto;
   display: flex;
   justify-content: center;
@@ -472,7 +490,7 @@ button:hover .star-6 {
 }
 
 .card-image {
-  width: 70vw;
+  width: 18vw;
   height: auto;
   border-radius: 2vw;
   box-shadow: 0 0 15px rgba(0,0,0,0.5);

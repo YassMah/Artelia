@@ -1,75 +1,165 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="trends.css">
-  <title>Trends Feed</title>
-</head>
-<body>
-  <h1 class="Trends">Trends</h1>
-  <img class="logo" src="Logo.png" alt="Logo">
+  <!DOCTYPE html>
+  <html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="trends.css">
+    <title>Trends Feed</title>
+  </head>
+  <body>
+    <h1 class="Trends">Trends</h1>
+    <img class="logo" src="Logo.png" alt="Logo">
 
-  <div class="squa">
-    <div class="squab"></div>
-    <h1 class="titre">The Execution of Emperor Maximilian</h1>
-    <h1 class="peintre1">Édouard Manet</h1>
-    <h1 class="date">1867</h1>
-  </div>
+    <div class="square">
+      <div class="squa">
+        <a class="article-link" href="#" target="_blank">
+          <div class="squareblur"></div>
+          <h1 class="titre">Titre</h1>
+          <h6 class="date">Date</h6>
+        </a>
+      </div>
 
-  <div class="squa1">
-    <div class="squab"></div>
-    <h1 class="titre1">Artemisia Gentileschi</h1>
-    <img class="italie" src="Italie.png" alt="">
-    <h1 class="date1">1593-1653</h1>
-    <h1 class="style">Baroque</h1>
-  </div>
+      <div class="squa">
+        <a class="article-link" href="#" target="_blank">
+          <div class="squareblur"></div>
+          <h1 class="titre">Titre</h1>
+          <h6 class="date">Date</h6>
+        </a>
+      </div>
 
-  <div class="squa2">
-    <div class="squab"></div>
-    <img class="france" src="France.png" alt="">
-    <h1 class="ville"></h1>
-    <h1 class="pays"></h1>
-  </div>
-
-  <!-- === Bouton pour ouvrir le feed === -->
-  <button id="openFeedBtn" class="open-feed-btn" aria-label="Ouvrir Feed">Feed</button>
-
-  <!-- === Overlay Feed === -->
-  <section id="feedOverlay" class="feed-overlay" aria-hidden="true" style="display:none;">
-    <div class="feed-header">
-      <h2 class="feed-title">Feed</h2>
-      <button id="closeFeedBtn" class="feed-close" aria-label="Fermer">✕</button>
+      <div class="squa">
+        <a class="article-link" href="#" target="_blank">
+          <div class="squareblur"></div>
+          <h1 class="titre">Titre</h1>
+          <h6 class="date">Date</h6>
+        </a>
+      </div>
     </div>
-    <div id="feedScroller" class="feed-scroller" tabindex="0" role="region" aria-label="Feed Pour toi"></div>
-  </section>
 
-  <!-- === BOUTON DU PACK DU JOUR === -->
- <!-- === BOUTON DU PACK DU JOUR === -->
-<button id="openPackBtn" class="pack-btn">🎁 Pack du jour</button>
+    <button id="openFeedBtn" class="open-feed-btn" aria-label="Ouvrir Feed">Feed</button>
 
-<!-- === OVERLAY DU PACK === -->
-<div id="pack-overlay" class="pack-overlay" style="display: none;">
-  <div class="pack-container">
-    <div class="pack">
-      <img src="pack.png" alt="Pack" class="pack-img">
-      <div class="pack-cover"></div>
+    <!-- === Overlay Feed === -->
+    <section id="feedOverlay" class="feed-overlay" aria-hidden="true" style="display:none;">
+      <div class="feed-header">
+        <h2 class="feed-title">Feed</h2>
+        <button id="closeFeedBtn" class="feed-close" aria-label="Fermer">✕</button>
+      </div>
+      <div id="feedScroller" class="feed-scroller" tabindex="0" role="region" aria-label="Feed Pour toi"></div>
+    </section>
+
+
+    <!-- === OVERLAY DU PACK === -->
+   
+
+    <!-- === BARRE DE NAVIGATION === -->
+    <div class="navbar">
+      <a href="#" class="home-link"><div class="home-marker"></div><img class="icon home-icon" src="home.png" alt="Accueil"></a>
+      <a href="peinture.html"><img class="icon" src="peinture.png" alt="Peinture"></a>
+      <a href="#"><img class="icon" src="peintre.png" alt="Peintre"></a>
+      <a href="#"><img class="icon" src="museum.png" alt="Musée"></a>
+      <a href="collection.html"><img class="icon" src="fav.png" alt="Favoris"></a>
+      <a href="profile.html"><img class="icon" src="profile.png" alt="Profil"></a>
     </div>
-    <img src="card/SN.png" alt="Carte StarryNight" class="card-img">
-    <div class="stars" id="stars"></div>
-  </div>
-  <button id="open-pack-btn">Ouvrir le pack</button>
-</div>
 
-  <!-- === BARRE DE NAVIGATION === -->
-  <div class="navbar">
-    <a href="#" class="home-link"><div class="home-marker"></div><img class="icon home-icon" src="home.png" alt="Accueil"></a>
-    <a href="peinture.html"><img class="icon" src="peinture.png" alt="Peinture"></a>
-    <a href="#"><img class="icon" src="peintre.png" alt="Peintre"></a>
-    <a href="#"><img class="icon" src="museum.png" alt="Musée"></a>
-    <a href="collection.html"><img class="icon" src="fav.png" alt="Favoris"></a>
-    <a href="profile.html"><img class="icon" src="profile.png" alt="Profil"></a>
-  </div>
+  <script>
+const squares = document.querySelectorAll('.squa');
+const apiKey = 'c9720d2b84b3487d8724c9333b409ba2';
+
+// Mots-clés pour inclure uniquement des articles liés à l’art
+const keywordsArt = [
+  'peinture', 'sculpture', 'dessin', 'gravure', 'fresque', 'installation artistique',
+  'art contemporain', 'art moderne', 'art classique', 'photographie artistique',
+  'portrait', 'nature morte', 'tapisserie', 'exposition', 'musée', 'galerie'
+];
+
+// Mots-clés pour exclure tout hors-sujet
+const exclusionKeywords = [
+  'football', 'rugby', 'cinéma', 'série', 'film', 'musique', 'concert',
+  'politique', 'gouvernement', 'élection', 'technologie', 'finance',
+  'économie', 'voyage', 'mode', 'fashion', 'maquillage'
+];
+
+async function fetchArtNews() {
+  try {
+    // Optionnel : ajouter des sources spécialisées
+    const sources = 'lemonde.fr,connaissancesdesarts.com,beauxarts.com';
+
+    const targetUrl = `https://newsapi.org/v2/everything?q=${keywordsArt.join(' OR ')}&language=fr&sortBy=publishedAt&pageSize=20&apiKey=${apiKey}&domains=${sources}`;
+    const response = await fetch(targetUrl);
+    if (!response.ok) throw new Error('Erreur lors du chargement de l’API');
+
+    const data = await response.json();
+    const articles = data.articles || [];
+
+    const filteredArticles = articles.filter(article => {
+      if (!article.title || !article.urlToImage) return false;
+      const text = (article.title + ' ' + (article.description || '')).toLowerCase();
+      // Doit contenir au moins un mot-clé artistique
+      const hasArtKeyword = keywordsArt.some(k => text.includes(k));
+      // Ne doit contenir aucun mot clé à exclure
+      const hasNoExclusion = !exclusionKeywords.some(k => text.includes(k));
+      return hasArtKeyword && hasNoExclusion;
+    });
+
+    filteredArticles.slice(0, squares.length).forEach((article, i) => {
+      const square = squares[i];
+      const link = square?.querySelector('.article-link');
+      if (!link) return;
+
+      link.style.backgroundImage = `url('${article.urlToImage}')`;
+      link.style.backgroundSize = 'cover';
+      link.style.backgroundPosition = 'center';
+      link.style.display = 'block';
+      link.style.borderRadius = '10px';
+      link.href = article.url;
+      link.setAttribute('aria-label', `Lire l'article : ${article.title}`);
+      link.setAttribute('title', article.title);
+
+      const titreEl = link.querySelector('.titre');
+      if (titreEl) titreEl.textContent = article.title.length > 60 ? article.title.slice(0, 60) + '...' : article.title;
+
+      const dateEl = link.querySelector('.date');
+if (dateEl) {
+  if (article.publishedAt) {
+    const published = new Date(article.publishedAt);
+    const now = new Date();
+    const diffMs = now - published; // différence en millisecondes
+    const diffMinutes = Math.floor(diffMs / 60000);
+
+    let timeAgo;
+    if (diffMinutes < 60) {
+      timeAgo = `posté il y a ${diffMinutes} minute${diffMinutes > 1 ? 's' : ''}`;
+    } else {
+      const diffHours = Math.floor(diffMinutes / 60);
+      timeAgo = `${diffHours} heure${diffHours > 1 ? 's' : ''}`;
+    }
+
+    dateEl.textContent = timeAgo;
+  } else {
+    dateEl.textContent = 'Date inconnue';
+  }
+}
+    });
+
+    console.log("=== ARTICLES ART AFFICHÉS ===");
+    filteredArticles.slice(0, 5).forEach(a => console.log(a.title));
+
+  } catch (error) {
+    console.error('Erreur API:', error);
+  }
+}
+
+
+
+fetchArtNews();
+setInterval(fetchArtNews, 10 * 60 * 1000);
+
+
+</script>
+
+
+
+
 
 
 <script> 
@@ -179,24 +269,28 @@ const trendsSets = [
   const scroller  = document.getElementById('feedScroller');
 
   function populateFeed(){
-    scroller.innerHTML = '';
-    // on parcourt trendsSets dans l'ordre défini, sans mélange
-    trendsSets.forEach(set => {
-      const post = document.createElement('article');
-      post.className = 'feed-post';
-      post.innerHTML = `
-        <div class="post-bg" style="background-image:url('tableaux/${set.image}')"></div>
-        <div class="post-content">
-          <h3 class="post-title">${set.titre}</h3>
-          <div class="post-meta">${set.date || ''} ${set.style ? '• ' + set.style : ''}</div>
-        </div>
-        <div class="actions">
-          <div class="action-btn">❤</div>
-          <div class="action-btn">⤴</div>
-        </div>`;
-      scroller.appendChild(post);
-    });
-  }
+  scroller.innerHTML = '';
+
+  // copie du tableau puis mélange aléatoire (algorithme de Fisher–Yates)
+  const shuffled = [...trendsSets].sort(() => Math.random() - 0.5);
+
+  shuffled.forEach(set => {
+    const post = document.createElement('article');
+    post.className = 'feed-post';
+    post.innerHTML = `
+      <div class="post-bg" style="background-image:url('tableaux/${set.image}')"></div>
+      <div class="post-content">
+        <h3 class="post-title">${set.titre}</h3>
+        <div class="post-meta">${set.date || ''} ${set.style ? '• ' + set.style : ''}</div>
+      </div>
+      <div class="actions">
+        <div class="action-btn">❤</div>
+        <div class="action-btn">⤴</div>
+      </div>`;
+    scroller.appendChild(post);
+  });
+}
+
 
   function openFeed(){
     populateFeed();
@@ -212,105 +306,6 @@ const trendsSets = [
   openBtn.addEventListener('click', openFeed);
   closeBtn.addEventListener('click', closeFeed);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFeed(); });
-})();
-
-(function(){
-  const packOverlay = document.getElementById('pack-overlay');
-  const packContainer = document.querySelector('.pack-container');
-  const packBtn = document.getElementById('openPackBtn');
-  const packOpenBtn = document.getElementById('open-pack-btn');
-  const starsContainer = document.getElementById('stars');
-  const cardImg = document.querySelector('.card-img'); // image visible du pack
-
-  const availableCards = [
-    {name:'SN', stars:5},
-    {name:'MonaLisa', stars:3},
-    {name:'TheScream', stars:2},
-    {name:'Sunflowers', stars:1}
-  ];
-
-  function getInventory() {
-    return JSON.parse(localStorage.getItem('userInventory') || '[]');
-  }
-
-  function saveInventory(inventory) {
-    localStorage.setItem('userInventory', JSON.stringify(inventory));
-  }
-
-  function getRandomCard() {
-    const inventory = getInventory();
-    const remainingCards = availableCards.filter(card => !inventory.includes(card.name));
-
-    if (remainingCards.length === 0) return null; // plus de cartes à obtenir
-
-    const pool = [];
-    remainingCards.forEach(card => {
-      const weight = 6 - card.stars; // Plus la carte est rare, moins elle apparaît
-      for(let i=0;i<weight;i++) pool.push(card.name);
-    });
-
-    return pool[Math.floor(Math.random() * pool.length)];
-  }
-
-  // Ajouter une carte à l'inventaire si non déjà possédée
-  function addCardToInventory(cardName) {
-    const inventory = getInventory();
-    if (!inventory.includes(cardName)) {
-      inventory.push(cardName);
-      saveInventory(inventory);
-      console.log('Carte ajoutée :', cardName);
-    } else {
-      console.log('Carte déjà possédée :', cardName);
-    }
-  }
-
-  // Ouvrir l'overlay du pack
-  packBtn.addEventListener('click', () => {
-    packOverlay.style.display = 'flex';
-  });
-
-  // Fermer overlay en cliquant à l'extérieur
-  packOverlay.addEventListener('click', (e) => {
-    if(e.target === packOverlay) packOverlay.style.display='none';
-  });
-
-  // Ouvrir le pack et tirer une carte
-  packOpenBtn.addEventListener('click', () => {
-    packContainer.classList.add('open');
-    generateStars();
-
-    const randomCard = getRandomCard();
-
-    if(randomCard === null){
-      alert("Vous possédez déjà toutes les cartes disponibles !");
-      return;
-    }
-
-    addCardToInventory(randomCard);
-
-    // Mettre à jour l'image visible
-    cardImg.src = `card/${randomCard}.png`;
-    cardImg.alt = randomCard;
-
-    alert(`Vous avez obtenu : ${randomCard}`);
-  });
-
-  // Animation étoiles lors de l'ouverture du pack
-  function generateStars() {
-    starsContainer.innerHTML = '';
-    for(let i=0;i<15;i++){
-      const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.left = `${Math.random()*100}%`;
-      star.style.bottom = `${Math.random()*40}%`;
-      starsContainer.appendChild(star);
-      setTimeout(()=>star.remove(),1200);
-    }
-  }
-
-  // Débogage : affichage de l'inventaire dans la console
-  console.log('Inventaire actuel :', getInventory());
-
 })();
 </script>
 

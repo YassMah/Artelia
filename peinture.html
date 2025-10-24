@@ -1,160 +1,314 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Peintures</title>
-  <link rel="stylesheet" href="peinture.css" />
-</head>
-<body>
+  <!DOCTYPE html>
+  <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peintures</title>
+    <link rel="stylesheet" href="peinture.css" />
+  </head>
+  <body>
 
-  <header>
-    <img class="logo" src="Logo.png" alt="Logo" />
-    <h1 class="paint">Peinture</h1>
-    <img id="openFilterBtn" class="filter-icon" src="sort.png" alt="Trier" />
-  </header>
+    <header>
+      <img class="logo" src="Logo.png" alt="Logo" />
+      <h1 class="paint">Peinture</h1>
+      <img id="openFilterBtn" class="filter-icon" src="sort.png" alt="Trier" />
+    </header>
 
-  <!-- 🔍 Zone d’affichage du tag actif -->
-<div id="active-tags" class="active-tags"></div>
+    <!-- 🔍 Zone d’affichage du tag actif -->
+  <div id="active-tags" class="active-tags"></div>
 
-  <div class="gallery">
-    
-    <!-- Carte 1 : Water Lilies - PORTRAIT -->
-    <div class="card card-portrait card-blue">
-      <div class="card-number">001</div>
-      <img class="card-image" src="starry_night.jpg" alt="Water Lilies">
-      <div class="card-subtitle">Reflets calmes sur l'eau du temps</div>
-      <div class="card-info">
-        <h2 class="card-title">Water Lilies</h2>
-        <div class="card-year">1503</div>
-      </div>
-      <div class="card-artist">Claude Monet</div>
-      <div class="card-tags">
-        <span class="tag">Eau</span>
-        <span class="tag">Lumière</span>
-        <span class="tag">Nature</span>
-        <span class="tag">Sérénité</span>
-      </div>
-    </div>
-
-    <div class="card card-portrait card-green">
-      <div class="card-number">001</div>
-      <img class="card-image" src="starry_night.jpg" alt="Water Lilies">
-      <div class="card-subtitle">Reflets calmes sur l'eau du temps</div>
-      <div class="card-info">
-        <h2 class="card-title">Water Lilies</h2>
-        <div class="card-year">1503</div>
-      </div>
-      <div class="card-artist">Claude Monet</div>
-      <div class="card-tags">
-        <span class="tag">Eau</span>
-        <span class="tag">Lumière</span>
-        <span class="tag">Nature</span>
-        <span class="tag">Sérénité</span>
-      </div>
-    </div>
-
-    <!-- Carte 2 : Les Grandes Baigneuses - PAYSAGE -->
-    <div class="card card-landscape card-brown">
-      <div class="card-number">002</div>
-      <img class="card-image" src="tableaux/american-gothic.jpg" alt="Les Grandes Baigneuses">
-      <div class="card-subtitle">Harmonie charnelle au bord du silence</div>
-      <div class="card-info">
-        <h2 class="card-title">Les Grandes Baigneuses</h2>
-        <div class="card-year">1906</div>
-      </div>
-      <div class="card-artist">Paul Cézanne</div>
-      <div class="card-tags">
-        <span class="tag">Nu féminin</span>
-        <span class="tag">Lumière</span>
-        <span class="tag">Nature</span>
-        <span class="tag">Sérénité</span>
-      </div>
-    </div>
-
-    <!-- Tu peux ajouter plus de cartes ici -->
-
+    <div class="gallery">
+      
+      <!-- Carte 1 : Water Lilies - PORTRAIT -->
+<!-- Carte CM-001 : Water Lilies -->
+ <a href="wl.html">
+<div class="card card-portrait card-water-lilies">
+  <div class="card-number">CM-001</div>
+  <img class="card-image" src="tableaux/water-lilies-morning.jpg" alt="Water Lilies">
+  <div class="card-subtitle">Reflets calmes sur l'eau du temps</div>
+  <div class="card-info">
+    <h2 class="card-title">Water Lilies</h2>
+    <div class="card-year">1903</div>
   </div>
-
-  <!-- 🧭 Barre de navigation -->
-  <div class="navbar">
-    <a href="trends.html" class="icon">
-      <img class="icon home-icon" src="home.png" alt="Accueil">
-    </a>   
-    <a href="peinture.html" class="home-link">
-      <div class="home-marker"></div>
-      <img class="icon home-icon" src="peinture.png" alt="Peinture">
-    </a>
-    <a href="#"><img class="icon" src="peintre.png" alt="Peintre"></a>
-    <a href="carte.html"><img class="icon" src="museum.png" alt="Musée"></a>
-    <a href="#"><img class="icon" src="fav.png" alt="Favoris"></a>
-    <a href="profile.html"><img class="icon" src="profile.png" alt="Profil"></a>
+  </a>
+  <div class="card-artist">Claude Monet</div>
+  <div class="card-tags">
+    <span class="tag">Eau</span>
+    <span class="tag">Lumière</span>
+    <span class="tag">Nature</span>
+    <span class="tag">Sérénité</span>
   </div>
-<script>
-const tags = document.querySelectorAll('.tag');
-const cards = document.querySelectorAll('.card');
-const activeTagsContainer = document.getElementById('active-tags');
-let activeTags = [];
+</div>
 
-// Quand on clique sur un tag
-tags.forEach(tag => {
-  tag.addEventListener('click', () => {
-    const tagText = tag.textContent.trim();
+<!-- Carte CM-002 : Gare Saint-Lazare -->
+<div class="card card-landscape card-gare-saint-lazare">
+  <div class="card-number">CM-002</div>
+  <img class="card-image" src="tableaux/gare-saint-lazare.jpg" alt="Gare Saint-Lazare">
+  <div class="card-subtitle">La vapeur et la lumière d’une gare en mouvement</div>
+  <div class="card-info">
+    <h2 class="card-title">Gare Saint-Lazare</h2>
+    <div class="card-year">1877</div>
+  </div>
+  <div class="card-artist">Claude Monet</div>
+  <div class="card-tags">
+    <span class="tag">Vapeur</span>
+    <span class="tag">Lumière</span>
+    <span class="tag">Modernité</span>
+    <span class="tag">Architecture</span>
+  </div>
+</div>
 
-    // Si déjà actif → on retire, sinon on ajoute
-    if (activeTags.includes(tagText)) {
-      activeTags = activeTags.filter(t => t !== tagText);
-    } else {
-      activeTags.push(tagText);
-    }
+<!-- Carte GW-001 : American Gothic -->
+<div class="card card-portrait card-american-gothic">
+  <div class="card-number">GW-001</div>
+  <img class="card-image" src="tableaux/american-gothic.jpg" alt="American Gothic">
+  <div class="card-subtitle">Portrait rigide et emblématique de la campagne</div>
+  <div class="card-info">
+    <h2 class="card-title">American Gothic</h2>
+    <div class="card-year">1930</div>
+  </div>
+  <div class="card-artist">Grant Wood</div>
+  <div class="card-tags">
+    <span class="tag">Portrait</span>
+    <span class="tag">Campagne</span>
+    <span class="tag">Symbolisme</span>
+    <span class="tag">Sérieux</span>
+  </div>
+</div>
 
-    updateActiveTagsDisplay();
-    filterCards();
-  });
-});
+<!-- Carte VG-001 : Nuit Etoilée -->
+<div class="card card-portrait card-nuit-etoilee">
+  <div class="card-number">VG-001</div>
+  <img class="card-image" src="tableaux/nuit-etoilee.jpg" alt="Nuit Etoilée">
+  <div class="card-subtitle">Voyage au cœur d’un ciel en mouvement</div>
+  <div class="card-info">
+    <h2 class="card-title">Nuit Etoilée</h2>
+    <div class="card-year">1889</div>
+  </div>
+  <div class="card-artist">Vincent Van Gogh</div>
+  <div class="card-tags">
+    <span class="tag">Nuit</span>
+    <span class="tag">Tourbillon</span>
+    <span class="tag">Émotion</span>
+    <span class="tag">Étoiles</span>
+  </div>
+</div>
 
-function updateActiveTagsDisplay() {
-  activeTagsContainer.innerHTML = '';
+<!-- Carte VG-002 : Autoportrait Bandage -->
+<div class="card card-portrait card-autoportrait-bandage">
+  <div class="card-number">VG-002</div>
+  <img class="card-image" src="tableaux/autoportrait-bandage.jpg" alt="Autoportrait Bandage">
+  <div class="card-subtitle">Douleur et introspection dans l’art moderne</div>
+  <div class="card-info">
+    <h2 class="card-title">Autoportrait Bandage</h2>
+    <div class="card-year">1889</div>
+  </div>
+  <div class="card-artist">Vincent Van Gogh</div>
+  <div class="card-tags">
+    <span class="tag">Autoportrait</span>
+    <span class="tag">Douleur</span>
+    <span class="tag">Couleur</span>
+    <span class="tag">Expression</span>
+  </div>
+</div>
 
-  activeTags.forEach(tag => {
-    const span = document.createElement('span');
-    span.classList.add('active-tag');
+<!-- Carte JP-001 : Autumn Rhythm -->
+<div class="card card-landscape card-autumn-rhythm">
+  <div class="card-number">JP-001</div>
+  <img class="card-image" src="tableaux/autumn-rhythm.jpg" alt="Autumn Rhythm">
+  <div class="card-subtitle">Explosion de mouvements abstraits</div>
+  <div class="card-info">
+    <h2 class="card-title">Autumn Rhythm</h2>
+    <div class="card-year">1950</div>
+  </div>
+  <div class="card-artist">Jackson Pollock</div>
+  <div class="card-tags">
+    <span class="tag">Abstraction</span>
+    <span class="tag">Mouvement</span>
+    <span class="tag">Gestuel</span>
+    <span class="tag">Expression</span>
+  </div>
+</div>
 
-    const text = document.createElement('span');
-    text.textContent = tag;
+<!-- Carte GS-001 : Baigneuses Asnières -->
+<div class="card card-landscape card-baigneuses-asnieres">
+  <div class="card-number">GS-001</div>
+  <img class="card-image" src="tableaux/baigneuses-asnieres.jpg" alt="Baigneuses Asnières">
+  <div class="card-subtitle">Lumière et loisir au bord de l’eau</div>
+  <div class="card-info">
+    <h2 class="card-title">Baigneuses Asnières</h2>
+    <div class="card-year">1884</div>
+  </div>
+  <div class="card-artist">Georges Seurat</div>
+  <div class="card-tags">
+    <span class="tag">Pointillisme</span>
+    <span class="tag">Nature</span>
+    <span class="tag">Lumière</span>
+    <span class="tag">Loisir</span>
+  </div>
+</div>
 
-    const remove = document.createElement('span');
-    remove.textContent = '✕';
-    remove.classList.add('remove-tag');
+<!-- Carte GK-001 : Le Baiser -->
+<div class="card card-portrait card-baiser">
+  <div class="card-number">GK-001</div>
+  <img class="card-image" src="tableaux/baiser-klimt.jpg" alt="Le Baiser">
+  <div class="card-subtitle">Étreinte dorée et passionnée</div>
+  <div class="card-info">
+    <h2 class="card-title">Le Baiser</h2>
+    <div class="card-year">1907</div>
+  </div>
+  <div class="card-artist">Gustav Klimt</div>
+  <div class="card-tags">
+    <span class="tag">Amour</span>
+    <span class="tag">Or</span>
+    <span class="tag">Symbolisme</span>
+    <span class="tag">Passion</span>
+  </div>
+</div>
 
-    remove.addEventListener('click', (e) => {
-      e.stopPropagation(); // Empêche de relancer un clic sur le tag
-      activeTags = activeTags.filter(t => t !== tag);
+<!-- Carte AR-001 : La Balançoire -->
+<div class="card card-landscape card-balancoire">
+  <div class="card-number">AR-001</div>
+  <img class="card-image" src="tableaux/balancoire.jpg" alt="La Balançoire">
+  <div class="card-subtitle">Légèreté et intimité sous les arbres</div>
+  <div class="card-info">
+    <h2 class="card-title">La Balançoire</h2>
+    <div class="card-year">1876</div>
+  </div>
+  <div class="card-artist">Pierre-Auguste Renoir</div>
+  <div class="card-tags">
+    <span class="tag">Nature</span>
+    <span class="tag">Lumière</span>
+    <span class="tag">Intimité</span>
+    <span class="tag">Loisir</span>
+  </div>
+</div>
+
+
+
+      <!-- Tu peux ajouter plus de cartes ici -->
+
+    </div>
+
+    <!-- 🧭 Barre de navigation -->
+    <div class="navbar">
+      <a href="trends.html" class="icon">
+        <img class="icon" src="home.png" alt="Accueil">
+      </a>   
+      <a href="peinture.html" class="home-link">
+        <div class="home-marker"></div>
+        <img class="icon home-icon" src="peinture.png" alt="Peinture">
+      </a>
+      <a href="#"><img class="icon" src="peintre.png" alt="Peintre"></a>
+      <a href="carte.html"><img class="icon" src="museum.png" alt="Musée"></a>
+      <a href="#"><img class="icon" src="fav.png" alt="Favoris"></a>
+      <a href="profile.html"><img class="icon" src="profile.png" alt="Profil"></a>
+    </div>
+  <script>
+  const tags = document.querySelectorAll('.tag');
+  const cards = document.querySelectorAll('.card');
+  const activeTagsContainer = document.getElementById('active-tags');
+  let activeTags = [];
+
+  // Quand on clique sur un tag
+  tags.forEach(tag => {
+    tag.addEventListener('click', () => {
+      const tagText = tag.textContent.trim();
+
+      // Si déjà actif → on retire, sinon on ajoute
+      if (activeTags.includes(tagText)) {
+        activeTags = activeTags.filter(t => t !== tagText);
+      } else {
+        activeTags.push(tagText);
+      }
+
       updateActiveTagsDisplay();
       filterCards();
     });
-
-    span.appendChild(text);
-    span.appendChild(remove);
-    activeTagsContainer.appendChild(span);
   });
-}
 
-function filterCards() {
-  if (activeTags.length === 0) {
-    cards.forEach(card => card.style.display = 'flex');
-    return;
+  function updateActiveTagsDisplay() {
+    activeTagsContainer.innerHTML = '';
+
+    activeTags.forEach(tag => {
+      const span = document.createElement('span');
+      span.classList.add('active-tag');
+
+      const text = document.createElement('span');
+      text.textContent = tag;
+
+      const remove = document.createElement('span');
+      remove.textContent = '✕';
+      remove.classList.add('remove-tag');
+
+      remove.addEventListener('click', (e) => {
+        e.stopPropagation(); // Empêche de relancer un clic sur le tag
+        activeTags = activeTags.filter(t => t !== tag);
+        updateActiveTagsDisplay();
+        filterCards();
+      });
+
+      span.appendChild(text);
+      span.appendChild(remove);
+      activeTagsContainer.appendChild(span);
+    });
   }
 
-  cards.forEach(card => {
-    const cardTags = Array.from(card.querySelectorAll('.tag')).map(t => t.textContent.trim());
-    // 🧠 Filtrage cumulatif (tous les tags actifs doivent être présents)
-    const hasAllTags = activeTags.every(tag => cardTags.includes(tag));
-    card.style.display = hasAllTags ? 'flex' : 'none';
-  });
+  function filterCards() {
+    if (activeTags.length === 0) {
+      cards.forEach(card => card.style.display = 'flex');
+      return;
+    }
+
+    cards.forEach(card => {
+      const cardTags = Array.from(card.querySelectorAll('.tag')).map(t => t.textContent.trim());
+      // 🧠 Filtrage cumulatif (tous les tags actifs doivent être présents)
+      const hasAllTags = activeTags.every(tag => cardTags.includes(tag));
+      card.style.display = hasAllTags ? 'flex' : 'none';
+    });
+  }
+  </script>
+<script>
+function melangerCartesPortrait() {
+  const gallery = document.querySelector('.gallery');
+  const allCards = Array.from(gallery.children);
+
+  // Séparer les cartes portrait et paysage
+  const portraits = allCards.filter(card => card.classList.contains('card-portrait'));
+  const landscapes = allCards.filter(card => !card.classList.contains('card-portrait'));
+
+  // Fonction pour mélanger un tableau (Fisher-Yates)
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  shuffle(portraits);
+  shuffle(landscapes);
+
+  // Réinsérer les cartes : on place 2 portraits par "ligne"
+  gallery.innerHTML = ''; // Vide la galerie
+
+  while (portraits.length > 0 || landscapes.length > 0) {
+    // Ajouter jusqu'à 2 portraits
+    for (let i = 0; i < 2 && portraits.length > 0; i++) {
+      gallery.appendChild(portraits.shift());
+    }
+
+    // Ajouter 1 paysage si disponible
+    if (landscapes.length > 0) {
+      gallery.appendChild(landscapes.shift());
+    }
+  }
 }
+
+// Appel au chargement
+window.addEventListener('load', melangerCartesPortrait);
 </script>
 
 
-</body>
-</html>
+
+  </body>
+  </html>

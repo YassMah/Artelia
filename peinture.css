@@ -97,7 +97,7 @@ header {
 }
 
 /* Couleurs */
-.card-blue {
+.wl {
   background: linear-gradient(145deg, #6B9DAD 0%, #8BBCC9 100%);
 }
 .card-brown {
@@ -106,6 +106,62 @@ header {
 .card-green {
   background: linear-gradient(145deg, #7A9B7E 0%, #95B89A 100%);
 }
+
+.SN {
+  background: linear-gradient(135deg, #0b1e4a 0%, #1e3f7a 50%, #3a5ea8 100%);
+}
+
+.card-autumn { background: linear-gradient(145deg, #A9746E 0%, #D4B483 100%); }
+.card-baiser { background: linear-gradient(145deg, #E7C36E 0%, #F7D794 100%); }
+.card-blue-nude { background: linear-gradient(145deg, #5C9EDB 0%, #A8C5E2 100%); }
+.card-gare { background: linear-gradient(145deg, #A3B5C9 0%, #D0D9E3 100%); }
+.card-avignon { background: linear-gradient(145deg, #D97E7E 0%, #F2B6B6 100%); }
+.card-nuit-etoilee { background: linear-gradient(145deg, #0B1E4A 0%, #3A5EA8 100%); }
+.card-balancoire { background: linear-gradient(145deg, #8DBD7E 0%, #C3E3B8 100%); }
+.card-memoire { background: linear-gradient(145deg, #D1CFAF 0%, #F3F0D9 100%); }
+/* Claude Monet */
+.card-water-lilies {
+  background: linear-gradient(145deg, #6B9DAD 0%, #8BBCC9 100%);
+}
+.card-gare-saint-lazare {
+  background: linear-gradient(145deg, #A38C70 0%, #C1A67F 100%);
+}
+
+/* Grant Wood */
+.card-american-gothic {
+  background: linear-gradient(145deg, #C4A177 0%, #D9B890 100%);
+}
+
+/* Vincent Van Gogh */
+.card-nuit-etoilee {
+  background: linear-gradient(135deg, #0b1e4a 0%, #1e3f7a 50%, #3a5ea8 100%);
+}
+.card-autoportrait-bandage {
+  background: linear-gradient(135deg, #4b2c2c 0%, #7a4a4a 100%);
+}
+
+/* Jackson Pollock */
+.card-autumn-rhythm {
+  background: linear-gradient(135deg, #2b2b2b 0%, #5c5c5c 100%);
+}
+
+/* Georges Seurat */
+.card-baigneuses-asnieres {
+  background: linear-gradient(145deg, #8db2a1 0%, #b3d3c3 100%);
+}
+
+/* Gustav Klimt */
+.card-baiser {
+  background: linear-gradient(145deg, #d9b300 0%, #f2d600 100%);
+}
+
+/* Pierre-Auguste Renoir */
+.card-balancoire {
+  background: linear-gradient(145deg, #d19b8d 0%, #f0c1b2 100%);
+}
+
+
+
 
 /* Numéro */
 .card-number {
@@ -337,3 +393,6 @@ header {
   cursor: pointer;
 }
 
+a {
+  text-decoration: none;
+}

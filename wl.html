@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Water Lilies UI</title>
+  <link rel="stylesheet" href="wl.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Bouton retour -->
+    <a href="peinture.html" class="back-btn">
+      <img src="fleche.png" alt="Retour" class="back-icon">
+    </a>
+
+    <!-- Image principale -->
+    <img src="tableaux/water-lilies-morning.jpg" alt="Water Lilies" class="background">
+
+    <!-- Panneau flou -->
+    <div class="content" id="content">
+      <div class="drag-line" id="drag-line"></div>
+      <p class="subtitle">Claude Monet - 1914-1926 - Musée de l'Orangerie</p>
+      <h1 class="title">Water Lilies</h1>
+      <p class="description">
+        Découvrez et achetez vos cartes directement depuis l'application.
+      </p>
+
+      <button class="add-btn">
+        <span class="arrow-left">←</span>
+        Add to cart
+        <span class="arrow-right">→</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="navbar">
+    <a href="trends.html" class="icon">
+      <img class="icon" src="home.png" alt="Accueil">
+    </a>   
+    <a href="peinture.html" class="home-link">
+      <div class="home-marker"></div>
+      <img class="icon home-icon" src="peinture.png" alt="Peinture">
+    </a>
+    <a href="#"><img class="icon" src="peintre.png" alt="Peintre"></a>
+    <a href="carte.html"><img class="icon" src="museum.png" alt="Musée"></a>
+    <a href="#"><img class="icon" src="fav.png" alt="Favoris"></a>
+    <a href="profile.html"><img class="icon" src="profile.png" alt="Profil"></a>
+  </div>
+
+<script>
+  // === Animation du panneau ===
+  const content = document.getElementById("content");
+  const dragLine = document.getElementById("drag-line");
+
+  let startY = 0;
+  let currentY = 0;
+  let isDragging = false;
+  let isHidden = false;
+
+  content.style.transition = "transform 0.3s ease";
+
+  dragLine.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startY = e.clientY;
+    content.style.transition = "none";
+  });
+
+  window.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    currentY = e.clientY - startY;
+
+    if (currentY < 0 && isHidden) {
+      const translate = Math.max(currentY, -150);
+      content.style.transform = `translateY(calc(100% - 150px + ${translate}px))`;
+    } else if (currentY > 0 && !isHidden) {
+      const translate = Math.min(currentY, 150);
+      content.style.transform = `translateY(${translate}px)`;
+    }
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (!isDragging) return;
+    isDragging = false;
+    content.style.transition = "transform 0.3s ease";
+
+    if (!isHidden && currentY > 100) hidePanel();
+    else if (isHidden && currentY < -50) showPanel();
+    else isHidden ? hidePanel() : showPanel();
+
+    currentY = 0;
+  });
+
+  dragLine.addEventListener("click", () => {
+    isHidden ? showPanel() : hidePanel();
+  });
+
+  function hidePanel() {
+    content.style.transform = "translateY(calc(100% - 150px))";
+    isHidden = true;
+  }
+
+  function showPanel() {
+    content.style.transform = "translateY(0)";
+    isHidden = false;
+  }
+
+  // === AJOUT AU LOCALSTORAGE (inventaire profil) ===
+  const addBtn = document.querySelector(".add-btn");
+
+  function getInventory() {
+    return JSON.parse(localStorage.getItem('userInventory') || '[]');
+  }
+
+  function saveInventory(inventory) {
+    localStorage.setItem('userInventory', JSON.stringify(inventory));
+  }
+
+  addBtn.addEventListener("click", () => {
+    const cardName = "wl"; // nom du fichier dans /card, sans .png
+    let inventory = getInventory();
+
+    if (!inventory.includes(cardName)) {
+      inventory.push(cardName);
+      saveInventory(inventory);
+
+      addBtn.textContent = "✅ Added to inventory!";
+      addBtn.style.backgroundColor = "#4CAF50";
+
+      setTimeout(() => {
+        addBtn.textContent = "Add to cart";
+        addBtn.style.backgroundColor = "";
+      }, 2000);
+    } else {
+      addBtn.textContent = "Already in inventory!";
+      addBtn.style.backgroundColor = "#d9534f";
+
+      setTimeout(() => {
+        addBtn.textContent = "Add to cart";
+        addBtn.style.backgroundColor = "";
+      }, 2000);
+    }
+  });
+</script>
+
+</body>
+</html>
