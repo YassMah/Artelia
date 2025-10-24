@@ -95,6 +95,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  top: -35vh;
+  left: -1vh;
   gap: 2vw;
   background: linear-gradient(90deg, #333, #111);
   border: none;
